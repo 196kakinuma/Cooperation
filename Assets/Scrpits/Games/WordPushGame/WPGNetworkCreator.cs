@@ -7,6 +7,7 @@ namespace Games.WordPushGame
 {
     public class WPGNetworkCreator : NetworkBehaviour
     {
+        [HideInInspector]
         public WPGWordButton button;
         [Command]
         public void CmdCreateButton ( GameObject pref, GameObject parent )

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 namespace Objects.Test
 {
+
     public class TestCubeColorScript : NetworkBehaviour
     {
         [SerializeField]

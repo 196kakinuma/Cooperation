@@ -26,7 +26,7 @@ namespace Games.WordPushGame
         public void ClickReceive ()
         {
             Debug.Log ("resetButton");
-            //アニメーションいらないかも
+            WPGMaster.Instance.ResetAll ();
         }
     }
 }

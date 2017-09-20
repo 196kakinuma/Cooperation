@@ -19,22 +19,15 @@ namespace Games.WordPushGame
         public int buttonNum;
 
 
-        // Use this for initialization
-        void Start ()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update ()
-        {
-
-        }
-
         public void ClickReceive ()
         {
             Debug.Log ("button click");
             wpgAnim.CmdPushMove ();
+        }
+
+        public void Reset ()
+        {
+            wpgAnim.CmdPullMove ();
         }
     }
 }

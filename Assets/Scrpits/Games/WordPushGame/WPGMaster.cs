@@ -43,6 +43,26 @@ namespace Games.WordPushGame
         {
 
         }
+
+        /// <summary>
+        /// すべてのボタンを元の位置に戻す。
+        /// 押していない状態にする
+        /// </summary>
+        public void ResetAll ()
+        {
+            foreach ( var b in wpgWordButtons )
+            {
+                b.Reset ();
+            }
+        }
+
+        /// <summary>
+        /// 現在の状況で回答する
+        /// </summary>
+        public void Answer ()
+        {
+
+        }
     }
 
 }

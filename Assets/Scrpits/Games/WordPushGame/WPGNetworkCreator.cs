@@ -15,7 +15,7 @@ namespace Games.WordPushGame
             button = b.GetComponent<WPGWordButton> ();
             b.transform.parent = parent.transform;
             NetworkServer.Spawn (b);
-            RpcSetParent (parent, b);
+            RpcSetParent (b.transform.parent.gameObject, b);
         }
 
         [ClientRpc]

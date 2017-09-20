@@ -35,12 +35,12 @@ namespace Games.WordPushGame
         /// <summary>
         /// ボタンが押されたときのアニメーション
         /// </summary>
-        public void PushMove ()
+        /*public void PushMove ()
         {
             Debug.Log ("push move");
             CmdPushMove ();
         }
-
+        */
         [Command]
         public void CmdPushMove ()
         {

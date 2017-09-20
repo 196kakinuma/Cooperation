@@ -34,7 +34,7 @@ namespace Games.WordPushGame
         public void ClickReceive ()
         {
             Debug.Log ("button click");
-            wpgAnim.PushMove ();
+            wpgAnim.CmdPushMove ();
         }
     }
 }

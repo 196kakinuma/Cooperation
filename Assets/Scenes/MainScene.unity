@@ -108,6 +108,68 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &127937376 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1055057680023586, guid: fce2155142ff3f64abc3745505f3897c,
+    type: 2}
+  m_PrefabInternal: {fileID: 531751338}
+--- !u!114 &127937377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 127937376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67a09f4445a620846b1207d779a5dcbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedObject: {fileID: 0}
+--- !u!65 &127937378
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 127937376}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.08, y: 0.05, z: 0.08}
+  m_Center: {x: 0, y: 0, z: 0.1}
+--- !u!21 &142955910
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &164933838
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,12 +292,12 @@ Prefab:
         type: 2}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1778814237}
+      objectReference: {fileID: 851344530}
     - target: {fileID: 23342881851894932, guid: fce2155142ff3f64abc3745505f3897c,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 1624118768}
+      objectReference: {fileID: 142955910}
     - target: {fileID: 1658584406051400, guid: fce2155142ff3f64abc3745505f3897c, type: 2}
       propertyPath: m_IsActive
       value: 1
@@ -263,40 +325,7 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fce2155142ff3f64abc3745505f3897c, type: 2}
   m_IsPrefabParent: 0
---- !u!21 &1624118768
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
---- !u!43 &1778814237
+--- !u!43 &851344530
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -424,6 +453,35 @@ Mesh:
   m_BakedConvexCollisionMesh: 
   m_BakedTriangleCollisionMesh: 
   m_MeshOptimized: 0
+--- !u!1 &1886457480 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1658584406051400, guid: fce2155142ff3f64abc3745505f3897c,
+    type: 2}
+  m_PrefabInternal: {fileID: 531751338}
+--- !u!65 &1886457481
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1886457480}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.08, y: 0.05, z: 0.08}
+  m_Center: {x: 0, y: 0, z: 0.1}
+--- !u!114 &1886457483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1886457480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67a09f4445a620846b1207d779a5dcbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedObject: {fileID: 0}
 --- !u!1 &1897459337
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,6 +531,7 @@ MonoBehaviour:
   - {fileID: 1111387412355826, guid: b7271c871eb03dc4e9e8762b80266948, type: 2}
   - {fileID: 1056631468386282, guid: 283260e3653353b4fb055e2ff8b8cf1b, type: 2}
   - {fileID: 1809804692222998, guid: 8bbb0073ab6f0264caa873571ba871ca, type: 2}
+  - {fileID: 1401882710443416, guid: 839bab398d06bd94da789f53f54cf193, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -568,6 +627,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackerMasterPref: {fileID: 1809804692222998, guid: 8bbb0073ab6f0264caa873571ba871ca,
     type: 2}
+  room: {fileID: 1401882710443416, guid: 839bab398d06bd94da789f53f54cf193, type: 2}
 --- !u!114 &1897459342
 MonoBehaviour:
   m_ObjectHideFlags: 0

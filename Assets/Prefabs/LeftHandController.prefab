@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4113072836691106}
   - component: {fileID: 114795000907965914}
   - component: {fileID: 114485363406101352}
-  - component: {fileID: 114196978442440150}
+  - component: {fileID: 114421732804617528}
   m_Layer: 0
   m_Name: LeftHandController
   m_TagString: Untagged
@@ -125,7 +125,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114196978442440150
+--- !u!114 &114421732804617528
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

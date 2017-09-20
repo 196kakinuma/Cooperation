@@ -47,27 +47,6 @@ namespace Device
             }
         }
 
-        ///つかってないかもーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー下
-        [Command]
-        void CmdSetTrackerTransform ()
-        {
-            Debug.Log ("call settransform");
-            //ホストに存在するトラッカーのポジションを取得するsteamvr依存のを使用する
-            this.transform.position = tracker.pos;
-
-        }
-
-        [ClientCallback]
-        void OnGUI ()
-        {
-            Debug.Log ("ongui");
-            if ( hasAuthority )
-            {
-                Debug.Log ("MR authority");
-                transform.position = Vector3.zero;
-
-            }
-        }
 
     }
 }

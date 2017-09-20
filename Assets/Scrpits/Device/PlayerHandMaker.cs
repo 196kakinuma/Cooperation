@@ -13,13 +13,18 @@ namespace Device
         [SerializeField]
         GameObject leftHand;
 
+
         // Use this for initialization
         [ClientCallback]
         void Start ()
         {
             if ( Networks.NetworkInitializer.Instance.cameraType == CameraType.VR )
             {
-                CmdCreateHands (this.gameObject);
+                if ( hasAuthority )
+                {
+                    Debug.Log (hasAuthority);
+                    CmdCreateHands (this.gameObject);
+                }
             }
 
 
@@ -32,10 +37,7 @@ namespace Device
             NetworkServer.SpawnWithClientAuthority (Instantiate (rightHand), obj);
             NetworkServer.SpawnWithClientAuthority (Instantiate (leftHand), obj);
         }
-        // Update is called once per frame
-        void Update ()
-        {
 
-        }
+
     }
 }

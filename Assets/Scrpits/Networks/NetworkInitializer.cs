@@ -33,6 +33,7 @@ namespace Networks
         // Use this for initialization
         void Start ()
         {
+
             if ( playerType == PlayerType.HOST )
             {
                 netManager.StartHost ();

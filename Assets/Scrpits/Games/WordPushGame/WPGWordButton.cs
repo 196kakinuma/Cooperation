@@ -14,9 +14,17 @@ namespace Games.WordPushGame
         [SerializeField]
         WPGButtonAnimation wpgAnim;
 
-        public string word;
+        [SerializeField]
+        WPGButtonNetworker networker;
+
 
         public int buttonNum;
+
+        public void InitializeButtonInfo ( string text, int num )
+        {
+            buttonNum = num;
+
+        }
 
 
         public void ClickReceive ()

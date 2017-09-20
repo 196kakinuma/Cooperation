@@ -17,6 +17,7 @@ namespace Games.WordPushGame
             initPos = gameObject.transform.position;
         }
 
+
         /// <summary>
         /// コントローラがボタンに被っているとき光らせる
         /// </summary>
@@ -31,16 +32,6 @@ namespace Games.WordPushGame
         {
 
         }
-
-        /// <summary>
-        /// ボタンが押されたときのアニメーション
-        /// </summary>
-        /*public void PushMove ()
-        {
-            Debug.Log ("push move");
-            CmdPushMove ();
-        }
-        */
         [Command]
         public void CmdPushMove ()
         {

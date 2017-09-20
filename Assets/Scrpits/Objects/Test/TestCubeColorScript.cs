@@ -20,9 +20,16 @@ namespace Objects.Test
         {
 
         }
-
-        public void ColorChange ()
+        [Command]
+        public void CmdColorChange ()
         {
+            RpcColorChange ();
+        }
+
+        [ClientRpc]
+        public void RpcColorChange ()
+        {
+            Debug.Log ("color.change");
             if ( _material.color == Color.blue ) _material.color = Color.white;
             else if ( _material.color == Color.white ) _material.color = Color.blue;
         }

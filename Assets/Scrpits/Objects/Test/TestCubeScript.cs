@@ -26,9 +26,10 @@ namespace Objects.Test
         {
             Debug.Log ("Click Receive");
 
-            colorScript.ColorChange ();
+            colorScript.CmdColorChange ();
             //if ( material.color == Color.blue ) material.color = Color.white;
             //else if ( material.color == Color.white ) material.color = Color.blue;
         }
+
     }
 }

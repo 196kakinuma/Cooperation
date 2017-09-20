@@ -945,6 +945,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonPref: {fileID: 1562952672896694, guid: 585b6d58375bdbf4aa2291c96a29c6ce, type: 2}
+  resetButton: {fileID: 1626526935331650, guid: 1174c9eec28320245bccdc81fe368e71,
+    type: 2}
+  answerButton: {fileID: 1601371096481432, guid: 552e79f05bdfe5a42b0d0fe924451def,
+    type: 2}
   creator: {fileID: 114638849907506670}
   buttonPosition:
   - {fileID: 4222780634267640}

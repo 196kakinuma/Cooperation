@@ -24,5 +24,14 @@ namespace Games.WordPushGame
             Debug.Log ("Rpc called");
             child.transform.parent = parent.transform;
         }
+
+        [Command]
+        public void CmdCreateSystemButton ( GameObject pref, GameObject parent )
+        {
+            var b = Instantiate (pref, parent.transform);
+            b.transform.parent = parent.transform;
+            NetworkServer.Spawn (b);
+        }
+
     }
 }

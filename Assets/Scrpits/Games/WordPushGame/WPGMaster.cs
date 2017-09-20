@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-
+using IkLibrary.Unity;
 
 namespace Games.WordPushGame
 {
-    public class WPGMaster : MonoBehaviour
+    public class WPGMaster : SingletonMonoBehaviour<WPGMaster>
     {
         [SerializeField]
         GameObject buttonPref;
+        [SerializeField]
+        GameObject resetButton;
+        [SerializeField]
+        GameObject answerButton;
 
         [SerializeField]
         WPGNetworkCreator creator;
@@ -27,8 +31,10 @@ namespace Games.WordPushGame
             {
                 creator.CmdCreateButton (buttonPref, buttonPosition[i].gameObject);
                 wpgWordButtons[i] = creator.button;
-
             }
+
+            creator.CmdCreateSystemButton (resetButton, this.gameObject);
+            creator.CmdCreateSystemButton (answerButton, this.gameObject);
 
         }
 

@@ -14,6 +14,8 @@ namespace Games.WordPushGame
         GameObject resetButton;
         [SerializeField]
         GameObject answerButton;
+        [SerializeField]
+        GameObject calenderPref;
 
 
         [SerializeField]
@@ -21,6 +23,8 @@ namespace Games.WordPushGame
 
         [SerializeField]
         Transform[] buttonPosition;
+        [SerializeField]
+        Transform calenderPosition;
         WPGWordButton[] wpgWordButtons;
 
 
@@ -30,8 +34,12 @@ namespace Games.WordPushGame
         List<string> questionList;
         [SerializeField]
         WPGAnswer answer;
-        [SerializeField]
         List<int> answerList;
+        [SerializeField]
+        WPGHint calender;
+        GameObject calenderObj;
+        int month = 1;
+        int day = 1;
 
         int randNum = 1;
 
@@ -58,6 +66,10 @@ namespace Games.WordPushGame
             creator.CmdCreateSystemButton (resetButton, this.gameObject);
             creator.CmdCreateSystemButton (answerButton, this.gameObject);
 
+            //calenderの生成
+            creator.CmdCreateCalender (calenderPref, this.calenderPosition.gameObject);
+            calenderObj = creator.calender;
+
             //ゲーム開始前に入力が入った場合のエラーを排除
             clientAnswerList = new List<int> ();
 
@@ -80,6 +92,19 @@ namespace Games.WordPushGame
             //条件の配置を変更
 
             //問題と正解を読み込む
+            InitializeQuestion ();
+
+            InitializeAnswer ();
+
+            InitializeCalender ();
+
+            //準備前でもボタンなどは前後できるため.
+            ResetAll ();
+
+        }
+        #region INIT
+        private void InitializeQuestion ()
+        {
             questionList = new List<string> ();
             for ( int i = 0; i < question.sheets[0].list.Count; i++ )
             {
@@ -98,7 +123,10 @@ namespace Games.WordPushGame
                 //文字を設置する
                 creator.CmdSetWord (wpgWordButtons[i].gameObject, wpgWordButtons[i].word);
             }
+        }
 
+        private void InitializeAnswer ()
+        {
             answerList = new List<int> ();
             for ( int i = 0; i < answer.sheets[0].list.Count; i++ )
             {
@@ -112,17 +140,24 @@ namespace Games.WordPushGame
                         break;
                 }
             }
-
-            //準備前でもボタンなどは前後できるため.
-            ResetAll ();
-
         }
 
-        // Update is called once per frame
-        void Update ()
+        private void InitializeCalender ()
         {
-
+            switch ( randNum )
+            {
+                case 0:
+                    month = calender.sheets[0].list[0].Month;
+                    day = calender.sheets[0].list[0].Day;
+                    break;
+                case 1:
+                    month = calender.sheets[0].list[1].Month;
+                    day = calender.sheets[0].list[1].Day;
+                    break;
+            }
+            calenderObj.GetComponent<WPGCalender> ().CmdSetCalender (month, day);
         }
+        #endregion
 
         /// <summary>
         /// すべてのボタンを元の位置に戻す。

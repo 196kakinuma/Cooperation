@@ -10,6 +10,9 @@ namespace Games.WordPushGame
         [HideInInspector]
         public WPGWordButton button;
 
+        [HideInInspector]
+        public GameObject calender;
+
         [Command]
         public void CmdCreateButton ( GameObject pref, GameObject parent )
         {
@@ -30,6 +33,15 @@ namespace Games.WordPushGame
         }
 
         [Command]
+        public void CmdCreateCalender ( GameObject pref, GameObject parent )
+        {
+            var c = Instantiate (pref, parent.transform);
+            c.transform.parent = parent.transform;
+            NetworkServer.Spawn (c);
+            calender = c;
+        }
+
+        [Command]
         public void CmdSetWord ( GameObject b, string word )
         {
             RpcSetWord (b, word);
@@ -40,6 +52,7 @@ namespace Games.WordPushGame
         {
             b.GetComponent<WPGWordButton> ().SetWord (word);
         }
+
 
 
     }

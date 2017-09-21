@@ -28,8 +28,16 @@ namespace Games.WordPushGame
         [SerializeField]
         WPGQuestion question;
         List<string> questionList;
+        [SerializeField]
+        WPGAnswer answer;
+        [SerializeField]
+        List<int> answerList;
 
         int randNum = 1;
+
+
+        //答えを格納する
+        List<int> clientAnswerList;
 
 
         // Use this for initialization
@@ -50,9 +58,11 @@ namespace Games.WordPushGame
             creator.CmdCreateSystemButton (resetButton, this.gameObject);
             creator.CmdCreateSystemButton (answerButton, this.gameObject);
 
+            //ゲーム開始前に入力が入った場合のエラーを排除
+            clientAnswerList = new List<int> ();
 
             //デバッグ用のゲーム開始
-            //StartCoroutine (InitializeWPG ());
+            StartCoroutine (InitializeWPG ());
 
         }
 
@@ -71,23 +81,36 @@ namespace Games.WordPushGame
 
             //問題と正解を読み込む
             questionList = new List<string> ();
-
             for ( int i = 0; i < question.sheets[0].list.Count; i++ )
             {
                 //問題
-                if ( randNum == 0 )
+                switch ( randNum )
                 {
-                    questionList.Add (question.sheets[0].list[i].one);
+                    case 0:
+                        questionList.Add (question.sheets[0].list[i].one);
+                        break;
+                    case 1:
+                        questionList.Add (question.sheets[0].list[i].two);
+                        break;
                 }
-                else if ( randNum == 1 )
-                {
-                    questionList.Add (question.sheets[0].list[i].two);
-                }
-                //正解を読み込む
 
                 wpgWordButtons[i].InitializeButtonInfo (questionList[i], i);
                 //文字を設置する
                 creator.CmdSetWord (wpgWordButtons[i].gameObject, wpgWordButtons[i].word);
+            }
+
+            answerList = new List<int> ();
+            for ( int i = 0; i < answer.sheets[0].list.Count; i++ )
+            {
+                switch ( randNum )
+                {
+                    case 0:
+                        answerList.Add (answer.sheets[0].list[i].answer1);
+                        break;
+                    case 1:
+                        answerList.Add (answer.sheets[0].list[i].answer2);
+                        break;
+                }
             }
 
             //準備前でもボタンなどは前後できるため.
@@ -111,6 +134,7 @@ namespace Games.WordPushGame
             {
                 b.Reset ();
             }
+            clientAnswerList.Clear ();
 
         }
 
@@ -119,7 +143,15 @@ namespace Games.WordPushGame
         /// </summary>
         public void Answer ()
         {
-            StartCoroutine (InitializeWPG ());
+        }
+
+        /// <summary>
+        /// クライアントのボタン入力をここで受け取り、リストに保持する
+        /// </summary>
+        public void ReceiveUserResponse ( int i )
+        {
+            if ( clientAnswerList.Contains (i) ) return;
+            clientAnswerList.Add (i);
         }
     }
 

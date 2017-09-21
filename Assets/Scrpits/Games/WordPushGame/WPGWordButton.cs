@@ -21,6 +21,12 @@ namespace Games.WordPushGame
         public int buttonNum;
         public string word;
 
+        /// <summary>
+        /// ゲームを行うVRクライアントでのみ呼ばれる
+        /// 情報を保持するために
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="num"></param>
         public void InitializeButtonInfo ( string text, int num )
         {
             buttonNum = num;
@@ -28,6 +34,10 @@ namespace Games.WordPushGame
 
         }
 
+        /// <summary>
+        /// Rpcによりサーバから全クライアントにコールされる
+        /// </summary>
+        /// <param name="word"></param>
         public void SetWord ( string word )
         {
             Debug.Log ("word set");
@@ -35,10 +45,10 @@ namespace Games.WordPushGame
         }
 
 
-
         public void ClickReceive ()
         {
             Debug.Log ("button click");
+            WPGMaster.Instance.ReceiveUserResponse (buttonNum);
             wpgAnim.CmdPushMove ();
         }
 

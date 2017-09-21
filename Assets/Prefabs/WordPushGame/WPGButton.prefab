@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 114567663367356866}
   - component: {fileID: 54531104916831746}
   - component: {fileID: 114042442140960630}
-  - component: {fileID: 114896645766233596}
   m_Layer: 0
   m_Name: WPGButton
   m_TagString: Untagged
@@ -164,6 +163,7 @@ MonoBehaviour:
   wpgAnim: {fileID: 114567663367356866}
   networker: {fileID: 0}
   buttonNum: 0
+  word: 
 --- !u!114 &114042442140960630
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -277,17 +277,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &114896645766233596
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1562952672896694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8325ea955cb37144a6cf6d953b8015a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &222917233609444306
 CanvasRenderer:
   m_ObjectHideFlags: 1

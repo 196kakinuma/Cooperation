@@ -37,6 +37,33 @@ namespace Games.WordPushGame
         {
             if ( Networks.NetworkInitializer.Instance.cameraType != CameraType.VR ) return;
 
+
+            //4*5ボタンの生成
+            wpgWordButtons = new WPGWordButton[buttonPosition.Length];
+            for ( int i = 0; i < wpgWordButtons.Length; i++ )
+            {
+                creator.CmdCreateButton (buttonPref, buttonPosition[i].gameObject);
+                wpgWordButtons[i] = creator.button;
+            }
+
+            //resetとanswerボタンの生成
+            creator.CmdCreateSystemButton (resetButton, this.gameObject);
+            creator.CmdCreateSystemButton (answerButton, this.gameObject);
+
+
+            //デバッグ用のゲーム開始
+            //StartCoroutine (InitializeWPG ());
+
+        }
+
+        /// <summary>
+        /// ゲームを読み込みすべてのクライアントに命令を出す
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerator InitializeWPG ()
+        {
+            yield return new WaitForSeconds (3f);
+
             //ランダムを生成
 
 
@@ -47,6 +74,7 @@ namespace Games.WordPushGame
 
             for ( int i = 0; i < question.sheets[0].list.Count; i++ )
             {
+                //問題
                 if ( randNum == 0 )
                 {
                     questionList.Add (question.sheets[0].list[i].one);
@@ -55,31 +83,15 @@ namespace Games.WordPushGame
                 {
                     questionList.Add (question.sheets[0].list[i].two);
                 }
-            }
-            //ボタンにセットする
-            wpgWordButtons = new WPGWordButton[buttonPosition.Length];
-            for ( int i = 0; i < wpgWordButtons.Length; i++ )
-            {
-                creator.CmdCreateButton (buttonPref, buttonPosition[i].gameObject);
-                wpgWordButtons[i] = creator.button;
+                //正解を読み込む
+
                 wpgWordButtons[i].InitializeButtonInfo (questionList[i], i);
-            }
-
-            creator.CmdCreateSystemButton (resetButton, this.gameObject);
-            creator.CmdCreateSystemButton (answerButton, this.gameObject);
-
-            StartCoroutine (InitializeButtons ());
-
-        }
-
-        IEnumerator InitializeButtons ()
-        {
-            yield return new WaitForEndOfFrame ();
-            foreach ( var a in wpgWordButtons )
-            {
-                //creator.CmdSetParent (a.gameObject);
                 //文字を設置する
+                creator.CmdSetWord (wpgWordButtons[i].gameObject, wpgWordButtons[i].word);
             }
+
+            //準備前でもボタンなどは前後できるため.
+            ResetAll ();
 
         }
 
@@ -99,6 +111,7 @@ namespace Games.WordPushGame
             {
                 b.Reset ();
             }
+
         }
 
         /// <summary>
@@ -106,7 +119,7 @@ namespace Games.WordPushGame
         /// </summary>
         public void Answer ()
         {
-
+            StartCoroutine (InitializeWPG ());
         }
     }
 

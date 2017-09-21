@@ -18,7 +18,6 @@ namespace Games.WordPushGame
             b.transform.parent = parent.transform;
 
             NetworkServer.Spawn (b);
-            Debug.Log ("call command");
         }
 
 
@@ -29,6 +28,19 @@ namespace Games.WordPushGame
             b.transform.parent = parent.transform;
             NetworkServer.Spawn (b);
         }
+
+        [Command]
+        public void CmdSetWord ( GameObject b, string word )
+        {
+            RpcSetWord (b, word);
+        }
+
+        [ClientRpc]
+        void RpcSetWord ( GameObject b, string word )
+        {
+            b.GetComponent<WPGWordButton> ().SetWord (word);
+        }
+
 
     }
 }

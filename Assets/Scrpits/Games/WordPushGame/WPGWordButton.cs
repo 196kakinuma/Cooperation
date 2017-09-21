@@ -19,12 +19,21 @@ namespace Games.WordPushGame
 
 
         public int buttonNum;
+        public string word;
 
         public void InitializeButtonInfo ( string text, int num )
         {
             buttonNum = num;
+            this.word = text;
 
         }
+
+        public void SetWord ( string word )
+        {
+            Debug.Log ("word set");
+            this.text.text = word;
+        }
+
 
 
         public void ClickReceive ()

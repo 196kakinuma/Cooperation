@@ -194,8 +194,11 @@ namespace Games.WordPushGame
             }
 
             if ( correction ) Debug.Log ("answer is correct!!");
-            else Debug.Log ("missed");
-
+            else
+            {
+                ResetAll ();
+                Debug.Log ("missed");
+            }
 
         }
 

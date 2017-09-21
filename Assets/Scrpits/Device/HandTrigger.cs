@@ -15,6 +15,7 @@ namespace Device
         //今オブジェクトを選択しているか
         [SerializeField]
         GameObject selectedObject;
+        [SerializeField]
         bool IsSelecting = false;
 
         // Use this for initialization

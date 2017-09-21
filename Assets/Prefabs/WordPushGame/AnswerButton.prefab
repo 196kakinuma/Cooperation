@@ -180,7 +180,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Reset
+  m_Text: Answer
 --- !u!114 &114243032296525694
 MonoBehaviour:
   m_ObjectHideFlags: 1

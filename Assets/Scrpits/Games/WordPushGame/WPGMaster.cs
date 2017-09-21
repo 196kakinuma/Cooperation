@@ -143,6 +143,25 @@ namespace Games.WordPushGame
         /// </summary>
         public void Answer ()
         {
+            bool correction = true;
+            if ( clientAnswerList.Count != answerList.Count ) correction = false;
+
+            if ( correction )
+            {
+                for ( int i = 0; i < clientAnswerList.Count; i++ )
+                {
+                    if ( clientAnswerList[i] != answerList[i] )
+                    {
+                        correction = false;
+                        break;
+                    }
+                }
+            }
+
+            if ( correction ) Debug.Log ("answer is correct!!");
+            else Debug.Log ("missed");
+
+
         }
 
         /// <summary>

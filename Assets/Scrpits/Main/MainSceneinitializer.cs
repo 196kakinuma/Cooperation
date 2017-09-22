@@ -14,6 +14,9 @@ namespace Main
         [SerializeField]
         GameObject room;
 
+        [SerializeField]
+        GameObject startButton;
+
         // Use this for initialization
         void Start ()
         {
@@ -22,6 +25,7 @@ namespace Main
                 //MR用のトラッカーマスターを生成
                 NetworkServer.Spawn (Instantiate (trackerMasterPref));
                 NetworkServer.Spawn (Instantiate (room));
+                NetworkServer.Spawn (Instantiate (startButton));
             }
         }
 

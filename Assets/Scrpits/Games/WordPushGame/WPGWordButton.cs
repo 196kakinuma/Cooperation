@@ -49,12 +49,12 @@ namespace Games.WordPushGame
         {
             Debug.Log ("button click");
             WPGMaster.Instance.ReceiveUserResponse (buttonNum);
-            wpgAnim.CmdPushMove ();
+            //wpgAnim.CmdPushMove ();
         }
 
         public void Reset ()
         {
-            wpgAnim.CmdPullMove ();
+            //wpgAnim.CmdPullMove ();
         }
     }
 }

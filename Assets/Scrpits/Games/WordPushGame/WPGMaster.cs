@@ -20,12 +20,15 @@ namespace Games.WordPushGame
 
         [SerializeField]
         WPGNetworkCreator creator;
+        [SerializeField]
+        WPGNetworkTransform netTransform;
 
         [SerializeField]
         Transform[] buttonPosition;
         [SerializeField]
         Transform calenderPosition;
-        WPGWordButton[] wpgWordButtons;
+
+        public WPGWordButton[] wpgWordButtons;
 
 
         //問題系
@@ -55,12 +58,12 @@ namespace Games.WordPushGame
 
 
             //4*5ボタンの生成
-            wpgWordButtons = new WPGWordButton[buttonPosition.Length];
+            /*wpgWordButtons = new WPGWordButton[buttonPosition.Length];
             for ( int i = 0; i < wpgWordButtons.Length; i++ )
             {
                 creator.CmdCreateButton (buttonPref, buttonPosition[i].gameObject);
                 wpgWordButtons[i] = creator.button;
-            }
+            }*/
 
             //resetとanswerボタンの生成
             creator.CmdCreateSystemButton (resetButton, this.gameObject);
@@ -74,7 +77,7 @@ namespace Games.WordPushGame
             clientAnswerList = new List<int> ();
 
             //デバッグ用のゲーム開始
-            //StartCoroutine (InitializeWPG ());
+            StartCoroutine (InitializeWPG ());
 
         }
 
@@ -210,6 +213,8 @@ namespace Games.WordPushGame
         {
             if ( clientAnswerList.Contains (i) ) return;
             clientAnswerList.Add (i);
+            netTransform.CmdPushMove (i);
+
         }
     }
 

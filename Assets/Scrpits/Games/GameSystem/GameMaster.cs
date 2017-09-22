@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using IkLibrary.Unity;
+using UnityEngine.Networking;
 
 namespace Games.GameSystem
 {
@@ -10,13 +11,17 @@ namespace Games.GameSystem
     /// </summary>
     public class GameMaster : SingletonMonoBehaviour<GameMaster>
     {
-        [HideInInspector]
-        public Games.GameSystem.StartButtonHandler startButton;
+        [SerializeField]
+        GameObject startButtonPref;
+
+        StartButtonHandler startButton;
 
         // Use this for initialization
         void Start ()
         {
-
+            var b = Instantiate (startButtonPref);
+            this.startButton = b.GetComponent<StartButtonHandler> ();
+            NetworkServer.Spawn (b);
         }
 
         // Update is called once per frame

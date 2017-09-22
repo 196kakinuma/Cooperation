@@ -51,4 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f7e90ac2d56a04493e124c707d178e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startButton: {fileID: 0}
+  startButtonPref: {fileID: 1241750763308820, guid: fcf73b8750f57b843adda2b5d57945d6,
+    type: 2}
+  WPGPref: {fileID: 1645879221222944, guid: 867700e2924c41546ba6a76bf2e9e9da, type: 2}

@@ -74,7 +74,7 @@ namespace Games.WordPushGame
             clientAnswerList = new List<int> ();
 
             //デバッグ用のゲーム開始
-            StartCoroutine (InitializeWPG ());
+            //StartCoroutine (InitializeWPG ());
 
         }
 
@@ -84,7 +84,8 @@ namespace Games.WordPushGame
         /// <returns></returns>
         public IEnumerator InitializeWPG ()
         {
-            yield return new WaitForSeconds (3f);
+            Debug.Log ("init!!!!!!!!!!");
+            yield return null;
 
             //ランダムを生成
 

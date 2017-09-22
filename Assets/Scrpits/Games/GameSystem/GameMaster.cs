@@ -55,6 +55,7 @@ namespace Games.GameSystem
             //記録を取り始める
 
             //スタートの表示
+            Debug.Log ("start Game!");
 
 
         }
@@ -65,6 +66,8 @@ namespace Games.GameSystem
         /// <returns></returns>
         IEnumerator StartPrepare ()
         {
+            Debug.Log ("startPrepare");
+            StartCoroutine (wpgMaster.InitializeWPG ());
             yield return null;
         }
     }

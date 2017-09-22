@@ -27,7 +27,11 @@ namespace Games.GameSystem
         void RpcClickButton ()
         {
             button.SetEnabled (false);
-            StartCoroutine (SlideOut ());
+            var c = StartCoroutine (SlideOut ());
+            if ( Networks.NetworkInitializer.Instance.cameraType == CameraType.VR && Networks.NetworkInitializer.Instance.playerType == PlayerType.HOST )
+            {
+                StartCoroutine (GameMaster.Instance.StartGame (c));
+            }
         }
 
         IEnumerator SlideOut ()

@@ -14,7 +14,7 @@ namespace Games.WordPushGame
         // Use this for initialization
         void Start ()
         {
-            initPos = gameObject.transform.position;
+            initPos = gameObject.transform.localPosition;
         }
 
 
@@ -43,7 +43,7 @@ namespace Games.WordPushGame
         void RpcPushMove ()
         {
             Debug.Log ("Rpc ");
-            gameObject.transform.position = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z - 0.1f);
+            gameObject.transform.localPosition = new Vector3 (gameObject.transform.localPosition.x, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z - 0.1f);
         }
 
         /// <summary>

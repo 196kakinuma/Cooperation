@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Networks;
 using UnityEngine.Networking;
+
 namespace Main
 {
     public class MainSceneinitializer : MonoBehaviour
     {
+        [SerializeField]
+        GameObject gameMasterPref;
 
         [SerializeField]
         GameObject trackerMasterPref;
@@ -22,6 +25,9 @@ namespace Main
         {
             if ( NetworkInitializer.Instance.cameraType == CameraType.VR )
             {
+                //GameMaster生成
+                Instantiate (gameMasterPref);
+
                 //MR用のトラッカーマスターを生成
                 NetworkServer.Spawn (Instantiate (trackerMasterPref));
                 NetworkServer.Spawn (Instantiate (room));

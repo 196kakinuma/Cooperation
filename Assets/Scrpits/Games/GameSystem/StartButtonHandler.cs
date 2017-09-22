@@ -13,6 +13,7 @@ namespace Games.GameSystem
         [ClientCallback]
         void Start ()
         {
+            GameMaster.Instance.startButton = this;
             initPos = gameObject.transform.position;
         }
 

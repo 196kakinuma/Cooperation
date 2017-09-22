@@ -35,12 +35,6 @@ namespace Games.GameSystem
             NetworkServer.Spawn (wpg);
         }
 
-        // Update is called once per frame
-        void Update ()
-        {
-
-        }
-
         /// <summary>
         /// startButtonから呼ばれる.ゲームを開始する
         /// </summary>
@@ -57,7 +51,6 @@ namespace Games.GameSystem
             //スタートの表示
             Debug.Log ("start Game!");
 
-
         }
 
         /// <summary>
@@ -69,6 +62,14 @@ namespace Games.GameSystem
             Debug.Log ("startPrepare");
             StartCoroutine (wpgMaster.InitializeWPG ());
             yield return null;
+        }
+
+        /// <summary>
+        /// ゲーム終了
+        /// </summary>
+        public void FinishGame ()
+        {
+
         }
     }
 }

@@ -9,8 +9,6 @@ namespace Games.WordPushGame
     public class WPGMaster : SingletonMonoBehaviour<WPGMaster>
     {
         [SerializeField]
-        GameObject buttonPref;
-        [SerializeField]
         GameObject resetButton;
         [SerializeField]
         GameObject answerButton;
@@ -57,14 +55,6 @@ namespace Games.WordPushGame
             if ( Networks.NetworkInitializer.Instance.cameraType != CameraType.VR ) return;
 
 
-            //4*5ボタンの生成
-            /*wpgWordButtons = new WPGWordButton[buttonPosition.Length];
-            for ( int i = 0; i < wpgWordButtons.Length; i++ )
-            {
-                creator.CmdCreateButton (buttonPref, buttonPosition[i].gameObject);
-                wpgWordButtons[i] = creator.button;
-            }*/
-
             //resetとanswerボタンの生成
             creator.CmdCreateSystemButton (resetButton, this.gameObject);
             creator.CmdCreateSystemButton (answerButton, this.gameObject);
@@ -88,7 +78,7 @@ namespace Games.WordPushGame
         public IEnumerator InitializeWPG ()
         {
             Debug.Log ("init!!!!!!!!!!");
-            yield return null;
+            yield return new WaitForSeconds (5f);
 
             //ランダムを生成
 
@@ -125,7 +115,8 @@ namespace Games.WordPushGame
 
                 wpgWordButtons[i].InitializeButtonInfo (questionList[i], i);
                 //文字を設置する
-                creator.CmdSetWord (wpgWordButtons[i].gameObject, wpgWordButtons[i].word);
+
+                netTransform.CmdSetWord (wpgWordButtons[i].buttonNum, wpgWordButtons[i].word);
             }
         }
 
@@ -169,9 +160,9 @@ namespace Games.WordPushGame
         /// </summary>
         public void ResetAll ()
         {
-            foreach ( var b in wpgWordButtons )
+            for ( int i = 0; i < wpgWordButtons.Length; i++ )
             {
-                b.Reset ();
+                netTransform.CmdPullMove (i);
             }
             clientAnswerList.Clear ();
 

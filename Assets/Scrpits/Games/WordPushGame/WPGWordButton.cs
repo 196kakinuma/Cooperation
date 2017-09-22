@@ -20,6 +20,13 @@ namespace Games.WordPushGame
 
         public int buttonNum;
         public string word;
+        public Vector3 initPos;
+
+
+        void Start ()
+        {
+            initPos = transform.localPosition;
+        }
 
         /// <summary>
         /// ゲームを行うVRクライアントでのみ呼ばれる
@@ -31,6 +38,7 @@ namespace Games.WordPushGame
         {
             buttonNum = num;
             this.word = text;
+            initPos = transform.localPosition;
 
         }
 
@@ -49,12 +57,16 @@ namespace Games.WordPushGame
         {
             Debug.Log ("button click");
             WPGMaster.Instance.ReceiveUserResponse (buttonNum);
-            //wpgAnim.CmdPushMove ();
         }
 
-        public void Reset ()
+        public void PushMove ()
         {
-            //wpgAnim.CmdPullMove ();
+            transform.localPosition = new Vector3 (transform.localPosition.x, transform.localPosition.y, transform.localPosition.z - 0.1f);
+        }
+
+        public void ResetPosition ()
+        {
+            transform.localPosition = initPos;
         }
     }
 }

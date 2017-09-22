@@ -10,17 +10,6 @@ namespace Games.WordPushGame
         [SerializeField]
         WPGMaster master;
 
-        // Use this for initialization
-        void Start ()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update ()
-        {
-
-        }
 
         [Command]
         public void CmdPushMove ( int i )
@@ -33,8 +22,33 @@ namespace Games.WordPushGame
         void RpcPushMove ( int i )
         {
             Debug.Log ("Rpc ");
-            var b = master.wpgWordButtons[i];
-            b.transform.localPosition = new Vector3 (b.transform.localPosition.x, b.transform.localPosition.y, b.transform.localPosition.z - 0.1f);
+            master.wpgWordButtons[i].PushMove ();
+
+        }
+
+        [Command]
+        public void CmdPullMove ( int i )
+        {
+            RpcPullMove (i);
+        }
+
+        [ClientRpc]
+        void RpcPullMove ( int i )
+        {
+            master.wpgWordButtons[i].ResetPosition ();
+
+        }
+
+        [Command]
+        public void CmdSetWord ( int i, string text )
+        {
+            RpcSetWord (i, text);
+        }
+
+        [ClientRpc]
+        void RpcSetWord ( int i, string text )
+        {
+            master.wpgWordButtons[i].SetWord (text);
         }
     }
 }

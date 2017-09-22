@@ -46,25 +46,7 @@ namespace Games.WordPushGame
             gameObject.transform.localPosition = new Vector3 (gameObject.transform.localPosition.x, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z - 0.1f);
         }
 
-        /// <summary>
-        /// ぼたんが初期位置に戻るあにめーしょん
-        /// </summary>
-        public void PullMove ()
-        {
-            CmdPullMove ();
-        }
 
-        [Command]
-        public void CmdPullMove ()
-        {
-            RpcPullMove ();
-        }
-
-        [ClientRpc]
-        void RpcPullMove ()
-        {
-            gameObject.transform.position = initPos;
-        }
 
     }
 }

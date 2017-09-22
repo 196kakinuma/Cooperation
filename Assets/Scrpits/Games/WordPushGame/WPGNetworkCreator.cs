@@ -7,21 +7,10 @@ namespace Games.WordPushGame
 {
     public class WPGNetworkCreator : NetworkBehaviour
     {
-        [HideInInspector]
-        public WPGWordButton button;
 
         [HideInInspector]
         public GameObject calender;
 
-        [Command]
-        public void CmdCreateButton ( GameObject pref, GameObject parent )
-        {
-            var b = Instantiate (pref, parent.transform);
-            button = b.GetComponent<WPGWordButton> ();
-            b.transform.parent = parent.transform;
-
-            NetworkServer.Spawn (b);
-        }
 
 
         [Command]
@@ -41,17 +30,6 @@ namespace Games.WordPushGame
             calender = c;
         }
 
-        [Command]
-        public void CmdSetWord ( GameObject b, string word )
-        {
-            RpcSetWord (b, word);
-        }
-
-        [ClientRpc]
-        void RpcSetWord ( GameObject b, string word )
-        {
-            b.GetComponent<WPGWordButton> ().SetWord (word);
-        }
 
 
 

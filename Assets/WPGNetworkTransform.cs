@@ -50,5 +50,17 @@ namespace Games.WordPushGame
         {
             master.wpgWordButtons[i].SetWord (text);
         }
+
+        [Command]
+        public void CmdSetCalender ( int month, int day )
+        {
+            RpcSetCalender (month, day);
+        }
+
+        [ClientRpc]
+        void RpcSetCalender ( int month, int day )
+        {
+            master.calenderObj.SetCalender (month, day);
+        }
     }
 }

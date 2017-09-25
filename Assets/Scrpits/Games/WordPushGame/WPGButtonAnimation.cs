@@ -32,19 +32,6 @@ namespace Games.WordPushGame
         {
 
         }
-        [Command]
-        public void CmdPushMove ()
-        {
-            Debug.Log ("cmd ");
-            RpcPushMove ();
-        }
-
-        [ClientRpc]
-        void RpcPushMove ()
-        {
-            Debug.Log ("Rpc ");
-            gameObject.transform.localPosition = new Vector3 (gameObject.transform.localPosition.x, gameObject.transform.localPosition.y, gameObject.transform.localPosition.z - 0.1f);
-        }
 
 
 

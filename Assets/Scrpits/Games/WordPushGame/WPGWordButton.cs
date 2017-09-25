@@ -68,5 +68,10 @@ namespace Games.WordPushGame
         {
             transform.localPosition = initPos;
         }
+
+        public void SelectEffer ()
+        {
+
+        }
     }
 }

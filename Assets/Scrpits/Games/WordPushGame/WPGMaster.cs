@@ -8,12 +8,7 @@ namespace Games.WordPushGame
 {
     public class WPGMaster : SingletonMonoBehaviour<WPGMaster>
     {
-        [SerializeField]
-        GameObject resetButton;
-        [SerializeField]
-        GameObject answerButton;
-        [SerializeField]
-        GameObject calenderPref;
+
 
 
         [SerializeField]
@@ -27,6 +22,9 @@ namespace Games.WordPushGame
         Transform calenderPosition;
 
         public WPGWordButton[] wpgWordButtons;
+        public WPGAnswerButton answerButton;
+        public WPGResetButton resetButton;
+        public WPGCalender calenderObj;
 
 
         //問題系
@@ -38,7 +36,6 @@ namespace Games.WordPushGame
         List<int> answerList;
         [SerializeField]
         WPGHint calender;
-        GameObject calenderObj;
         int month = 1;
         int day = 1;
 
@@ -54,14 +51,6 @@ namespace Games.WordPushGame
         {
             if ( Networks.NetworkInitializer.Instance.cameraType != CameraType.VR ) return;
 
-
-            //resetとanswerボタンの生成
-            creator.CmdCreateSystemButton (resetButton, this.gameObject);
-            creator.CmdCreateSystemButton (answerButton, this.gameObject);
-
-            //calenderの生成
-            creator.CmdCreateCalender (calenderPref, this.calenderPosition.gameObject);
-            calenderObj = creator.calender;
 
             //ゲーム開始前に入力が入った場合のエラーを排除
             clientAnswerList = new List<int> ();
@@ -150,7 +139,7 @@ namespace Games.WordPushGame
                     day = calender.sheets[0].list[1].Day;
                     break;
             }
-            calenderObj.GetComponent<WPGCalender> ().CmdSetCalender (month, day);
+            netTransform.CmdSetCalender (month, day);
         }
         #endregion
 

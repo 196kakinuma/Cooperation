@@ -7,8 +7,6 @@ namespace Games.WordPushGame
 {
     public class WPGAnswerButton : MonoBehaviour, IVRObject
     {
-        [SerializeField]
-        WPGButtonAnimation anim;
         // Use this for initialization
         void Start ()
         {

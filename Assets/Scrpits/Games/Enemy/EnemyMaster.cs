@@ -8,27 +8,58 @@ namespace Games.Enemy
 
     public class EnemyMaster : SingletonMonoBehaviour<EnemyMaster>
     {
+        [SerializeField]
+        GameSystem.DoorManager doorManager;
+        [SerializeField]
+        GameSystem.GameMaster master;
         Enemy[] enemys;
 
+        [SerializeField]
+        GameSystem.GameTimer timer;
+        /// <summary>
+        /// 次のエネミーの行動時間と、そのエネミーを保持
+        /// </summary>
+        Dictionary<Enemy, float> nextEnemyMoveList;
 
-        void Awake ()
-        {
-
-
-        }
         // Use this for initialization
         void Start ()
         {
 
         }
 
-        // Update is called once per frame
         void Update ()
         {
-
+            if ( master.IsPlaying )
+            {
+                EnemyCheck ();
+            }
         }
 
-        public void GenerateEnemy ()
+        public void EnemyCheck ()
+        {
+            float time = timer.GetTime ();
+            foreach ( var e in nextEnemyMoveList )
+            {
+                if ( e.Value > time )
+                {
+                    e.Key.SetNextCheck (doorManager.EnemyCheckHandle (e.Key));
+                    nextEnemyMoveList.Remove (e.Key);
+                    nextEnemyMoveList.Add (e.Key, e.Key.NextCheckTime);
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// ゲーム開始前の準備
+        /// </summary>
+        public void InitializeGameStart ()
+        {
+            GenerateEnemy ();
+            nextEnemyMoveList = new Dictionary<Enemy, float> ();
+        }
+
+        void GenerateEnemy ()
         {
             enemys = new Enemy[Games.GameSettings.Instance.EnemyNum];
 
@@ -49,7 +80,10 @@ namespace Games.Enemy
                         enemys[i] = new Enemy (120f, 25f, EnemyType.GREEN);
                         break;
                 }
+                nextEnemyMoveList.Add (enemys[i], enemys[i].NextCheckTime);
             }
         }
+
+
     }
 }

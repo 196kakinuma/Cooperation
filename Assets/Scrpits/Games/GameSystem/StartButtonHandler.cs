@@ -14,6 +14,9 @@ namespace Games.GameSystem
         void Start ()
         {
             initPos = gameObject.transform.position;
+
+            //デバッグ用
+            CmdClickStartButton ();
         }
 
         #region DOWN

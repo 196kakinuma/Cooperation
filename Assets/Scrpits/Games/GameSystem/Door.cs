@@ -26,6 +26,13 @@ namespace Games.GameSystem
             private set { enemy = value; }
         }
 
+        bool keyLock = false;
+        public bool KeyLock
+        {
+            get { return keyLock; }
+            set { keyLock = value; }
+        }
+
         /// <summary>
         /// ゲーム開始前に毎回呼ばれる
         /// </summary>
@@ -35,7 +42,7 @@ namespace Games.GameSystem
             DoorNum = doorNum;
             VisitEnemy = null;
             Visit = false;
-
+            keyLock = false;
         }
     }
 }

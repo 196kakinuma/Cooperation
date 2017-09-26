@@ -47,7 +47,7 @@ namespace Games.WordPushGame
             clientAnswerList = new List<int> ();
 
             //デバッグ用のゲーム開始
-            StartCoroutine (InitializeWPG ());
+            //StartCoroutine (InitializeWPG ());
 
         }
 
@@ -71,6 +71,7 @@ namespace Games.WordPushGame
             InitializeAnswer ();
 
             InitializeCalender ();
+
 
             //準備前でもボタンなどは前後できるため.
             ResetAll ();

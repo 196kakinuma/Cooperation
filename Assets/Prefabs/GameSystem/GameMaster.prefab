@@ -20,6 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4478105789733442}
   - component: {fileID: 114325423567174974}
+  - component: {fileID: 114769265093910416}
+  - component: {fileID: 114296475498131176}
+  - component: {fileID: 114692705932804074}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -40,6 +43,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114296475498131176
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1824532203396200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd4659985a2f4474cb72acc46cfcc910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114325423567174974
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -51,8 +65,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f7e90ac2d56a04493e124c707d178e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyMaster: {fileID: 114769265093910416}
+  doorManager: {fileID: 114296475498131176}
+  timer: {fileID: 114692705932804074}
   startButtonPref: {fileID: 1241750763308820, guid: fcf73b8750f57b843adda2b5d57945d6,
     type: 2}
   WPGPref: {fileID: 1645879221222944, guid: 867700e2924c41546ba6a76bf2e9e9da, type: 2}
   WPGCalender: {fileID: 1008674032690300, guid: 669ede8479aa0fd4790aba9c31c7a347,
     type: 2}
+--- !u!114 &114692705932804074
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1824532203396200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a8c03e823f4320419a629975c308a50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  master: {fileID: 114325423567174974}
+--- !u!114 &114769265093910416
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1824532203396200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68dc0dadfb8828842a73b59fa293c2e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorManager: {fileID: 114296475498131176}
+  master: {fileID: 114325423567174974}
+  timer: {fileID: 114692705932804074}

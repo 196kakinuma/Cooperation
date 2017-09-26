@@ -11,6 +11,14 @@ namespace Games.GameSystem
     /// </summary>
     public class GameMaster : SingletonMonoBehaviour<GameMaster>
     {
+        [SerializeField]
+        Enemy.EnemyMaster enemyMaster;
+        [SerializeField]
+        DoorManager doorManager;
+        [SerializeField]
+        GameTimer timer;
+
+
         //システム系
         [SerializeField]
         GameObject startButtonPref;
@@ -25,6 +33,13 @@ namespace Games.GameSystem
         [SerializeField]
         GameObject WPGCalender;
         Games.WordPushGame.WPGCalender wpgCalender;
+
+        bool isPlaying = false;
+        public bool IsPlaying
+        {
+            get { return isPlaying; }
+            private set { isPlaying = value; }
+        }
 
         // Use this for initialization
         void Start ()
@@ -42,8 +57,14 @@ namespace Games.GameSystem
             var cal = Instantiate (WPGCalender);
             this.wpgCalender = cal.GetComponent<WordPushGame.WPGCalender> ();
             NetworkServer.Spawn (cal);
+
         }
 
+
+        void Update ()
+        {
+
+        }
         /// <summary>
         /// startButtonから呼ばれる.ゲームを開始する
         /// </summary>
@@ -59,6 +80,7 @@ namespace Games.GameSystem
 
             //スタートの表示
             Debug.Log ("start Game!");
+            IsPlaying = true;
 
         }
 
@@ -70,6 +92,8 @@ namespace Games.GameSystem
         {
             Debug.Log ("startPrepare");
             StartCoroutine (wpgMaster.InitializeWPG ());
+            enemyMaster.InitializeGameStart ();
+            doorManager.InitializeGameStart ();
             yield return null;
         }
 
@@ -78,7 +102,8 @@ namespace Games.GameSystem
         /// </summary>
         public void FinishGame ()
         {
-
+            IsPlaying = false;
+            timer.GameFinish ();
         }
     }
 }

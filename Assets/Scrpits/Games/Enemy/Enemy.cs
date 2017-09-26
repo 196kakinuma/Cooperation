@@ -30,6 +30,8 @@ namespace Games.Enemy
             private set { stayTime = value; }
         }
 
+
+
         //敵の色
         EnemyType type;
         public EnemyType Type
@@ -40,14 +42,35 @@ namespace Games.Enemy
 
 
 
+        float nextCheckTime;
+        public float NextCheckTime
+        {
+            get { return nextCheckTime; }
+            private set { nextCheckTime = value; }
+        }
 
+        /// <summary>
+        /// ゲーム毎に新しく生成される
+        /// </summary>
+        /// <param name="cycle"></param>
+        /// <param name="stayTime"></param>
+        /// <param name="type"></param>
         public Enemy ( float cycle, float stayTime, EnemyType type )
         {
             this.Cycle = cycle;
             this.StayTime = stayTime;
             this.Type = type;
+            nextCheckTime = Cycle;
         }
 
-
+        /// <summary>
+        /// チェックの際にその部屋にはいることができたか
+        /// </summary>
+        /// <param name="roomIn"></param>
+        public void SetNextCheck ( bool roomIn )
+        {
+            if ( roomIn ) nextCheckTime += StayTime;
+            else NextCheckTime += Cycle;
+        }
     }
 }

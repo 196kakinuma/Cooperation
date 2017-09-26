@@ -12,11 +12,6 @@ namespace Games.WordPushGame
         [SerializeField]
         WPGNetworkTransform netTransform;
 
-        [SerializeField]
-        Transform[] buttonPosition;
-        [SerializeField]
-        Transform calenderPosition;
-
         public WPGWordButton[] wpgWordButtons;
         public WPGAnswerButton answerButton;
         public WPGResetButton resetButton;

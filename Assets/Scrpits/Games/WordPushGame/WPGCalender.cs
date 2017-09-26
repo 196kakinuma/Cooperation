@@ -11,6 +11,10 @@ namespace Games.WordPushGame
         [SerializeField]
         Text text;
 
+        void Start ()
+        {
+            WPGMaster.Instance.calenderObj = this;
+        }
         public void SetCalender ( int month, int day )
         {
             text.text = month.ToString () + "/" + day.ToString ();

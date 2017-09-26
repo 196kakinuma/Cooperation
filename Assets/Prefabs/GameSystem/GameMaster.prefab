@@ -54,3 +54,5 @@ MonoBehaviour:
   startButtonPref: {fileID: 1241750763308820, guid: fcf73b8750f57b843adda2b5d57945d6,
     type: 2}
   WPGPref: {fileID: 1645879221222944, guid: 867700e2924c41546ba6a76bf2e9e9da, type: 2}
+  WPGCalender: {fileID: 1008674032690300, guid: 669ede8479aa0fd4790aba9c31c7a347,
+    type: 2}

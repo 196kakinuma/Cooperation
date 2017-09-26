@@ -16,10 +16,6 @@ namespace Games.Enemy
 
         [SerializeField]
         GameSystem.GameTimer timer;
-        /// <summary>
-        /// 次のエネミーの行動時間と、そのエネミーを保持
-        /// </summary>
-        Dictionary<Enemy, float> nextEnemyMoveList;
 
         // Use this for initialization
         void Start ()
@@ -38,15 +34,16 @@ namespace Games.Enemy
         public void EnemyCheck ()
         {
             float time = timer.GetTime ();
-            foreach ( var e in nextEnemyMoveList )
+            foreach ( var e in enemys )
             {
-                if ( e.Value > time )
+                if ( e.NextCheckTime < time )
                 {
-                    e.Key.SetNextCheck (doorManager.EnemyCheckHandle (e.Key));
-                    nextEnemyMoveList.Remove (e.Key);
-                    nextEnemyMoveList.Add (e.Key, e.Key.NextCheckTime);
+                    e.SetNextCheck (doorManager.EnemyCheckHandle (e));
+
                 }
             }
+
+
         }
 
 
@@ -56,7 +53,7 @@ namespace Games.Enemy
         public void InitializeGameStart ()
         {
             GenerateEnemy ();
-            nextEnemyMoveList = new Dictionary<Enemy, float> ();
+
         }
 
         void GenerateEnemy ()
@@ -71,16 +68,15 @@ namespace Games.Enemy
                 switch ( ( EnemyType ) enemyColor[i] )
                 {
                     case EnemyType.RED:
-                        enemys[i] = new Enemy (60f, 60f, EnemyType.RED);
+                        enemys[i] = new Enemy (6f, 6f, EnemyType.RED);
                         break;
                     case EnemyType.BLUE:
-                        enemys[i] = new Enemy (50f, 40f, EnemyType.BLUE);
+                        enemys[i] = new Enemy (5f, 40f, EnemyType.BLUE);
                         break;
                     case EnemyType.GREEN:
-                        enemys[i] = new Enemy (120f, 25f, EnemyType.GREEN);
+                        enemys[i] = new Enemy (13f, 25f, EnemyType.GREEN);
                         break;
                 }
-                nextEnemyMoveList.Add (enemys[i], enemys[i].NextCheckTime);
             }
         }
 

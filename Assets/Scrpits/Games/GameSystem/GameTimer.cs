@@ -16,6 +16,7 @@ namespace Games.GameSystem
         public void GameStart ()
         {
             startTime = Time.time;
+
         }
 
         public float GetTime ()
@@ -28,6 +29,7 @@ namespace Games.GameSystem
         public void GameFinish ()
         {
             finishTime = Time.time - startTime;
+            Debug.Log ("finishTime =" + finishTime);
         }
 
     }

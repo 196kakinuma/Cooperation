@@ -75,6 +75,7 @@ namespace Games.GameSystem
             yield return buttonAnimation;
 
             //タイマーなどを開始
+            timer.GameStart ();
             //敵を動かし始める
             //記録を取り始める
 
@@ -104,6 +105,9 @@ namespace Games.GameSystem
         {
             IsPlaying = false;
             timer.GameFinish ();
+
+            //スタートボタンを戻す
+            startButton.CmdResetStartButton ();
         }
     }
 }

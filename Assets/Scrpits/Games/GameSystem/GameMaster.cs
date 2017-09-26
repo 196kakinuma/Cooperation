@@ -21,6 +21,11 @@ namespace Games.GameSystem
         GameObject WPGPref;
         Games.WordPushGame.WPGMaster wpgMaster;
 
+        //ヒント系
+        [SerializeField]
+        GameObject WPGCalender;
+        Games.WordPushGame.WPGCalender wpgCalender;
+
         // Use this for initialization
         void Start ()
         {
@@ -33,6 +38,10 @@ namespace Games.GameSystem
             var wpg = Instantiate (WPGPref);
             this.wpgMaster = wpg.GetComponent<Games.WordPushGame.WPGMaster> ();
             NetworkServer.Spawn (wpg);
+            //Hintオブジェクトの生成
+            var cal = Instantiate (WPGCalender);
+            this.wpgCalender = cal.GetComponent<WordPushGame.WPGCalender> ();
+            NetworkServer.Spawn (cal);
         }
 
         /// <summary>

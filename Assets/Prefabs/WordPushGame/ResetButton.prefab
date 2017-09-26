@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 65365563224089722}
   - component: {fileID: 23701975389365474}
   - component: {fileID: 54455084795124812}
-  - component: {fileID: 114897749698829432}
   - component: {fileID: 114076827031687648}
   m_Layer: 0
   m_Name: ResetButton
@@ -174,7 +173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32cfdfea4584e2e4688b548d632d794f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
 --- !u!114 &114184128831374452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -208,38 +206,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Reset
---- !u!114 &114897749698829432
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1626526935331650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 17
-    i1: 116
-    i2: 201
-    i3: 238
-    i4: 194
-    i5: 131
-    i6: 32
-    i7: 36
-    i8: 91
-    i9: 204
-    i10: 220
-    i11: 129
-    i12: 254
-    i13: 54
-    i14: 142
-    i15: 113
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
 --- !u!114 &114904576440711982
 MonoBehaviour:
   m_ObjectHideFlags: 1

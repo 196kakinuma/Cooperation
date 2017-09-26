@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 65178271285391790}
   - component: {fileID: 23812033965208900}
   - component: {fileID: 54221574188253152}
-  - component: {fileID: 114941072932350494}
   - component: {fileID: 114892433342468104}
   m_Layer: 0
   m_Name: AnswerButton
@@ -228,38 +227,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57008931a7e35574c9a9a63f5e2d05d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114941072932350494
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1601371096481432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 85
-    i1: 46
-    i2: 121
-    i3: 240
-    i4: 91
-    i5: 223
-    i6: 229
-    i7: 164
-    i8: 43
-    i9: 13
-    i10: 15
-    i11: 233
-    i12: 36
-    i13: 69
-    i14: 29
-    i15: 239
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
 --- !u!222 &222688483775816802
 CanvasRenderer:
   m_ObjectHideFlags: 1

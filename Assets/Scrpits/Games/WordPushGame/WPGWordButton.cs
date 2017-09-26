@@ -11,8 +11,6 @@ namespace Games.WordPushGame
         [SerializeField]
         Text text;
 
-        [SerializeField]
-        WPGButtonAnimation wpgAnim;
 
         [SerializeField]
         WPGButtonNetworker networker;
@@ -69,7 +67,7 @@ namespace Games.WordPushGame
             transform.localPosition = initPos;
         }
 
-        public void SelectEffer ()
+        public void SelectEffect ()
         {
 
         }

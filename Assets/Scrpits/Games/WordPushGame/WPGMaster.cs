@@ -9,10 +9,6 @@ namespace Games.WordPushGame
     public class WPGMaster : SingletonMonoBehaviour<WPGMaster>
     {
 
-
-
-        [SerializeField]
-        WPGNetworkCreator creator;
         [SerializeField]
         WPGNetworkTransform netTransform;
 

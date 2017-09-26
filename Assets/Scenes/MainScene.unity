@@ -217,39 +217,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!21 &390923725
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &531751338
 Prefab:
   m_ObjectHideFlags: 0
@@ -293,12 +260,12 @@ Prefab:
         type: 2}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1157043331}
+      objectReference: {fileID: 864249085}
     - target: {fileID: 23342881851894932, guid: fce2155142ff3f64abc3745505f3897c,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 390923725}
+      objectReference: {fileID: 1938769187}
     - target: {fileID: 1658584406051400, guid: fce2155142ff3f64abc3745505f3897c, type: 2}
       propertyPath: m_IsActive
       value: 1
@@ -388,7 +355,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!43 &1157043331
+--- !u!43 &864249085
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -597,9 +564,9 @@ MonoBehaviour:
   - {fileID: 1056631468386282, guid: 283260e3653353b4fb055e2ff8b8cf1b, type: 2}
   - {fileID: 1809804692222998, guid: 8bbb0073ab6f0264caa873571ba871ca, type: 2}
   - {fileID: 1401882710443416, guid: 839bab398d06bd94da789f53f54cf193, type: 2}
+  - {fileID: 1241750763308820, guid: fcf73b8750f57b843adda2b5d57945d6, type: 2}
   - {fileID: 1845080528482818, guid: 0eed3f40564438144a9bf13eac4b84ed, type: 2}
   - {fileID: 1645879221222944, guid: 867700e2924c41546ba6a76bf2e9e9da, type: 2}
-  - {fileID: 1562952672896694, guid: 585b6d58375bdbf4aa2291c96a29c6ce, type: 2}
   - {fileID: 1601371096481432, guid: 552e79f05bdfe5a42b0d0fe924451def, type: 2}
   - {fileID: 1626526935331650, guid: 1174c9eec28320245bccdc81fe368e71, type: 2}
   - {fileID: 1008674032690300, guid: 669ede8479aa0fd4790aba9c31c7a347, type: 2}
@@ -696,6 +663,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffd99c06f034966439a67724e017d886, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameMasterPref: {fileID: 1824532203396200, guid: ce213ef1860d9364687a9e43e9c0fcec,
+    type: 2}
   trackerMasterPref: {fileID: 1809804692222998, guid: 8bbb0073ab6f0264caa873571ba871ca,
     type: 2}
   room: {fileID: 1401882710443416, guid: 839bab398d06bd94da789f53f54cf193, type: 2}
@@ -720,10 +689,43 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1897459337}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e60f715f28f8fe947a0316b4cd6478b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: 1645879221222944, guid: 867700e2924c41546ba6a76bf2e9e9da, type: 2}
+--- !u!21 &1938769187
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}

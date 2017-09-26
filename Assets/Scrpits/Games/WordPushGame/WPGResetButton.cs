@@ -8,9 +8,6 @@ namespace Games.WordPushGame
 
     public class WPGResetButton : MonoBehaviour, IVRObject
     {
-        [SerializeField]
-        WPGButtonAnimation anim;
-
         // Use this for initialization
         void Start ()
         {

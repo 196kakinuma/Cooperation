@@ -8,24 +8,19 @@ namespace Games.WordPushGame
 {
     public class WPGMaster : SingletonMonoBehaviour<WPGMaster>
     {
-        [SerializeField]
-        GameObject buttonPref;
-        [SerializeField]
-        GameObject resetButton;
-        [SerializeField]
-        GameObject answerButton;
-        [SerializeField]
-        GameObject calenderPref;
-
 
         [SerializeField]
-        WPGNetworkCreator creator;
+        WPGNetworkTransform netTransform;
 
         [SerializeField]
         Transform[] buttonPosition;
         [SerializeField]
         Transform calenderPosition;
-        WPGWordButton[] wpgWordButtons;
+
+        public WPGWordButton[] wpgWordButtons;
+        public WPGAnswerButton answerButton;
+        public WPGResetButton resetButton;
+        public WPGCalender calenderObj;
 
 
         //問題系
@@ -37,7 +32,6 @@ namespace Games.WordPushGame
         List<int> answerList;
         [SerializeField]
         WPGHint calender;
-        GameObject calenderObj;
         int month = 1;
         int day = 1;
 
@@ -54,22 +48,6 @@ namespace Games.WordPushGame
             if ( Networks.NetworkInitializer.Instance.cameraType != CameraType.VR ) return;
 
 
-            //4*5ボタンの生成
-            wpgWordButtons = new WPGWordButton[buttonPosition.Length];
-            for ( int i = 0; i < wpgWordButtons.Length; i++ )
-            {
-                creator.CmdCreateButton (buttonPref, buttonPosition[i].gameObject);
-                wpgWordButtons[i] = creator.button;
-            }
-
-            //resetとanswerボタンの生成
-            creator.CmdCreateSystemButton (resetButton, this.gameObject);
-            creator.CmdCreateSystemButton (answerButton, this.gameObject);
-
-            //calenderの生成
-            creator.CmdCreateCalender (calenderPref, this.calenderPosition.gameObject);
-            calenderObj = creator.calender;
-
             //ゲーム開始前に入力が入った場合のエラーを排除
             clientAnswerList = new List<int> ();
 
@@ -84,7 +62,8 @@ namespace Games.WordPushGame
         /// <returns></returns>
         public IEnumerator InitializeWPG ()
         {
-            yield return new WaitForSeconds (3f);
+            Debug.Log ("init!!!!!!!!!!");
+            yield return new WaitForSeconds (5f);
 
             //ランダムを生成
 
@@ -121,7 +100,8 @@ namespace Games.WordPushGame
 
                 wpgWordButtons[i].InitializeButtonInfo (questionList[i], i);
                 //文字を設置する
-                creator.CmdSetWord (wpgWordButtons[i].gameObject, wpgWordButtons[i].word);
+
+                netTransform.CmdSetWord (wpgWordButtons[i].buttonNum, wpgWordButtons[i].word);
             }
         }
 
@@ -155,7 +135,7 @@ namespace Games.WordPushGame
                     day = calender.sheets[0].list[1].Day;
                     break;
             }
-            calenderObj.GetComponent<WPGCalender> ().CmdSetCalender (month, day);
+            netTransform.CmdSetCalender (month, day);
         }
         #endregion
 
@@ -165,9 +145,9 @@ namespace Games.WordPushGame
         /// </summary>
         public void ResetAll ()
         {
-            foreach ( var b in wpgWordButtons )
+            for ( int i = 0; i < wpgWordButtons.Length; i++ )
             {
-                b.Reset ();
+                netTransform.CmdPullMove (i);
             }
             clientAnswerList.Clear ();
 
@@ -209,6 +189,8 @@ namespace Games.WordPushGame
         {
             if ( clientAnswerList.Contains (i) ) return;
             clientAnswerList.Add (i);
+            netTransform.CmdPushMove (i);
+
         }
     }
 

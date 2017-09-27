@@ -15,6 +15,7 @@ namespace Games.WordPushGame
         public WPGWordButton[] wpgWordButtons;
         public WPGAnswerButton answerButton;
         public WPGResetButton resetButton;
+        [HideInInspector]
         public WPGCalender calenderObj;
 
 
@@ -47,7 +48,7 @@ namespace Games.WordPushGame
             clientAnswerList = new List<int> ();
 
             //デバッグ用のゲーム開始
-            StartCoroutine (InitializeWPG ());
+            //StartCoroutine (InitializeWPG ());
 
         }
 
@@ -71,6 +72,7 @@ namespace Games.WordPushGame
             InitializeAnswer ();
 
             InitializeCalender ();
+
 
             //準備前でもボタンなどは前後できるため.
             ResetAll ();

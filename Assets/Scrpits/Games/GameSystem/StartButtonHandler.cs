@@ -14,6 +14,7 @@ namespace Games.GameSystem
         void Start ()
         {
             initPos = gameObject.transform.position;
+
         }
 
         #region DOWN

@@ -18,6 +18,11 @@ namespace Games.GameSystem
         [SerializeField]
         DoorNetwork network;
 
+        [SerializeField]
+        Text lockText;
+
+        public Transform keyLockGamePosition;
+
         int doorNum;
         public int DoorNum
         {
@@ -42,7 +47,11 @@ namespace Games.GameSystem
         public bool KeyLock
         {
             get { return keyLock; }
-            set { keyLock = value; }
+            set
+            {
+                SetLockText (value);
+                keyLock = value;
+            }
         }
 
         /// <summary>
@@ -56,6 +65,25 @@ namespace Games.GameSystem
             Visit = false;
             keyLock = false;
         }
+
+        /// <summary>
+        /// ロックされているの表示
+        /// </summary>
+        void SetLockText ( bool b )
+        {
+            if ( b )
+            {
+                lockText.text = "LOCKED";
+                lockText.color = Color.red;
+            }
+            else
+            {
+                lockText.text = "OPEN";
+                lockText.color = Color.green;
+            }
+        }
+
+        #region WINDOW
 
         public void SetImageActive ( Enemy.EnemyType type )
         {
@@ -76,5 +104,6 @@ namespace Games.GameSystem
         {
             windowImage.gameObject.SetActive (false);
         }
+        #endregion
     }
 }

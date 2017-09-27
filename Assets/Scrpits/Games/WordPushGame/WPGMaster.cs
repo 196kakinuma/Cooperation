@@ -38,6 +38,10 @@ namespace Games.WordPushGame
 
         //答えを格納する
         List<int> clientAnswerList;
+        /// <summary>
+        /// 正解した後の不要な弄りをカットする為に使用
+        /// </summary>
+        bool canManipulate = false;
 
         Door currentDoor;
 
@@ -77,7 +81,7 @@ namespace Games.WordPushGame
 
             //TODO: Doorの位置から移動場所を取得
             currentDoor = d;
-
+            PrepareMove ();
 
             //準備前でもボタンなどは前後できるため.
             ResetAll ();
@@ -88,6 +92,7 @@ namespace Games.WordPushGame
         {
             currentDoor = null;
             ResetAll ();
+
         }
         #region INIT
         private void InitializeQuestion ()
@@ -166,6 +171,8 @@ namespace Games.WordPushGame
         /// </summary>
         public void Answer ()
         {
+            if ( !canManipulate ) return;
+
             bool correction = true;
             if ( clientAnswerList.Count != answerList.Count ) correction = false;
 
@@ -181,7 +188,13 @@ namespace Games.WordPushGame
                 }
             }
 
-            if ( correction ) Debug.Log ("answer is correct!!");
+            if ( correction )
+            {
+                Debug.Log ("answer is correct!!");
+                currentDoor.KeyLock = true;
+                canManipulate = false;
+                ExitRoom ();
+            }
             else
             {
                 ResetAll ();
@@ -195,11 +208,50 @@ namespace Games.WordPushGame
         /// </summary>
         public void ReceiveUserResponse ( int i )
         {
+            if ( !canManipulate ) return;
             if ( clientAnswerList.Contains (i) ) return;
             clientAnswerList.Add (i);
             netTransform.CmdPushMove (i);
 
         }
+
+        #region MOVING
+        public void PrepareMove ()
+        {
+            netTransform.CmdPrepareMove (currentDoor.keyLockGamePosition.position, currentDoor.keyLockGamePosition.forward);
+        }
+
+        public void NtPrepareMove ( Vector3 pos, Vector3 forward )
+        {
+            this.transform.position = pos;
+            this.transform.forward = forward;
+        }
+
+        public void AppearRoom ()
+        {
+            netTransform.CmdAppearRoom ();
+        }
+
+        public void NtAppearRoom ()
+        {
+            Debug.Log ("appear");
+            //アニメーション
+            canManipulate = true;
+        }
+
+        public void ExitRoom ()
+        {
+            netTransform.CmdExitRoom ();
+        }
+
+        public void NtExitRoom ()
+        {
+            Debug.Log ("exit");
+            //あにめーしょん
+
+            gameObject.SetActive (false);
+        }
+        #endregion
 
 
     }

@@ -11,6 +11,7 @@ namespace Games.WordPushGame
         WPGMaster master;
 
 
+        #region Button
         [Command]
         public void CmdPushMove ( int i )
         {
@@ -50,7 +51,7 @@ namespace Games.WordPushGame
         {
             master.wpgWordButtons[i].SetWord (text);
         }
-
+        #endregion
         [Command]
         public void CmdSetCalender ( int month, int day )
         {
@@ -62,5 +63,41 @@ namespace Games.WordPushGame
         {
             master.calenderObj.SetCalender (month, day);
         }
+
+        #region Move
+        [Command]
+        public void CmdPrepareMove ( Vector3 pos, Vector3 forward )
+        {
+            RpcPrepareMove (pos, forward);
+        }
+        [ClientRpc]
+        void RpcPrepareMove ( Vector3 pos, Vector3 forward )
+        {
+            master.NtPrepareMove (pos, forward);
+        }
+
+        [Command]
+        public void CmdAppearRoom ()
+        {
+            RpcAppearRoom ();
+        }
+
+        [ClientRpc]
+        void RpcAppearRoom ()
+        {
+            master.NtAppearRoom ();
+        }
+
+        [Command]
+        public void CmdExitRoom ()
+        {
+            RpcExitRoom ();
+        }
+        [ClientRpc]
+        void RpcExitRoom ()
+        {
+            master.NtExitRoom ();
+        }
+        #endregion
     }
 }

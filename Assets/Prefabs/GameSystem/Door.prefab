@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 114462303826164574}
   - component: {fileID: 114439566768058042}
   - component: {fileID: 114277109455118840}
+  - component: {fileID: 114964509499057306}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -809,6 +810,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorWood: {fileID: 1801454877559234}
   windowImage: {fileID: 114474460125895628}
+  network: {fileID: 114964509499057306}
 --- !u!114 &114474460125895628
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -873,6 +875,18 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114964509499057306
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1662385596694584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f73b2b0da419240b408ce7827520ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  door: {fileID: 114462303826164574}
 --- !u!222 &222676304687274262
 CanvasRenderer:
   m_ObjectHideFlags: 1

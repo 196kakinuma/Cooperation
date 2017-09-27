@@ -11,6 +11,7 @@ namespace Games.GameSystem
         [SerializeField]
         GameObject doorPref;
         Door[] doors;
+
         /// <summary>
         /// Enemyの入っている部屋のリスト
         /// </summary>
@@ -131,7 +132,7 @@ namespace Games.GameSystem
         {
 
             Debug.Log ("鍵が締まっていました撤退");
-            d.SetImageNonActive ();
+            d.SetImageNonActive (e.Type);
             enemyRoomList.Remove (e);
         }
 

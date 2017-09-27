@@ -15,6 +15,8 @@ namespace Games.GameSystem
         [SerializeField]
         Image windowImage;
 
+        [SerializeField]
+        DoorNetwork network;
 
         int doorNum;
         public int DoorNum
@@ -57,10 +59,20 @@ namespace Games.GameSystem
 
         public void SetImageActive ( Enemy.EnemyType type )
         {
+            network.CmdSetWindowsImageActive (type);
+        }
+
+        public void NtSetImageActive ( Enemy.EnemyType type )
+        {
             windowImage.gameObject.SetActive (true);
         }
 
-        public void SetImageNonActive ()
+        public void SetImageNonActive ( Enemy.EnemyType type )
+        {
+            network.CmdSetWindowsImageActive (type);
+        }
+
+        public void NtSetImageNonActive ( Enemy.EnemyType type )
         {
             windowImage.gameObject.SetActive (false);
         }

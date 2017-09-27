@@ -2,10 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.UI;
 namespace Games.GameSystem
 {
+
+
     public class Door : MonoBehaviour
     {
+        [SerializeField]
+        GameObject doorWood;
+
+        [SerializeField]
+        Image windowImage;
+
+
         int doorNum;
         public int DoorNum
         {
@@ -43,6 +53,16 @@ namespace Games.GameSystem
             VisitEnemy = null;
             Visit = false;
             keyLock = false;
+        }
+
+        public void SetImageActive ( Enemy.EnemyType type )
+        {
+            windowImage.gameObject.SetActive (true);
+        }
+
+        public void SetImageNonActive ()
+        {
+            windowImage.gameObject.SetActive (false);
         }
     }
 }

@@ -15,6 +15,7 @@ namespace Games.WordPushGame
         public WPGWordButton[] wpgWordButtons;
         public WPGAnswerButton answerButton;
         public WPGResetButton resetButton;
+        [HideInInspector]
         public WPGCalender calenderObj;
 
 

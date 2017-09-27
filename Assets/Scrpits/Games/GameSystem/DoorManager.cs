@@ -44,10 +44,11 @@ namespace Games.GameSystem
                 }
             }
             doors = new Door[GameSettings.Instance.doorNum];
+            var anchors = WorldAnchorKeeper.Instance.doorSpawnTransform;
             for ( int i = 0; i < GameSettings.Instance.doorNum; i++ )
             {
 
-                var d = Instantiate (doorPref);
+                var d = Instantiate (doorPref, anchors[i]);
                 doors[i] = d.GetComponent<Door> ();
                 NetworkServer.Spawn (d);
                 doors[i].Initialize (i);
@@ -65,9 +66,10 @@ namespace Games.GameSystem
             //すでにenemyはどこかの部屋にはいっているなら-鍵チェックして入室か退室
             if ( enemyRoomList.ContainsKey (enemy) )
             {
-                if ( enemyRoomList[enemy].KeyLock )//鍵が締まっている
+                var d = enemyRoomList[enemy];
+                if ( d.KeyLock )//鍵が締まっている
                 {
-                    ExitRoom (enemy);
+                    ExitRoom (enemy, d);
                     return false;
                 }
                 else //鍵が開いている
@@ -121,12 +123,15 @@ namespace Games.GameSystem
                 d.KeyLock = false;
             }
             Debug.Log ("入室しました");
+            d.SetImageActive (e.Type);
             enemyRoomList.Add (e, d);
         }
 
-        void ExitRoom ( Enemy.Enemy e )
+        void ExitRoom ( Enemy.Enemy e, Door d )
         {
+
             Debug.Log ("鍵が締まっていました撤退");
+            d.SetImageNonActive ();
             enemyRoomList.Remove (e);
         }
 

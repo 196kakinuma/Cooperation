@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using Games.GameSystem;
 using IkLibrary.Unity;
+using Objects;
 
 namespace Games.WordPushGame
 {
-    public class WPGMaster : SingletonMonoBehaviour<WPGMaster>
+    public class WPGMaster : SingletonMonoBehaviour<WPGMaster>, IKeyLockGameMaster
     {
 
         [SerializeField]
@@ -37,6 +39,8 @@ namespace Games.WordPushGame
         //答えを格納する
         List<int> clientAnswerList;
 
+        Door currentDoor;
+
 
         // Use this for initialization
         void Start ()
@@ -56,15 +60,13 @@ namespace Games.WordPushGame
         /// ゲームを読み込みすべてのクライアントに命令を出す
         /// </summary>
         /// <returns></returns>
-        public IEnumerator InitializeWPG ()
+        public IEnumerator Initialize ( Door d )
         {
             Debug.Log ("init!!!!!!!!!!");
-            yield return new WaitForSeconds (5f);
+            yield return new WaitForSeconds (2f);
 
             //ランダムを生成
 
-
-            //条件の配置を変更
 
             //問題と正解を読み込む
             InitializeQuestion ();
@@ -73,10 +75,19 @@ namespace Games.WordPushGame
 
             InitializeCalender ();
 
+            //TODO: Doorの位置から移動場所を取得
+            currentDoor = d;
+
 
             //準備前でもボタンなどは前後できるため.
             ResetAll ();
 
+        }
+
+        public void Clear ()
+        {
+            currentDoor = null;
+            ResetAll ();
         }
         #region INIT
         private void InitializeQuestion ()
@@ -189,6 +200,8 @@ namespace Games.WordPushGame
             netTransform.CmdPushMove (i);
 
         }
+
+
     }
 
 }

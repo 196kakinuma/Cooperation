@@ -16,17 +16,6 @@ namespace Games.GameSystem
         /// Enemyの入っている部屋のリスト
         /// </summary>
         Dictionary<Enemy.Enemy, Door> enemyRoomList;
-        // Use this for initialization
-        void Start ()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update ()
-        {
-
-        }
 
         public void InitializeGameStart ()
         {
@@ -75,9 +64,7 @@ namespace Games.GameSystem
                 }
                 else //鍵が開いている
                 {
-                    Debug.Log ("Games Over");
-                    //ゲームオーバー
-                    GameMaster.Instance.FinishGame ();
+                    GamesOver (enemy, d);
                     //念のためtrueを返すが,GameTimerを止める
                     return true;
                 }
@@ -86,7 +73,6 @@ namespace Games.GameSystem
             {
                 //入る部屋を決める
                 int decideRoom = Random.Range (0, doors.Length);
-                Debug.Log ("room Number=" + decideRoom);
                 if ( enemyRoomList.ContainsValue (doors[decideRoom]) )//入ろうとした部屋にすでにだれか入っていた
                 {
                     Debug.Log ("だれかすでにいた");
@@ -125,7 +111,9 @@ namespace Games.GameSystem
             }
             Debug.Log ("入室しました");
             d.SetImageActive (e.Type);
+            GameMaster.Instance.ActivateKeyLockGame (d);
             enemyRoomList.Add (e, d);
+
         }
 
         void ExitRoom ( Enemy.Enemy e, Door d )
@@ -133,7 +121,15 @@ namespace Games.GameSystem
 
             Debug.Log ("鍵が締まっていました撤退");
             d.SetImageNonActive (e.Type);
+            GameMaster.Instance.DisActivateKeyLockGame (d);
             enemyRoomList.Remove (e);
+        }
+
+        void GamesOver ( Enemy.Enemy e, Door d )
+        {
+            Debug.Log ("Games Over");
+            //ゲームオーバー
+            GameMaster.Instance.FinishGame ();
         }
 
 

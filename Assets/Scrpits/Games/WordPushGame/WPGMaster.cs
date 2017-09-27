@@ -55,9 +55,6 @@ namespace Games.WordPushGame
             //ゲーム開始前に入力が入った場合のエラーを排除
             clientAnswerList = new List<int> ();
 
-            //デバッグ用のゲーム開始
-            //StartCoroutine (InitializeWPG ());
-
         }
 
         /// <summary>
@@ -66,8 +63,7 @@ namespace Games.WordPushGame
         /// <returns></returns>
         public IEnumerator Initialize ( Door d )
         {
-            Debug.Log ("init!!!!!!!!!!");
-            yield return new WaitForSeconds (2f);
+            Debug.Log ("WPG Question init!!!!!!!!!!");
 
             //ランダムを生成
 
@@ -85,7 +81,7 @@ namespace Games.WordPushGame
 
             //準備前でもボタンなどは前後できるため.
             ResetAll ();
-
+            yield return true;
         }
 
         public void Clear ()
@@ -223,6 +219,8 @@ namespace Games.WordPushGame
 
         public void NtPrepareMove ( Vector3 pos, Vector3 forward )
         {
+            //FIXME: 仮
+            canManipulate = true;
             this.transform.position = pos;
             this.transform.forward = forward;
         }
@@ -235,8 +233,12 @@ namespace Games.WordPushGame
         public void NtAppearRoom ()
         {
             Debug.Log ("appear");
+
+            //表示する
+
             //アニメーション
             canManipulate = true;
+
         }
 
         public void ExitRoom ()
@@ -249,7 +251,7 @@ namespace Games.WordPushGame
             Debug.Log ("exit");
             //あにめーしょん
 
-            gameObject.SetActive (false);
+            //表示を隠す
         }
         #endregion
 

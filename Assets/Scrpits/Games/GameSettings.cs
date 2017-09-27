@@ -15,7 +15,8 @@ namespace Games
         /// <summary>
         /// ゲーム時間
         /// </summary>
-        public int GameDuration = 3;
+        [Range (60, 300)]
+        public int GameDuration;
 
     }
 }

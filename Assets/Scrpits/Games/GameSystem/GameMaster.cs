@@ -72,6 +72,8 @@ namespace Games.GameSystem
             this.wpgCalender = cal.GetComponent<WordPushGame.WPGCalender> ();
             NetworkServer.Spawn (cal);
         }
+
+
         #endregion
 
         /// <summary>
@@ -136,7 +138,7 @@ namespace Games.GameSystem
             var g = GetRandomKeyLockGame ();
             nonUsingGameList.Remove (g);
             usingGameAndDoorList.Add (d, g);
-            g.Initialize (d);
+            StartCoroutine (g.Initialize (d));
         }
 
         /// <summary>
@@ -158,6 +160,7 @@ namespace Games.GameSystem
         IKeyLockGameMaster GetRandomKeyLockGame ()
         {
             int rand = Random.Range (0, nonUsingGameList.Count);
+            Debug.Log (rand + "  " + nonUsingGameList.Count);
             return nonUsingGameList[rand];
         }
     }

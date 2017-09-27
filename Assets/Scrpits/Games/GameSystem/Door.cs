@@ -97,11 +97,12 @@ namespace Games.GameSystem
 
         public void SetImageNonActive ( Enemy.EnemyType type )
         {
-            network.CmdSetWindowsImageActive (type);
+            network.CmdSetWindowImageNonActive (type);
         }
 
         public void NtSetImageNonActive ( Enemy.EnemyType type )
         {
+            Debug.Log ("お化け非表示");
             windowImage.gameObject.SetActive (false);
         }
         #endregion

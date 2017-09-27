@@ -49,7 +49,7 @@ namespace Games.GameSystem
             get { return keyLock; }
             set
             {
-                SetLockText (value);
+                network.CmdSetLockText (value);
                 keyLock = value;
             }
         }
@@ -69,7 +69,7 @@ namespace Games.GameSystem
         /// <summary>
         /// ロックされているの表示
         /// </summary>
-        void SetLockText ( bool b )
+        public void NtSetLockText ( bool b )
         {
             if ( b )
             {

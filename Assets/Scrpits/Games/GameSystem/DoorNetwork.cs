@@ -35,5 +35,17 @@ namespace Games.GameSystem
             door.NtSetImageNonActive (type);
         }
 
+        [Command]
+        public void CmdSetLockText ( bool b )
+        {
+            RpcSetLockText (b);
+        }
+
+        [ClientRpc]
+        void RpcSetLockText ( bool b )
+        {
+            door.NtSetLockText (b);
+        }
+
     }
 }

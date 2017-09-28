@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using IkLibrary.Unity;
 using UnityEngine.Networking;
+using Objects;
 
 namespace Games.GameSystem
 {
@@ -25,6 +26,10 @@ namespace Games.GameSystem
         StartButtonHandler startButton;
 
         //ゲームプレハブ系
+        List<IKeyLockGameMaster> gameList = new List<IKeyLockGameMaster> ();
+        List<IKeyLockGameMaster> nonUsingGameList;
+        Dictionary<Door, IKeyLockGameMaster> usingGameAndDoorList;
+
         [SerializeField]
         GameObject WPGPref;
         Games.WordPushGame.WPGMaster wpgMaster;
@@ -44,27 +49,39 @@ namespace Games.GameSystem
         // Use this for initialization
         void Start ()
         {
+
             //startボタン
             var b = Instantiate (startButtonPref);
             this.startButton = b.GetComponent<StartButtonHandler> ();
             NetworkServer.Spawn (b);
 
+            WPGCreate ();
+
+        }
+
+        void Update ()
+        {
+            //ゲームクリア
+            if ( timer.IsGameEnd () ) GameClear ();
+        }
+
+        #region KEYLOCKGAME
+        void WPGCreate ()
+        {
             //wpg
             var wpg = Instantiate (WPGPref);
             this.wpgMaster = wpg.GetComponent<Games.WordPushGame.WPGMaster> ();
+            gameList.Add (wpgMaster);
             NetworkServer.Spawn (wpg);
             //Hintオブジェクトの生成
             var cal = Instantiate (WPGCalender);
             this.wpgCalender = cal.GetComponent<WordPushGame.WPGCalender> ();
             NetworkServer.Spawn (cal);
-
         }
 
 
-        void Update ()
-        {
+        #endregion
 
-        }
         /// <summary>
         /// startButtonから呼ばれる.ゲームを開始する
         /// </summary>
@@ -92,10 +109,32 @@ namespace Games.GameSystem
         IEnumerator StartPrepare ()
         {
             Debug.Log ("startPrepare");
-            StartCoroutine (wpgMaster.InitializeWPG ());
+            nonUsingGameList = new List<IKeyLockGameMaster> ();
+            usingGameAndDoorList = new Dictionary<Door, IKeyLockGameMaster> ();
+
+            foreach ( var game in gameList )
+            {
+                game.Prepare ();
+                nonUsingGameList.Add (game);
+            }
             enemyMaster.InitializeGameStart ();
             doorManager.InitializeGameStart ();
+
+
             yield return null;
+        }
+
+        void GameClear ()
+        {
+            Debug.Log ("GameClear");
+            FinishGame ();
+        }
+
+        public void GameOver ()
+        {
+            Debug.Log ("GameOver");
+
+            FinishGame ();
         }
 
         /// <summary>
@@ -105,9 +144,52 @@ namespace Games.GameSystem
         {
             IsPlaying = false;
             timer.GameFinish ();
+            foreach ( var g in gameList )
+            {
+                g.SetOperationAuthority (false);
+            }
 
             //スタートボタンを戻す
             startButton.CmdResetStartButton ();
+        }
+
+        /// <summary>
+        /// 現在使われていないゲームを、その扉に割り当てる
+        /// </summary>
+        /// <returns></returns>
+        public void ActivateKeyLockGame ( Door d )
+        {
+            var g = GetRandomKeyLockGame ();
+            nonUsingGameList.Remove (g);
+            usingGameAndDoorList.Add (d, g);
+            StartCoroutine (g.Initialize (d));
+        }
+
+        public void AppearKeyLockGame ( Door d )
+        {
+            usingGameAndDoorList[d].AppearRoom ();
+        }
+
+        /// <summary>
+        /// 敵が離れたときに,Doorとゲームの紐づけを解く
+        /// </summary>
+        /// <param name="d"></param>
+        public void DisActivateKeyLockGame ( Door d )
+        {
+            var g = usingGameAndDoorList[d];
+            nonUsingGameList.Add (g);
+            g.Clear ();
+            usingGameAndDoorList.Remove (d);
+        }
+
+        /// <summary>
+        /// 現在使われていないゲームをランダムに入手する
+        /// </summary>
+        /// <returns></returns>
+        IKeyLockGameMaster GetRandomKeyLockGame ()
+        {
+            int rand = Random.Range (0, nonUsingGameList.Count);
+            return nonUsingGameList[rand];
         }
     }
 }

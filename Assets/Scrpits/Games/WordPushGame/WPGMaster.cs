@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using Games.GameSystem;
 using IkLibrary.Unity;
+using Objects;
 
 namespace Games.WordPushGame
 {
-    public class WPGMaster : SingletonMonoBehaviour<WPGMaster>
+    public class WPGMaster : SingletonMonoBehaviour<WPGMaster>, IKeyLockGameMaster
     {
 
         [SerializeField]
@@ -36,6 +38,12 @@ namespace Games.WordPushGame
 
         //答えを格納する
         List<int> clientAnswerList;
+        /// <summary>
+        /// 正解した後の不要な弄りをカットする為に使用
+        /// </summary>
+        bool operationAuthority = false;
+
+        Door currentDoor;
 
 
         // Use this for initialization
@@ -47,24 +55,37 @@ namespace Games.WordPushGame
             //ゲーム開始前に入力が入った場合のエラーを排除
             clientAnswerList = new List<int> ();
 
-            //デバッグ用のゲーム開始
-            //StartCoroutine (InitializeWPG ());
+
+
+        }
+
+        public void SetOperationAuthority ( bool b )
+        {
+            operationAuthority = b;
+        }
+        /// <summary>
+        /// ゲーム開始時に呼ばれる
+        /// </summary>
+        public void Prepare ()
+        {
+            ResetAll ();
+            netTransform.CmdSetActive (false);
 
         }
 
         /// <summary>
-        /// ゲームを読み込みすべてのクライアントに命令を出す
+        /// ゲームをデータから読み込み問題を作成、準備
         /// </summary>
         /// <returns></returns>
-        public IEnumerator InitializeWPG ()
+        public IEnumerator Initialize ( Door d )
         {
-            Debug.Log ("init!!!!!!!!!!");
-            yield return new WaitForSeconds (5f);
+            Debug.Log ("WPG Question init!!!!!!!!!!");
+            netTransform.CmdSetActive (true);
+            //準備前でもボタンなどは前後できるため.
+            ResetAll ();
 
             //ランダムを生成
 
-
-            //条件の配置を変更
 
             //問題と正解を読み込む
             InitializeQuestion ();
@@ -73,9 +94,18 @@ namespace Games.WordPushGame
 
             InitializeCalender ();
 
+            currentDoor = d;
+            PrepareMove ();
 
-            //準備前でもボタンなどは前後できるため.
+
+            yield return true;
+        }
+
+        public void Clear ()
+        {
+            currentDoor = null;
             ResetAll ();
+            netTransform.CmdSetActive (false);
 
         }
         #region INIT
@@ -155,6 +185,8 @@ namespace Games.WordPushGame
         /// </summary>
         public void Answer ()
         {
+            if ( !operationAuthority ) return;
+
             bool correction = true;
             if ( clientAnswerList.Count != answerList.Count ) correction = false;
 
@@ -170,7 +202,12 @@ namespace Games.WordPushGame
                 }
             }
 
-            if ( correction ) Debug.Log ("answer is correct!!");
+            if ( correction )
+            {
+                Debug.Log ("answer is correct!!");
+                currentDoor.KeyLock = true;
+                ExitRoom ();
+            }
             else
             {
                 ResetAll ();
@@ -184,11 +221,69 @@ namespace Games.WordPushGame
         /// </summary>
         public void ReceiveUserResponse ( int i )
         {
+            if ( !operationAuthority ) return;
             if ( clientAnswerList.Contains (i) ) return;
             clientAnswerList.Add (i);
             netTransform.CmdPushMove (i);
 
         }
+
+        #region MOVING
+        [SerializeField]
+        float moveDistance = 2;
+        public void PrepareMove ()
+        {
+            netTransform.CmdPrepareMove (currentDoor.keyLockGamePosition.position, currentDoor.keyLockGamePosition.forward);
+        }
+
+        public void NtPrepareMove ( Vector3 pos, Vector3 forward )
+        {
+            pos = new Vector3 (pos.x, pos.y - moveDistance, pos.z);
+            this.transform.position = pos;
+            this.transform.forward = forward;
+        }
+
+        public void AppearRoom ()
+        {
+            netTransform.CmdAppearRoom ();
+        }
+
+        public void NtAppearRoom ()
+        {
+            Debug.Log ("appear");
+
+            //表示する
+
+            //アニメーション
+            var pos = transform.position;
+            this.transform.position = new Vector3 (pos.x, pos.y + moveDistance, pos.z);
+            SetOperationAuthority (true);
+
+        }
+
+        public void ExitRoom ()
+        {
+            currentDoor.SetButtonActive (true);
+            currentDoor.SetButtonWord (false);
+            netTransform.CmdExitRoom ();
+            //表示を隠す
+            Clear ();
+
+        }
+
+        public void NtExitRoom ()
+        {
+            Debug.Log ("exit");
+            SetOperationAuthority (false);
+
+            //あにめーしょん
+            var pos = transform.position;
+            transform.position = new Vector3 (pos.x, pos.y - moveDistance, pos.z);
+
+        }
+        #endregion
+
+
     }
 
 }

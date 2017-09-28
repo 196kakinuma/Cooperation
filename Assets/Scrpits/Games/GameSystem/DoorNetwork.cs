@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 namespace Games.GameSystem
 {
@@ -35,5 +36,29 @@ namespace Games.GameSystem
             door.NtSetImageNonActive (type);
         }
 
+        [Command]
+        public void CmdSetLockText ( bool b )
+        {
+
+            RpcSetLockText (b);
+        }
+
+        [ClientRpc]
+        void RpcSetLockText ( bool b )
+        {
+            door.NtSetLockText (b);
+        }
+
+        [Command]
+        public void CmdSetButtonText ( bool isLock )
+        {
+            RpcSetButtonText (isLock);
+        }
+
+        [ClientRpc]
+        void RpcSetButtonText ( bool isLock )
+        {
+            door.NtSetButtonText (isLock);
+        }
     }
 }

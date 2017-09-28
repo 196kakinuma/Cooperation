@@ -16,21 +16,13 @@ namespace Games.GameSystem
         /// Enemyの入っている部屋のリスト
         /// </summary>
         Dictionary<Enemy.Enemy, Door> enemyRoomList;
-        // Use this for initialization
-        void Start ()
-        {
 
-        }
-
-        // Update is called once per frame
-        void Update ()
-        {
-
-        }
+        List<Door> blankRoomList;
 
         public void InitializeGameStart ()
         {
             enemyRoomList = new Dictionary<Enemy.Enemy, Door> ();
+            blankRoomList = new List<Door> ();
             GenarateDoor ();
         }
 
@@ -52,7 +44,7 @@ namespace Games.GameSystem
                 var d = Instantiate (doorPref, anchors[i]);
                 doors[i] = d.GetComponent<Door> ();
                 NetworkServer.Spawn (d);
-                doors[i].Initialize (i);
+                doors[i].Initialize (i, this);
             }
         }
 
@@ -75,9 +67,7 @@ namespace Games.GameSystem
                 }
                 else //鍵が開いている
                 {
-                    Debug.Log ("Games Over");
-                    //ゲームオーバー
-                    GameMaster.Instance.FinishGame ();
+                    GamesOver (enemy, d);
                     //念のためtrueを返すが,GameTimerを止める
                     return true;
                 }
@@ -85,15 +75,15 @@ namespace Games.GameSystem
             else //まだenemyはどこの部屋にも入っていなかった
             {
                 //入る部屋を決める
-                int decideRoom = Random.Range (0, doors.Length);
-                Debug.Log ("room Number=" + decideRoom);
-                if ( enemyRoomList.ContainsValue (doors[decideRoom]) )//入ろうとした部屋にすでにだれか入っていた
+                //int decideRoom = Random.Range (0, doors.Length);
+                int decideRoom = 1;
+                if ( enemyRoomList.ContainsValue (doors[decideRoom]) || blankRoomList.Contains (doors[decideRoom]) )//入ろうとした部屋にすでにだれか入っていた
                 {
                     Debug.Log ("だれかすでにいた");
                     var d = this.GetNextDoor (decideRoom);
 
                     //隣のドアを試して開いていなかった
-                    if ( enemyRoomList.ContainsValue (d) )
+                    if ( enemyRoomList.ContainsValue (d) || blankRoomList.Contains (d) )
                     {
                         Debug.Log ("埋まっていたよ");
                         return false;
@@ -114,6 +104,29 @@ namespace Games.GameSystem
             }
         }
 
+
+        public bool AppearKeyLockGame ( Door d )
+        {
+            //もし問題がセットされているるのなら
+            if ( IsSettingKeyLockGame (d) )
+            {
+                //問題をだす
+                GameMaster.Instance.AppearKeyLockGame (d);
+                return true;
+            }
+            else
+            {
+                //スルー
+                return false;
+            }
+        }
+
+        bool IsSettingKeyLockGame ( Door d )
+        {
+            if ( enemyRoomList.ContainsValue (d) ) return true;
+            else return false;
+        }
+
         #region ENEMYACTION
 
         void EnterRoom ( Enemy.Enemy e, Door d )
@@ -125,7 +138,9 @@ namespace Games.GameSystem
             }
             Debug.Log ("入室しました");
             d.SetImageActive (e.Type);
+            GameMaster.Instance.ActivateKeyLockGame (d);
             enemyRoomList.Add (e, d);
+
         }
 
         void ExitRoom ( Enemy.Enemy e, Door d )
@@ -133,7 +148,34 @@ namespace Games.GameSystem
 
             Debug.Log ("鍵が締まっていました撤退");
             d.SetImageNonActive (e.Type);
+            GameMaster.Instance.DisActivateKeyLockGame (d);
             enemyRoomList.Remove (e);
+            StartCoroutine (BlankRoomTime (d));
+        }
+
+        /// <summary>
+        /// 敵がいなくなった後のドアの無敵時間
+        /// </summary>
+        /// <returns></returns>
+        IEnumerator BlankRoomTime ( Door d )
+        {
+            blankRoomList.Add (d);
+            var t = GameSettings.Instance;
+            float wait = 0f;
+            while ( t.blankRoomTime > wait )
+            {
+                wait += Time.deltaTime;
+                d.BlankTime = wait;
+                if ( !d.KeyLock ) break;
+                yield return new WaitForEndOfFrame ();
+            }
+            blankRoomList.Remove (d);
+            d.BlankTime = 0f;
+        }
+
+        void GamesOver ( Enemy.Enemy e, Door d )
+        {
+            GameMaster.Instance.GameOver ();
         }
 
 

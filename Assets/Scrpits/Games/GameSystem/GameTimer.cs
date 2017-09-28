@@ -26,10 +26,17 @@ namespace Games.GameSystem
             else
                 return finishTime;
         }
+
         public void GameFinish ()
         {
             finishTime = Time.time - startTime;
             Debug.Log ("finishTime =" + finishTime);
+        }
+
+        public bool IsGameEnd ()
+        {
+            if ( GameSettings.Instance.GameDuration < GetTime () ) return true;
+            else return false;
         }
 
     }

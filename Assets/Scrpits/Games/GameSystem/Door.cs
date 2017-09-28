@@ -21,6 +21,16 @@ namespace Games.GameSystem
         [SerializeField]
         Text lockText;
 
+        /// <summary>
+        /// 敵が去った後の空白時間
+        /// </summary>
+        float blankTime = 0;
+        public float BlankTime
+        {
+            get { return blankTime; }
+            set { blankTime = value; }
+        }
+
         public Transform keyLockGamePosition;
 
         int doorNum;

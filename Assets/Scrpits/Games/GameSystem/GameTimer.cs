@@ -26,6 +26,7 @@ namespace Games.GameSystem
             else
                 return finishTime;
         }
+
         public void GameFinish ()
         {
             finishTime = Time.time - startTime;

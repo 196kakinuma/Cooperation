@@ -144,6 +144,10 @@ namespace Games.GameSystem
         {
             IsPlaying = false;
             timer.GameFinish ();
+            foreach ( var g in gameList )
+            {
+                g.SetOperationAuthority (false);
+            }
 
             //スタートボタンを戻す
             startButton.CmdResetStartButton ();

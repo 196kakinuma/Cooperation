@@ -17,9 +17,12 @@ namespace Games.GameSystem
         /// </summary>
         Dictionary<Enemy.Enemy, Door> enemyRoomList;
 
+        List<Door> blankRoomList;
+
         public void InitializeGameStart ()
         {
             enemyRoomList = new Dictionary<Enemy.Enemy, Door> ();
+            blankRoomList = new List<Door> ();
             GenarateDoor ();
         }
 
@@ -74,13 +77,13 @@ namespace Games.GameSystem
                 //入る部屋を決める
                 //int decideRoom = Random.Range (0, doors.Length);
                 int decideRoom = 1;
-                if ( enemyRoomList.ContainsValue (doors[decideRoom]) )//入ろうとした部屋にすでにだれか入っていた
+                if ( enemyRoomList.ContainsValue (doors[decideRoom]) || blankRoomList.Contains (doors[decideRoom]) )//入ろうとした部屋にすでにだれか入っていた
                 {
                     Debug.Log ("だれかすでにいた");
                     var d = this.GetNextDoor (decideRoom);
 
                     //隣のドアを試して開いていなかった
-                    if ( enemyRoomList.ContainsValue (d) )
+                    if ( enemyRoomList.ContainsValue (d) || blankRoomList.Contains (d) )
                     {
                         Debug.Log ("埋まっていたよ");
                         return false;
@@ -124,6 +127,26 @@ namespace Games.GameSystem
             d.SetImageNonActive (e.Type);
             GameMaster.Instance.DisActivateKeyLockGame (d);
             enemyRoomList.Remove (e);
+            StartCoroutine (BlankRoomTime (d));
+        }
+
+        /// <summary>
+        /// 敵がいなくなった後のドアの無敵時間
+        /// </summary>
+        /// <returns></returns>
+        IEnumerator BlankRoomTime ( Door d )
+        {
+            blankRoomList.Add (d);
+            var t = GameSettings.Instance;
+            float wait = 0f;
+            while ( t.blankRoomTime > wait )
+            {
+                wait += Time.deltaTime;
+                d.BlankTime = wait;
+                yield return new WaitForEndOfFrame ();
+            }
+            blankRoomList.Remove (d);
+            d.BlankTime = 0f;
         }
 
         void GamesOver ( Enemy.Enemy e, Door d )

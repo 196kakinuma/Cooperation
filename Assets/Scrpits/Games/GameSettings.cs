@@ -12,6 +12,9 @@ namespace Games
         [Range (3, 5)]
         public int doorNum = 3;
 
+        [Range (5, 60)]
+        public int blankRoomTime;
+
         /// <summary>
         /// ゲーム時間
         /// </summary>

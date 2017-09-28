@@ -7,6 +7,8 @@ namespace Objects
 
     public interface IKeyLockGameMaster
     {
+
+        void SetOperationAuthority ( bool b );
         /// <summary>
         /// ゲーム開始時に呼ばれる
         /// </summary>

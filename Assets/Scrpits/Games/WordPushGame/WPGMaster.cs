@@ -41,7 +41,7 @@ namespace Games.WordPushGame
         /// <summary>
         /// 正解した後の不要な弄りをカットする為に使用
         /// </summary>
-        bool canManipulate = false;
+        bool operationAuthority = false;
 
         Door currentDoor;
 
@@ -59,12 +59,18 @@ namespace Games.WordPushGame
 
         }
 
+        public void SetOperationAuthority ( bool b )
+        {
+            operationAuthority = b;
+        }
         /// <summary>
         /// ゲーム開始時に呼ばれる
         /// </summary>
         public void Prepare ()
         {
+            ResetAll ();
             netTransform.CmdSetActive (false);
+
         }
 
         /// <summary>
@@ -75,6 +81,8 @@ namespace Games.WordPushGame
         {
             Debug.Log ("WPG Question init!!!!!!!!!!");
             netTransform.CmdSetActive (true);
+            //準備前でもボタンなどは前後できるため.
+            ResetAll ();
 
             //ランダムを生成
 
@@ -89,8 +97,7 @@ namespace Games.WordPushGame
             currentDoor = d;
             PrepareMove ();
 
-            //準備前でもボタンなどは前後できるため.
-            ResetAll ();
+
             yield return true;
         }
 
@@ -178,7 +185,7 @@ namespace Games.WordPushGame
         /// </summary>
         public void Answer ()
         {
-            if ( !canManipulate ) return;
+            if ( !operationAuthority ) return;
 
             bool correction = true;
             if ( clientAnswerList.Count != answerList.Count ) correction = false;
@@ -199,7 +206,6 @@ namespace Games.WordPushGame
             {
                 Debug.Log ("answer is correct!!");
                 currentDoor.KeyLock = true;
-                canManipulate = false;
                 ExitRoom ();
             }
             else
@@ -215,7 +221,7 @@ namespace Games.WordPushGame
         /// </summary>
         public void ReceiveUserResponse ( int i )
         {
-            if ( !canManipulate ) return;
+            if ( !operationAuthority ) return;
             if ( clientAnswerList.Contains (i) ) return;
             clientAnswerList.Add (i);
             netTransform.CmdPushMove (i);
@@ -231,7 +237,7 @@ namespace Games.WordPushGame
         public void NtPrepareMove ( Vector3 pos, Vector3 forward )
         {
             //FIXME: 仮
-            canManipulate = true;
+            SetOperationAuthority (true);
             this.transform.position = pos;
             this.transform.forward = forward;
         }
@@ -248,7 +254,7 @@ namespace Games.WordPushGame
             //表示する
 
             //アニメーション
-            canManipulate = true;
+            SetOperationAuthority (true);
 
         }
 
@@ -260,6 +266,7 @@ namespace Games.WordPushGame
         public void NtExitRoom ()
         {
             Debug.Log ("exit");
+            SetOperationAuthority (false);
             //あにめーしょん
 
             //表示を隠す

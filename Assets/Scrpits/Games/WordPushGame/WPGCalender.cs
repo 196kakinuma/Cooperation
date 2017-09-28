@@ -14,6 +14,7 @@ namespace Games.WordPushGame
         void Start ()
         {
             WPGMaster.Instance.calenderObj = this;
+            Debug.Log ("Calender Init");
         }
         public void SetCalender ( int month, int day )
         {

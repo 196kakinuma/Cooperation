@@ -60,12 +60,21 @@ namespace Games.WordPushGame
         }
 
         /// <summary>
-        /// ゲームを読み込みすべてのクライアントに命令を出す
+        /// ゲーム開始時に呼ばれる
+        /// </summary>
+        public void Prepare ()
+        {
+            netTransform.CmdSetActive (false);
+        }
+
+        /// <summary>
+        /// ゲームをデータから読み込み問題を作成、準備
         /// </summary>
         /// <returns></returns>
         public IEnumerator Initialize ( Door d )
         {
             Debug.Log ("WPG Question init!!!!!!!!!!");
+            netTransform.CmdSetActive (true);
 
             //ランダムを生成
 
@@ -77,7 +86,6 @@ namespace Games.WordPushGame
 
             InitializeCalender ();
 
-            //TODO: Doorの位置から移動場所を取得
             currentDoor = d;
             PrepareMove ();
 
@@ -90,6 +98,7 @@ namespace Games.WordPushGame
         {
             currentDoor = null;
             ResetAll ();
+            netTransform.CmdSetActive (false);
 
         }
         #region INIT

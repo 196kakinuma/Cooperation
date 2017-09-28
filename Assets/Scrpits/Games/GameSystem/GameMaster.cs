@@ -114,6 +114,7 @@ namespace Games.GameSystem
 
             foreach ( var game in gameList )
             {
+                game.Prepare ();
                 nonUsingGameList.Add (game);
             }
             enemyMaster.InitializeGameStart ();
@@ -179,7 +180,6 @@ namespace Games.GameSystem
         IKeyLockGameMaster GetRandomKeyLockGame ()
         {
             int rand = Random.Range (0, nonUsingGameList.Count);
-            Debug.Log (rand + "  " + nonUsingGameList.Count);
             return nonUsingGameList[rand];
         }
     }

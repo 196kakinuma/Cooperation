@@ -7,7 +7,10 @@ namespace Objects
 
     public interface IKeyLockGameMaster
     {
-
+        /// <summary>
+        /// ゲーム開始時に呼ばれる
+        /// </summary>
+        void Prepare ();
         IEnumerator Initialize ( Door d );
         /// <summary>
         /// そのゲーム毎に紐づく物をnullにする

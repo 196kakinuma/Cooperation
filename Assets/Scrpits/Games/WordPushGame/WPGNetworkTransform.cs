@@ -61,9 +61,20 @@ namespace Games.WordPushGame
         [ClientRpc]
         void RpcSetCalender ( int month, int day )
         {
-            //master.calenderObj.SetCalender (month, day);
+            master.calenderObj.SetCalender (month, day);
         }
 
+        [Command]
+        public void CmdSetActive ( bool b )
+        {
+            RpcSetActive (b);
+        }
+
+        [ClientRpc]
+        void RpcSetActive ( bool b )
+        {
+            gameObject.SetActive (b);
+        }
         #region Move
         [Command]
         public void CmdPrepareMove ( Vector3 pos, Vector3 forward )

@@ -44,7 +44,7 @@ namespace Games.GameSystem
                 var d = Instantiate (doorPref, anchors[i]);
                 doors[i] = d.GetComponent<Door> ();
                 NetworkServer.Spawn (d);
-                doors[i].Initialize (i);
+                doors[i].Initialize (i, this);
             }
         }
 
@@ -104,6 +104,29 @@ namespace Games.GameSystem
             }
         }
 
+
+        public bool AppearKeyLockGame ( Door d )
+        {
+            //もし問題がセットされているるのなら
+            if ( IsSettingKeyLockGame (d) )
+            {
+                //問題をだす
+                GameMaster.Instance.AppearKeyLockGame (d);
+                return true;
+            }
+            else
+            {
+                //スルー
+                return false;
+            }
+        }
+
+        bool IsSettingKeyLockGame ( Door d )
+        {
+            if ( enemyRoomList.ContainsValue (d) ) return true;
+            else return false;
+        }
+
         #region ENEMYACTION
 
         void EnterRoom ( Enemy.Enemy e, Door d )
@@ -143,6 +166,7 @@ namespace Games.GameSystem
             {
                 wait += Time.deltaTime;
                 d.BlankTime = wait;
+                if ( !d.KeyLock ) break;
                 yield return new WaitForEndOfFrame ();
             }
             blankRoomList.Remove (d);

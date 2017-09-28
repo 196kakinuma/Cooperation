@@ -2041,7 +2041,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1645879221222944}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.26, y: 0.919, z: -0.342}
+  m_LocalPosition: {x: 0.26, y: -1, z: -0.342}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_Children:
   - {fileID: 4927852509694998}
@@ -5025,6 +5025,7 @@ MonoBehaviour:
   question: {fileID: 11400000, guid: 8d1c3d163f597fd4f9f61055c05002e1, type: 2}
   answer: {fileID: 11400000, guid: cf0717aa4548ac44ab645b2fc6888138, type: 2}
   calender: {fileID: 11400000, guid: a7f4dbbaf1f29204b885c48b863bf8f0, type: 2}
+  moveDistance: 2
 --- !u!114 &114559366963062236
 MonoBehaviour:
   m_ObjectHideFlags: 1

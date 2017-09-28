@@ -21,6 +21,14 @@ namespace Games.GameSystem
         [SerializeField]
         Text lockText;
 
+        [SerializeField]
+        Text buttonText;
+
+        [SerializeField]
+        DoorLockButton button;
+
+        DoorManager manager;
+
         /// <summary>
         /// 敵が去った後の空白時間
         /// </summary>
@@ -68,8 +76,9 @@ namespace Games.GameSystem
         /// ゲーム開始前に毎回呼ばれる
         /// </summary>
         /// <param name="doorNum"></param>
-        public void Initialize ( int doorNum )
+        public void Initialize ( int doorNum, DoorManager man )
         {
+            manager = man;
             DoorNum = doorNum;
             VisitEnemy = null;
             Visit = false;
@@ -91,6 +100,46 @@ namespace Games.GameSystem
                 lockText.text = "OPEN";
                 lockText.color = Color.green;
             }
+        }
+
+        public void NtSetButtonText ( bool isLock )
+        {
+            if ( isLock )
+            {
+                buttonText.text = "OPEN";
+            }
+            else
+            {
+                buttonText.text = "LOCK";
+            }
+        }
+
+        public void ClickDoorLockButton ()
+        {
+            if ( KeyLock )
+            {
+                KeyLock = false;
+                network.CmdSetButtonText (false);
+                Debug.Log ("key lockOut time:" + BlankTime);
+            }
+            else //問題を出す
+            {
+                if ( manager.AppearKeyLockGame (this) )
+                {
+                    //操作不能に
+                    SetButtonActive (false);
+                }
+            }
+        }
+
+        public void SetButtonActive ( bool b )
+        {
+            button.CanManipurate = b;
+        }
+
+        public void SetButtonWord ( bool isLock )
+        {
+            network.CmdSetButtonText (true);
         }
 
         #region WINDOW

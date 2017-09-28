@@ -229,6 +229,8 @@ namespace Games.WordPushGame
         }
 
         #region MOVING
+        [SerializeField]
+        float moveDistance = 2;
         public void PrepareMove ()
         {
             netTransform.CmdPrepareMove (currentDoor.keyLockGamePosition.position, currentDoor.keyLockGamePosition.forward);
@@ -236,8 +238,7 @@ namespace Games.WordPushGame
 
         public void NtPrepareMove ( Vector3 pos, Vector3 forward )
         {
-            //FIXME: 仮
-            SetOperationAuthority (true);
+            pos = new Vector3 (pos.x, pos.y - moveDistance, pos.z);
             this.transform.position = pos;
             this.transform.forward = forward;
         }
@@ -254,22 +255,31 @@ namespace Games.WordPushGame
             //表示する
 
             //アニメーション
+            var pos = transform.position;
+            this.transform.position = new Vector3 (pos.x, pos.y + moveDistance, pos.z);
             SetOperationAuthority (true);
 
         }
 
         public void ExitRoom ()
         {
+            currentDoor.SetButtonActive (true);
+            currentDoor.SetButtonWord (false);
             netTransform.CmdExitRoom ();
+            //表示を隠す
+            Clear ();
+
         }
 
         public void NtExitRoom ()
         {
             Debug.Log ("exit");
             SetOperationAuthority (false);
-            //あにめーしょん
 
-            //表示を隠す
+            //あにめーしょん
+            var pos = transform.position;
+            transform.position = new Vector3 (pos.x, pos.y - moveDistance, pos.z);
+
         }
         #endregion
 

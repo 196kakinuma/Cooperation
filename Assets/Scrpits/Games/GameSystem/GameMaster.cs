@@ -165,6 +165,11 @@ namespace Games.GameSystem
             StartCoroutine (g.Initialize (d));
         }
 
+        public void AppearKeyLockGame ( Door d )
+        {
+            usingGameAndDoorList[d].AppearRoom ();
+        }
+
         /// <summary>
         /// 敵が離れたときに,Doorとゲームの紐づけを解く
         /// </summary>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 namespace Games.GameSystem
 {
@@ -38,6 +39,7 @@ namespace Games.GameSystem
         [Command]
         public void CmdSetLockText ( bool b )
         {
+
             RpcSetLockText (b);
         }
 
@@ -47,5 +49,16 @@ namespace Games.GameSystem
             door.NtSetLockText (b);
         }
 
+        [Command]
+        public void CmdSetButtonText ( bool isLock )
+        {
+            RpcSetButtonText (isLock);
+        }
+
+        [ClientRpc]
+        void RpcSetButtonText ( bool isLock )
+        {
+            door.NtSetButtonText (isLock);
+        }
     }
 }

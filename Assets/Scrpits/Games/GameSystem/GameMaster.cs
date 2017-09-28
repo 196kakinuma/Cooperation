@@ -59,6 +59,12 @@ namespace Games.GameSystem
 
         }
 
+        void Update ()
+        {
+            //ゲームクリア
+            if ( timer.IsGameEnd () ) GameClear ();
+        }
+
         #region KEYLOCKGAME
         void WPGCreate ()
         {
@@ -115,6 +121,19 @@ namespace Games.GameSystem
 
 
             yield return null;
+        }
+
+        void GameClear ()
+        {
+            Debug.Log ("GameClear");
+            FinishGame ();
+        }
+
+        public void GameOver ()
+        {
+            Debug.Log ("GameOver");
+
+            FinishGame ();
         }
 
         /// <summary>

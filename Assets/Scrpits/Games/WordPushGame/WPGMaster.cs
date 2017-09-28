@@ -55,6 +55,8 @@ namespace Games.WordPushGame
             //ゲーム開始前に入力が入った場合のエラーを排除
             clientAnswerList = new List<int> ();
 
+
+
         }
 
         /// <summary>

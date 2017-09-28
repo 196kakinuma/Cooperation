@@ -32,5 +32,11 @@ namespace Games.GameSystem
             Debug.Log ("finishTime =" + finishTime);
         }
 
+        public bool IsGameEnd ()
+        {
+            if ( GameSettings.Instance.GameDuration < GetTime () ) return true;
+            else return false;
+        }
+
     }
 }

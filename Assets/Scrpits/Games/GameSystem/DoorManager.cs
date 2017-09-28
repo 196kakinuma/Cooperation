@@ -128,9 +128,7 @@ namespace Games.GameSystem
 
         void GamesOver ( Enemy.Enemy e, Door d )
         {
-            Debug.Log ("Games Over");
-            //ゲームオーバー
-            GameMaster.Instance.FinishGame ();
+            GameMaster.Instance.GameOver ();
         }
 
 

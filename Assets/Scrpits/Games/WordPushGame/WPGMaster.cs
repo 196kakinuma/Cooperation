@@ -92,7 +92,7 @@ namespace Games.WordPushGame
 
             InitializeAnswer ();
 
-            InitializeCalender ();
+            InitializeHint ();
 
             currentDoor = d;
             PrepareMove ();
@@ -149,7 +149,7 @@ namespace Games.WordPushGame
             }
         }
 
-        private void InitializeCalender ()
+        private void InitializeHint ()
         {
             switch ( randNum )
             {

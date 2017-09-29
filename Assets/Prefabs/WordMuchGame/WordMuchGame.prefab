@@ -2546,6 +2546,7 @@ MonoBehaviour:
   - {fileID: 114980871518452778}
   - {fileID: 114593715230682726}
   - {fileID: 114576352855491350}
+  moveDistance: 2
 --- !u!114 &114145216275151494
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3149,6 +3150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 020704d51b8d35d4891dc66bffa50f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  master: {fileID: 0}
 --- !u!114 &114677393363607032
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -2,18 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Objects;
+using IkLibrary.Unity;
 using Games.GameSystem;
+using UnityEngine.UI;
 
 namespace Games.WordMuchGame
 {
 
-    public class WMGMaster : MonoBehaviour, IKeyLockGameMaster
+    public class WMGMaster : SingletonMonoBehaviour<WMGMaster>, IKeyLockGameMaster
     {
+        [SerializeField]
+        WMGNetworkTransform netTransform;
 
+        [SerializeField]
+        WMGSelectButton[] buttonUp;
+
+        [SerializeField]
+        Text[] text;
+
+        [SerializeField]
+        WMGSelectButton[] buttonDown;
         // Use this for initialization
         void Start ()
         {
-
+            for ( int i = 0; i < buttonUp.Length; i++ )
+            {
+                buttonUp[i].ButtonNum = i;
+                buttonDown[i].ButtonNum = i;
+            }
         }
 
         // Update is called once per frame
@@ -42,6 +58,16 @@ namespace Games.WordMuchGame
         /// そのゲーム毎に紐づく物をnullにする
         /// </summary>
         public void Clear ()
+        {
+
+        }
+
+        /// <summary>
+        /// 文字を変更するメソッドをRpcにする
+        /// </summary>
+        /// <param name="button"></param>
+        /// <param name="buttonNum"></param>
+        public void ClickSelectButton ( SELECTBUTTON button, int buttonNum )
         {
 
         }

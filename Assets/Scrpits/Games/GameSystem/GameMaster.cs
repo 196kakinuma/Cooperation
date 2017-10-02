@@ -61,6 +61,7 @@ namespace Games.GameSystem
 
         void Update ()
         {
+            if ( !isPlaying ) return;
             //ゲームクリア
             if ( timer.IsGameEnd () ) GameClear ();
         }

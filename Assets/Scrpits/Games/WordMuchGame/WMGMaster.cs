@@ -14,14 +14,24 @@ namespace Games.WordMuchGame
         [SerializeField]
         WMGNetworkTransform netTransform;
 
+        /// <summary>
+        /// 普通の並び順のcol 不変
+        /// </summary>
         [SerializeField]
-        WMGSelectButton[] buttonUp;
+        WMGCol[] cols;
 
-        [SerializeField]
-        Text[] text;
+        /// <summary>
+        /// 毎ゲーム変更される
+        /// </summary>
+        WMGCol[] currentCols;
 
+        //問題系
         [SerializeField]
-        WMGSelectButton[] buttonDown;
+        WMGQuestion question;
+        [SerializeField]
+        WMGAnswer answer;
+
+        int randNum = 1;
 
         bool operationAuthority = false;
 
@@ -29,17 +39,17 @@ namespace Games.WordMuchGame
         // Use this for initialization
         void Start ()
         {
-            for ( int i = 0; i < buttonUp.Length; i++ )
-            {
-                buttonUp[i].ButtonNum = i;
-                buttonDown[i].ButtonNum = i;
-            }
+
         }
 
 
         public void SetOperationAuthority ( bool b )
         {
             operationAuthority = b;
+            foreach ( var col in cols )
+            {
+                col.OperationAuthority = this.operationAuthority;
+            }
         }
         /// <summary>
         /// ゲーム開始時に呼ばれる
@@ -66,6 +76,8 @@ namespace Games.WordMuchGame
 
             InitializeHint ();
 
+            InitializeCol ();
+
             currentDoor = d;
             PrepareMove ();
 
@@ -84,6 +96,11 @@ namespace Games.WordMuchGame
         }
 
         private void InitializeHint ()
+        {
+
+        }
+
+        private void InitializeCol ()
         {
 
         }
@@ -124,11 +141,14 @@ namespace Games.WordMuchGame
         /// <summary>
         /// 文字を変更するメソッドをRpcにする
         /// </summary>
-        /// <param name="button"></param>
-        /// <param name="buttonNum"></param>
-        public void ClickSelectButton ( SELECTBUTTON button, int buttonNum )
+        public void SetColText ( int colNum, string text )
         {
-            if ( !operationAuthority ) return;
+            netTransform.CmdSetText (colNum, text);
+        }
+
+        public void NtSetColText ( int colNum, string text )
+        {
+            currentCols[colNum].NtSetText (text);
         }
 
         #region MOVING

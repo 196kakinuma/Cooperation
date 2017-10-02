@@ -18,17 +18,13 @@ namespace Games.WordMuchGame
         [SerializeField]
         SELECTBUTTON selectButton = SELECTBUTTON.UP;
 
-
-        int buttonNum;
-        public int ButtonNum
-        {
-            get { return buttonNum; }
-            set { buttonNum = value; }
-        }
+        [SerializeField]
+        WMGCol col;
 
         public void ClickReceive ()
         {
-            WMGMaster.Instance.ClickSelectButton (selectButton, ButtonNum);
+            if ( selectButton == SELECTBUTTON.UP ) col.TextUp ();
+            else col.TextDown ();
         }
     }
 }

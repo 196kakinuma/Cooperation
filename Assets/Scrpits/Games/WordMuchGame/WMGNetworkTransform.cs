@@ -25,6 +25,18 @@ namespace Games.WordMuchGame
             gameObject.SetActive (b);
         }
 
+        [Command]
+        public void CmdSetText ( int colNum, string text )
+        {
+            RpcSetText (colNum, text);
+        }
+
+        [ClientRpc]
+        void RpcSetText ( int colNum, string text )
+        {
+            master.NtSetColText (colNum, text);
+        }
+
         #region Move
         [Command]
         public void CmdPrepareMove ( Vector3 pos, Vector3 forward )

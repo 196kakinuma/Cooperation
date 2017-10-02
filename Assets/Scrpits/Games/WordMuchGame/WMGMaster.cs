@@ -77,7 +77,7 @@ namespace Games.WordMuchGame
             ResetAll ();
 
             //FIXED:ME ランダムを生成
-            //randNum = Random.Range (0, question.Length);
+            randNum = UnityEngine.Random.Range (0, question.Length);
 
 
             //問題と正解を読み込む
@@ -164,10 +164,10 @@ namespace Games.WordMuchGame
         {
             var array = GetRandomIntArrayFromColLength ();
             currentCols = new WMGCol[cols.Length];
+            //array = new int[5] { 0, 1, 2, 3, 4 }; デバッグ用
             for ( int i = 0; i < cols.Length; i++ )
             {
                 currentCols[i] = cols[array[i]];
-                Debug.Log ("questionList" + questionList.Count);
                 currentCols[i].Initialize (i, questionList[i]);
             }
         }
@@ -201,7 +201,7 @@ namespace Games.WordMuchGame
         public void Answer ()
         {
             if ( !operationAuthority ) return;
-            bool correction = true;
+            bool correction = CheckAnswer ();
 
             if ( correction )
             {
@@ -214,6 +214,16 @@ namespace Games.WordMuchGame
                 ResetAll ();
                 Debug.Log ("missed");
             }
+        }
+
+        private bool CheckAnswer ()
+        {
+            for ( int i = 0; i < currentCols.Length; i++ )
+            {
+                if ( !( currentCols[i].GetSelectNumber () == answerList[i] ) )
+                    return false;
+            }
+            return true;
         }
 
         /// <summary>
@@ -229,6 +239,8 @@ namespace Games.WordMuchGame
         {
             cols[colNum].NtSetText (text);
         }
+
+
 
         #region MOVING
         [SerializeField]

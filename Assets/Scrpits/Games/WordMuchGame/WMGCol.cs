@@ -32,6 +32,7 @@ namespace Games.WordMuchGame
             this.colNum = colNum;
             textList = textL;
             currentNum = Random.Range (0, textL.Count);
+            //currentNum = staticColNum; デバッグ用
             SetText ();
         }
 

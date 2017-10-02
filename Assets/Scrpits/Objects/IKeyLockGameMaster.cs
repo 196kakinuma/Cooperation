@@ -19,6 +19,10 @@ namespace Objects
         /// </summary>
         void Clear ();
 
+        void ResetAll ();
+
+        void Answer ();
+
         #region MOVING
         /// <summary>
         /// ドアの下にセット

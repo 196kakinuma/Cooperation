@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WMGChair : MonoBehaviour {
+namespace Games.WordMuchGame
+{
+    public class WMGChair : MonoBehaviour
+    {
+        [SerializeField]
+        Material chairMat;
+        void Start ()
+        {
+            WMGMaster.Instance.chairobj = this;
+        }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        public void NtSetChairMatColor ( Color matColor )
+        {
+            chairMat.color = matColor;
+        }
+    }
 }

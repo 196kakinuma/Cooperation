@@ -2709,10 +2709,9 @@ MonoBehaviour:
   - {fileID: 114203151600253934}
   - {fileID: 114061523042131292}
   question:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 60dca7bb16d155c47841743c45b10eae, type: 2}
   answer: {fileID: 11400000, guid: 85e13849e7eb76a45b0a2d6a2b30e1e2, type: 2}
+  chairobj: {fileID: 0}
   moveDistance: 2
 --- !u!114 &114144203431231192
 MonoBehaviour:

@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 4435952785851686}
   - component: {fileID: 114284828125994276}
   - component: {fileID: 114069868006342874}
+  - component: {fileID: 114859774774779426}
   m_Layer: 0
   m_Name: WMGChair
   m_TagString: Untagged
@@ -234,3 +235,15 @@ MonoBehaviour:
     i15: 176
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!114 &114859774774779426
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1403196309542770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c17132ade89ecb45a5c6a2ed1e7b995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chairMat: {fileID: 2100000, guid: eb8cdd24ce73125438a76af583c3793c, type: 2}

@@ -36,8 +36,11 @@ namespace Games.WordMuchGame
         WMGAnswer answer;
         List<int> answerList;
 
+        [SerializeField]
+        public WMGChair chairobj;
 
-        int randNum = 1;
+
+        int randNum = 0;
 
         bool operationAuthority = false;
 
@@ -46,6 +49,7 @@ namespace Games.WordMuchGame
         void Start ()
         {
             if ( Networks.NetworkInitializer.Instance.cameraType != CameraType.VR ) return;
+
         }
 
 
@@ -97,7 +101,7 @@ namespace Games.WordMuchGame
         {
             questionList = new List<List<string>> ();
             var question = this.question[randNum];
-            for ( int j = 0; j < question.sheets[0].list[0].Col1.Length; j++ )
+            for ( int j = 0; j < question.sheets[0].list.Count; j++ )
             {
                 var texts = new List<string> ();
                 for ( int i = 0; i < question.sheets[0].list.Count; i++ )
@@ -130,8 +134,10 @@ namespace Games.WordMuchGame
             switch ( randNum )
             {
                 case 0:
+                    netTransform.CmdSetChairMatColor (Color.red);
                     break;
                 case 1:
+                    netTransform.CmdSetChairMatColor (Color.blue);
                     break;
             }
         }
@@ -143,6 +149,7 @@ namespace Games.WordMuchGame
             for ( int i = 0; i < cols.Length; i++ )
             {
                 currentCols[i] = cols[array[i]];
+                Debug.Log ("questionList" + questionList.Count);
                 currentCols[i].Initialize (i, questionList[i]);
             }
         }

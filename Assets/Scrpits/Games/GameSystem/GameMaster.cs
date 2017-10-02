@@ -4,6 +4,8 @@ using UnityEngine;
 using IkLibrary.Unity;
 using UnityEngine.Networking;
 using Objects;
+using Games.WordMuchGame;
+using Games.WordPushGame;
 
 namespace Games.GameSystem
 {
@@ -33,11 +35,19 @@ namespace Games.GameSystem
         [SerializeField]
         GameObject WPGPref;
         Games.WordPushGame.WPGMaster wpgMaster;
+        [SerializeField]
+        GameObject WMGPref;
+        WMGMaster wmgMaster;
 
         //ヒント系
         [SerializeField]
         GameObject WPGCalender;
         Games.WordPushGame.WPGCalender wpgCalender;
+        [SerializeField]
+        GameObject WMGChair;
+        WMGChair wmgChair;
+
+
 
         bool isPlaying = false;
         public bool IsPlaying
@@ -56,6 +66,7 @@ namespace Games.GameSystem
             NetworkServer.Spawn (b);
 
             WPGCreate ();
+            WMGCreate ();
 
         }
 
@@ -79,7 +90,17 @@ namespace Games.GameSystem
             this.wpgCalender = cal.GetComponent<WordPushGame.WPGCalender> ();
             NetworkServer.Spawn (cal);
         }
+        void WMGCreate ()
+        {
+            var wmg = Instantiate (WMGPref);
+            this.wmgMaster = wmg.GetComponent<WMGMaster> ();
+            gameList.Add (wmgMaster);
+            NetworkServer.Spawn (wmg);
 
+            var chair = Instantiate (WMGChair);
+            this.wmgChair = chair.GetComponent<WMGChair> ();
+            NetworkServer.Spawn (chair);
+        }
 
         #endregion
 
@@ -190,7 +211,7 @@ namespace Games.GameSystem
         IKeyLockGameMaster GetRandomKeyLockGame ()
         {
             int rand = Random.Range (0, nonUsingGameList.Count);
-            return nonUsingGameList[rand];
+            return nonUsingGameList[1];
         }
     }
 }

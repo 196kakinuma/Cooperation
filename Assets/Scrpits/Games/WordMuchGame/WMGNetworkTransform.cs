@@ -12,6 +12,16 @@ namespace Games.WordMuchGame
         WMGMaster master;
 
 
+        [Command]
+        public void CmdSetChairMatColor ( Color color )
+        {
+            RpcSetChairMatColor (color);
+        }
+        [ClientRpc]
+        void RpcSetChairMatColor ( Color color )
+        {
+            master.chairobj.NtSetChairMatColor (color);
+        }
 
         [Command]
         public void CmdSetActive ( bool b )

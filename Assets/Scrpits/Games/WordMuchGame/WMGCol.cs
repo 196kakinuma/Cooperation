@@ -31,6 +31,11 @@ namespace Games.WordMuchGame
             text.text = textL[currentNum];
         }
 
+        public int GetSelectNumber ()
+        {
+            return currentNum;
+        }
+
         public void TextUp ()
         {
             if ( !OperationAuthority ) return;

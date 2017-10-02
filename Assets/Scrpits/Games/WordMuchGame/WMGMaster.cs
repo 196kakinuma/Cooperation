@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using Objects;
 using IkLibrary.Unity;
 using Games.GameSystem;
-using UnityEngine.UI;
+using System.Linq;
+
+
 
 namespace Games.WordMuchGame
 {
@@ -27,9 +30,12 @@ namespace Games.WordMuchGame
 
         //問題系
         [SerializeField]
-        WMGQuestion question;
+        WMGQuestion[] question;
+        List<List<string>> questionList;
         [SerializeField]
         WMGAnswer answer;
+        List<int> answerList;
+
 
         int randNum = 1;
 
@@ -39,7 +45,7 @@ namespace Games.WordMuchGame
         // Use this for initialization
         void Start ()
         {
-
+            if ( Networks.NetworkInitializer.Instance.cameraType != CameraType.VR ) return;
         }
 
 
@@ -66,7 +72,8 @@ namespace Games.WordMuchGame
             //準備前でもボタンなどは前後できるため.
             ResetAll ();
 
-            //ランダムを生成
+            //FIXED:ME ランダムを生成
+            //randNum = Random.Range (0, question.Length);
 
 
             //問題と正解を読み込む
@@ -88,22 +95,68 @@ namespace Games.WordMuchGame
         #region INIT
         private void InitializeQuestion ()
         {
-
+            questionList = new List<List<string>> ();
+            var question = this.question[randNum];
+            for ( int j = 0; j < question.sheets[0].list[0].Col1.Length; j++ )
+            {
+                var texts = new List<string> ();
+                for ( int i = 0; i < question.sheets[0].list.Count; i++ )
+                {
+                    texts.Add (question.sheets[0].list[i].Col1);
+                }
+                questionList.Add (texts);
+            }
         }
+
         private void InitializeAnswer ()
         {
-
+            answerList = new List<int> ();
+            for ( int i = 0; i < answer.sheets[0].list.Count; i++ )
+            {
+                switch ( randNum )
+                {
+                    case 0:
+                        answerList.Add (answer.sheets[0].list[i].Answer1);
+                        break;
+                    case 1:
+                        answerList.Add (answer.sheets[0].list[i].Answer2);
+                        break;
+                }
+            }
         }
 
         private void InitializeHint ()
         {
-
+            switch ( randNum )
+            {
+                case 0:
+                    break;
+                case 1:
+                    break;
+            }
         }
 
         private void InitializeCol ()
         {
-
+            var array = GetRandomIntArrayFromColLength ();
+            currentCols = new WMGCol[cols.Length];
+            for ( int i = 0; i < cols.Length; i++ )
+            {
+                currentCols[i] = cols[array[i]];
+                currentCols[i].Initialize (i, questionList[i]);
+            }
         }
+
+        private int[] GetRandomIntArrayFromColLength ()
+        {
+            int[] array = new int[cols.Length];
+            for ( int i = 0; i < array.Length; i++ )
+                array[i] = i;
+
+            return array.OrderBy (i => Guid.NewGuid ()).ToArray ();
+        }
+
+
         #endregion
         /// <summary>
         /// そのゲーム毎に紐づく物をnullにする

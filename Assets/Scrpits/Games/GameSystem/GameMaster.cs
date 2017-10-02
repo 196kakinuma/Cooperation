@@ -211,7 +211,7 @@ namespace Games.GameSystem
         IKeyLockGameMaster GetRandomKeyLockGame ()
         {
             int rand = Random.Range (0, nonUsingGameList.Count);
-            return nonUsingGameList[1];
+            return nonUsingGameList[rand];
         }
     }
 }

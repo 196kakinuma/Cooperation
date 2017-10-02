@@ -10,6 +10,10 @@ namespace Games.WordMuchGame
         [SerializeField]
         Text text;
 
+        [Range (0, 4)]
+        public int staticColNum = 0;
+
+
         int currentNum = 0;
 
         bool operationAuthority;
@@ -28,7 +32,7 @@ namespace Games.WordMuchGame
             this.colNum = colNum;
             textList = textL;
             currentNum = Random.Range (0, textL.Count);
-            text.text = textL[currentNum];
+            SetText ();
         }
 
         public int GetSelectNumber ()
@@ -53,7 +57,7 @@ namespace Games.WordMuchGame
 
         public void TextDown ()
         {
-            if ( OperationAuthority ) return;
+            if ( !OperationAuthority ) return;
             CurrentNumDown ();
             SetText ();
         }

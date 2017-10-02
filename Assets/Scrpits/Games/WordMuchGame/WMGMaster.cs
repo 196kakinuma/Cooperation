@@ -106,7 +106,25 @@ namespace Games.WordMuchGame
                 var texts = new List<string> ();
                 for ( int i = 0; i < question.sheets[0].list.Count; i++ )
                 {
-                    texts.Add (question.sheets[0].list[i].Col1);
+                    switch ( j )
+                    {
+                        case 0:
+                            texts.Add (question.sheets[0].list[i].Col1);
+                            break;
+                        case 1:
+                            texts.Add (question.sheets[0].list[i].Col2);
+                            break;
+                        case 2:
+                            texts.Add (question.sheets[0].list[i].Col3);
+                            break;
+                        case 3:
+                            texts.Add (question.sheets[0].list[i].Col4);
+                            break;
+                        case 4:
+                            texts.Add (question.sheets[0].list[i].Col5);
+                            break;
+                    }
+
                 }
                 questionList.Add (texts);
             }
@@ -203,12 +221,13 @@ namespace Games.WordMuchGame
         /// </summary>
         public void SetColText ( int colNum, string text )
         {
-            netTransform.CmdSetText (colNum, text);
+            //すべてのクライアントがcurrentcolを知っているわけではない
+            netTransform.CmdSetText (currentCols[colNum].staticColNum, text);
         }
 
         public void NtSetColText ( int colNum, string text )
         {
-            currentCols[colNum].NtSetText (text);
+            cols[colNum].NtSetText (text);
         }
 
         #region MOVING

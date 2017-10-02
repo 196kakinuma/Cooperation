@@ -68,7 +68,7 @@ namespace Games.Enemy
                 switch ( ( EnemyType ) enemyColor[i] )
                 {
                     case EnemyType.RED:
-                        enemys[i] = new Enemy (6f, 15f, EnemyType.RED);
+                        enemys[i] = new Enemy (6f, 30f, EnemyType.RED);
                         break;
                     case EnemyType.BLUE:
                         enemys[i] = new Enemy (70f, 40f, EnemyType.BLUE);

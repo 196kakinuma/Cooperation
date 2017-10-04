@@ -15,8 +15,16 @@ namespace Device
         //今オブジェクトを選択しているか
         [SerializeField]
         GameObject selectedObject;
-        [SerializeField]
+
         bool IsSelecting = false;
+        [SerializeField]
+        bool IsHolding = false;
+
+        [SerializeField]
+        bool IsCounting = false;
+        [SerializeField]
+        float holdTime = 0f;
+
 
         // Use this for initialization
         void Start ()
@@ -32,32 +40,49 @@ namespace Device
             device = SteamVR_Controller.Input (( int ) trackedobj.index);
         }
 
+        float holdTimeFrom = 1f;
         // Update is called once per frame
         void Update ()
         {
+            if ( IsCounting )
+            {
+                holdTime += Time.deltaTime;
+
+                if ( holdTimeFrom < holdTime && selectedObject != null )
+                    IsHolding = true;
+
+            }
+            if ( IsHolding )
+                selectedObject.SendMessage ("HoldReceive", transform.position);
             if ( device.GetPressDown (SteamVR_Controller.ButtonMask.Trigger) )
             {
-                if ( IsSelecting == true )
+                IsCounting = true;
+            }
+            if ( device.GetPressUp (SteamVR_Controller.ButtonMask.Trigger) )
+            {
+                if ( IsSelecting == true && !IsHolding )
                 {
                     selectedObject.SendMessage ("ClickReceive");
                 }
+                IsCounting = false;
+                IsHolding = false;
+                holdTime = 0f;
             }
         }
 
         void OnTriggerEnter ( Collider othre )
         {
-            Debug.Log ("trigger on");
-            if ( othre.gameObject.GetComponent (typeof (Objects.IVRObject)) != null )
-            {
-                Debug.Log ("find");
-                IsSelecting = true;
-                selectedObject = othre.gameObject;
-            }
+            if ( ( othre.gameObject.GetComponent (typeof (Objects.IVRObject)) == null ) || IsHolding ) return;
+
+            Debug.Log ("find");
+            IsSelecting = true;
+            selectedObject = othre.gameObject;
+
         }
 
         void OnTriggerExit ( Collider other )
         {
-            if ( other.gameObject != selectedObject ) return;
+            if ( other.gameObject != selectedObject || IsHolding ) return;
 
             IsSelecting = false;
             selectedObject = null;

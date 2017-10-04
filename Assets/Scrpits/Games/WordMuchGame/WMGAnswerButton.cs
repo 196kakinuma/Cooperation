@@ -14,7 +14,7 @@ namespace Games.WordMuchGame
         }
         public void HoldReceive ( Vector3 pos )
         {
-
+            Debug.Log ("Hold On !!!!!!!!!!!!!!!!" + pos);
         }
 
     }

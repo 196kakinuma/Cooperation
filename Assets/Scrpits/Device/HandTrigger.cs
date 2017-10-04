@@ -39,7 +39,6 @@ namespace Device
             {
                 if ( IsSelecting == true )
                 {
-                    Debug.Log ("Button Pressed");
                     selectedObject.SendMessage ("ClickReceive");
                 }
             }

@@ -25,5 +25,10 @@ namespace Games.WordPushGame
             Debug.Log ("resetButton");
             WPGMaster.Instance.ResetAll ();
         }
+
+        public void HoldReceive ( Vector3 pos )
+        {
+
+        }
     }
 }

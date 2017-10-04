@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Objects;
-
-namespace Games.WordPushGame
+namespace Games.DCG
 {
-    public class WPGAnswerButton : MonoBehaviour, IVRObject
+    public class DCGKnob : MonoBehaviour, IVRObject
     {
+
         // Use this for initialization
         void Start ()
         {
@@ -21,7 +21,7 @@ namespace Games.WordPushGame
 
         public void ClickReceive ()
         {
-            WPGMaster.Instance.Answer ();
+
         }
 
         public void HoldReceive ( Vector3 pos )

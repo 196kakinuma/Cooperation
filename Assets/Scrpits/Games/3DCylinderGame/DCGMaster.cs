@@ -21,11 +21,7 @@ namespace Games.DCG
             if ( Networks.NetworkInitializer.Instance.cameraType != CameraType.VR ) return;
         }
 
-        // Update is called once per frame
-        void Update ()
-        {
 
-        }
         public void SetOperationAuthority ( bool b )
         {
             operationAuthority = b;

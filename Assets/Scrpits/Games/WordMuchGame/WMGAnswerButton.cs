@@ -12,6 +12,10 @@ namespace Games.WordMuchGame
         {
             WMGMaster.Instance.Answer ();
         }
+        public void HoldReceive ( Vector3 pos )
+        {
+
+        }
 
     }
 

@@ -7,7 +7,9 @@ namespace Games.DCG
 {
     public class DCGNetworkTransform : NetworkBehaviour
     {
+        [SerializeField]
         DCGMaster master;
+
         [Command]
         public void CmdSetActive ( bool b )
         {

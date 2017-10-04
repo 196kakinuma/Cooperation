@@ -26,5 +26,10 @@ namespace Games.WordMuchGame
             if ( selectButton == SELECTBUTTON.UP ) col.TextUp ();
             else col.TextDown ();
         }
+
+        public void HoldReceive ( Vector3 pos )
+        {
+
+        }
     }
 }

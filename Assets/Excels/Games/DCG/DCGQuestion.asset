@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!114 &11400000
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 8
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -11,4 +11,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1db5ac57311ff64ebf748154ecd3163, type: 3}
   m_Name: DCGQuestion
   m_EditorClassIdentifier: 
-  sheets: []
+  sheets:
+  - name: Sheet1
+    list:
+    - Knob1: 0
+      Knob2: 0
+      Knob3: 0
+      Knob4: 0
+      Knob5: 0
+    - Knob1: 1
+      Knob2: 1
+      Knob3: 1
+      Knob4: 1
+      Knob5: 1
+    - Knob1: 2
+      Knob2: 2
+      Knob3: 2
+      Knob4: 2
+      Knob5: 2
+    - Knob1: 3
+      Knob2: 3
+      Knob3: 3
+      Knob4: 3
+      Knob5: 3

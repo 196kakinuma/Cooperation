@@ -42,7 +42,7 @@ namespace Games.DCG
         [ClientRpc]
         void RpcSetHint ( Color c )
         {
-            master.
+            master.hintOj.NtInitializeHint (c);
         }
 
         #region Move

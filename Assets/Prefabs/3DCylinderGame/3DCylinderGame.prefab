@@ -833,7 +833,11 @@ MonoBehaviour:
   - {fileID: 114874237308665182}
   - {fileID: 114964752843945242}
   - {fileID: 114299416774071088}
+  question:
+  - {fileID: 11400000, guid: ddb79ac6848b03d4a9798cabec2059e4, type: 2}
+  answer: {fileID: 11400000, guid: cdb9ff905e20c654ba6febc226067edc, type: 2}
   operationAuthority: 0
+  hintOj: {fileID: 0}
   moveDistance: 2
 --- !u!114 &114727650040851730
 MonoBehaviour:

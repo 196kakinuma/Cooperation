@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 using Objects;
 using Games.WordMuchGame;
 using Games.WordPushGame;
+using Games.DCG;
 
 namespace Games.GameSystem
 {
@@ -38,6 +39,9 @@ namespace Games.GameSystem
         [SerializeField]
         GameObject WMGPref;
         WMGMaster wmgMaster;
+        [SerializeField]
+        GameObject DCGPref;
+        DCGMaster dcgMaster;
 
         //ヒント系
         [SerializeField]
@@ -46,6 +50,9 @@ namespace Games.GameSystem
         [SerializeField]
         GameObject WMGChair;
         WMGChair wmgChair;
+        [SerializeField]
+        GameObject DCGHint;
+        DCGHint dcgHint;
 
 
 
@@ -67,6 +74,7 @@ namespace Games.GameSystem
 
             WPGCreate ();
             WMGCreate ();
+            DCGCreate ();
 
         }
 
@@ -100,6 +108,18 @@ namespace Games.GameSystem
             var chair = Instantiate (WMGChair);
             this.wmgChair = chair.GetComponent<WMGChair> ();
             NetworkServer.Spawn (chair);
+        }
+
+        void DCGCreate ()
+        {
+            var d = Instantiate (DCGPref);
+            this.dcgMaster = d.GetComponent<DCGMaster> ();
+            gameList.Add (dcgMaster);
+            NetworkServer.Spawn (d);
+
+            var h = Instantiate (DCGHint);
+            this.dcgHint = h.GetComponent<DCGHint> ();
+            NetworkServer.Spawn (h);
         }
 
         #endregion

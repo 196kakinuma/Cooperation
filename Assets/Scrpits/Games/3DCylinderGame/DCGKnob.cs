@@ -79,8 +79,7 @@ namespace Games.DCG
         public void HoldReceive ( Vector3 pos )
         {
             Debug.Log ("aaaa");
-            if ( pos.y > firstLocalHeight || pos.y < 0 ) return;
-            Debug.Log ("bbb");
+            // if ( pos.y > firstLocalHeight || pos.y < 0 ) return;
             master.SetKnobState (knobNum, pos.y, GetColor (pos.y));
         }
     }

@@ -98,7 +98,7 @@ namespace Games.DCG
         {
             questionList = new List<List<DCGColor>> ();
             var l = question[randNum].sheets[0].list;
-            for ( int i = 0; i < question[randNum].sheets[0].list.Count; i++ )
+            /*for ( int i = 0; i < question[randNum].sheets[0].list.Count; i++ )
             {
                 var list = new List<DCGColor> ();
                 for ( int j = 0; j < knobs.Length; j++ )
@@ -106,25 +106,54 @@ namespace Games.DCG
                     switch ( i )
                     {
                         case 0:
-                            list.Add (( DCGColor ) l[j].Knob1);
+                            list.Add (( DCGColor ) l[i].Knob1);
                             break;
                         case 1:
-                            list.Add (( DCGColor ) l[j].Knob2);
+                            list.Add (( DCGColor ) l[i].Knob2);
                             break;
                         case 2:
-                            list.Add (( DCGColor ) l[j].Knob3);
+                            list.Add (( DCGColor ) l[i].Knob3);
                             break;
                         case 3:
-                            list.Add (( DCGColor ) l[j].Knob4);
+                            list.Add (( DCGColor ) l[i].Knob4);
                             break;
                         case 4:
-                            list.Add (( DCGColor ) l[j].Knob5);
+                            list.Add (( DCGColor ) l[i].Knob5);
                             break;
                     }
 
                 }
                 questionList.Add (list);
+            }*/
+            for ( int j = 0; j < knobs.Length; j++ )
+            {
+                var list = new List<DCGColor> ();
+                for ( int i = 0; i < l.Count; i++ )
+                {
+                    switch ( i )
+                    {
+                        case 0:
+                            list.Add (( DCGColor ) l[i].Knob1);
+                            break;
+                        case 1:
+                            list.Add (( DCGColor ) l[i].Knob2);
+                            break;
+                        case 2:
+                            list.Add (( DCGColor ) l[i].Knob3);
+                            break;
+                        case 3:
+                            list.Add (( DCGColor ) l[i].Knob4);
+                            break;
+                        case 4:
+                            list.Add (( DCGColor ) l[i].Knob5);
+                            break;
+
+                    }
+                }
+                questionList.Add (list);
             }
+
+
         }
 
         public void InitializeAnswer ()
@@ -155,6 +184,7 @@ namespace Games.DCG
 
         #endregion
 
+        #region DCGColor
         private Color[] GetColorArray ( List<DCGColor> color )
         {
             var c = new Color[color.Count];
@@ -186,6 +216,19 @@ namespace Games.DCG
             return Color.black;
         }
 
+        private DCGColor GetDCGColorFromColor ( Color c )
+        {
+            if ( c == Color.blue ) return DCGColor.BLUE;
+            else if ( c == Color.cyan ) return DCGColor.CYAN;
+            else if ( c == Color.gray ) return DCGColor.GRAY;
+            else if ( c == Color.green ) return DCGColor.GREEN;
+            else if ( c == Color.red ) return DCGColor.RED;
+            else if ( c == Color.white ) return DCGColor.WHITE;
+            else if ( c == Color.yellow ) return DCGColor.YELLOW;
+            else Debug.Log ("error"); return DCGColor.BLUE;
+        }
+        #endregion
+
         public void ResetAll ()
         {
 
@@ -195,7 +238,7 @@ namespace Games.DCG
         {
             if ( !operationAuthority ) return;
 
-            bool correction = true;
+            bool correction = CheckAnswer ();
 
             if ( correction )
             {
@@ -209,6 +252,15 @@ namespace Games.DCG
                 Debug.Log ("missed");
             }
 
+        }
+        private bool CheckAnswer ()
+        {
+            for ( int i = 0; i < knobs.Length; i++ )
+            {
+                if ( answerList[i] != GetDCGColorFromColor (knobs[i].GetCurrentColor ()) )
+                    return false;
+            }
+            return true;
         }
 
         public void SetKnobState ( int i, float y, Color color )

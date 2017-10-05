@@ -7,6 +7,16 @@ using Games.GameSystem;
 
 namespace Games.DCG
 {
+    public enum DCGColor
+    {
+        BLUE,
+        CYAN,
+        GRAY,
+        GREEN,
+        RED,
+        WHITE,
+        YELLOW
+    }
     public class DCGMaster : SingletonMonoBehaviour<DCGMaster>, IKeyLockGameMaster
     {
         [SerializeField]
@@ -15,8 +25,20 @@ namespace Games.DCG
         DCGKnob[] knobs;
 
         [SerializeField]
+        DCGQuestion[] question;
+        List<List<DCGColor>> questionList;
+        [SerializeField]
+        DCGAnswer answer;
+        List<DCGColor> answerList;
+
+
+        [SerializeField]
         bool operationAuthority = false;
         Door currentDoor;
+
+        public DCGHint hintOj;
+
+        int randNum = 0;
 
         // Use this for initialization
         void Start ()
@@ -53,6 +75,8 @@ namespace Games.DCG
 
             InitializeHint ();
 
+            InitializeKnob ();
+
             currentDoor = d;
             PrepareMove ();
 
@@ -72,20 +96,84 @@ namespace Games.DCG
 
         public void InitializeQuestion ()
         {
+            questionList = new List<List<DCGColor>> ();
+            var l = question[randNum].sheets[0].list;
+            for ( int i = 0; i < question[randNum].sheets[0].list.Count; i++ )
+            {
+                var list = new List<DCGColor> ();
+                for ( int j = 0; j < knobs.Length; j++ )
+                {
+                    switch ( i )
+                    {
+                        case 0:
+                            list.Add (( DCGColor ) l[j].Knob1);
+                            break;
+                        case 1:
+                            list.Add (( DCGColor ) l[j].Knob2);
+                            break;
+                        case 2:
+                            list.Add (( DCGColor ) l[j].Knob3);
+                            break;
+                        case 3:
+                            list.Add (( DCGColor ) l[j].Knob4);
+                            break;
+                        case 4:
+                            list.Add (( DCGColor ) l[j].Knob5);
+                            break;
+                    }
 
+                }
+                questionList.Add (list);
+            }
         }
 
         public void InitializeAnswer ()
         {
-
+            answerList = new List<DCGColor> ();
+            var a = answer.sheets[0].list[randNum];
+            answerList.Add (( DCGColor ) a.Knob1);
+            answerList.Add (( DCGColor ) a.Knob2);
+            answerList.Add (( DCGColor ) a.Knob3);
+            answerList.Add (( DCGColor ) a.Knob4);
+            answerList.Add (( DCGColor ) a.Knob5);
         }
 
         public void InitializeHint ()
         {
+            netTransform.CmdSetHint (GetColorFromDCGColor (randNum));
+        }
+
+        private void InitializeKnob ()
+        {
 
         }
 
+
+
         #endregion
+
+        private Color GetColorFromDCGColor ( int i )
+        {
+            switch ( randNum )
+            {
+                case 0:
+                    return Color.blue;
+                case 1:
+                    return Color.cyan;
+                case 2:
+                    return Color.gray;
+                case 3:
+                    return Color.green;
+                case 4:
+                    return Color.red;
+                case 5:
+                    return Color.white;
+                case 6:
+                    return Color.yellow;
+            }
+            Debug.Log ("color is overflow");
+            return Color.black;
+        }
 
         public void ResetAll ()
         {

@@ -34,6 +34,17 @@ namespace Games.DCG
             master.NtKnobMove (i, y, color);
         }
 
+        [Command]
+        public void CmdSetHint ( Color c )
+        {
+            RpcSetHint (c);
+        }
+        [ClientRpc]
+        void RpcSetHint ( Color c )
+        {
+            master.
+        }
+
         #region Move
         [Command]
         public void CmdPrepareMove ( Vector3 pos, Vector3 forward )

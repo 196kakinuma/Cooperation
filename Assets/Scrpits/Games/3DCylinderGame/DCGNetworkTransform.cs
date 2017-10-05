@@ -22,6 +22,18 @@ namespace Games.DCG
             gameObject.SetActive (b);
         }
 
+        [Command]
+        public void CmdKnobMove ( int i, float y, Color color )
+        {
+            RpcKnobMove (i, y, color);
+        }
+
+        [ClientRpc]
+        public void RpcKnobMove ( int i, float y, Color color )
+        {
+            master.NtKnobMove (i, y, color);
+        }
+
         #region Move
         [Command]
         public void CmdPrepareMove ( Vector3 pos, Vector3 forward )

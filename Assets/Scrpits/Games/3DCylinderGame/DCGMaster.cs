@@ -11,7 +11,10 @@ namespace Games.DCG
     {
         [SerializeField]
         DCGNetworkTransform netTransform;
+        [SerializeField]
+        DCGKnob[] knobs;
 
+        [SerializeField]
         bool operationAuthority = false;
         Door currentDoor;
 
@@ -107,6 +110,17 @@ namespace Games.DCG
                 Debug.Log ("missed");
             }
 
+        }
+
+        public void SetKnobState ( int i, float y, Color color )
+        {
+
+            if ( !operationAuthority ) return;
+            netTransform.CmdKnobMove (i, y, color);
+        }
+        public void NtKnobMove ( int i, float y, Color color )
+        {
+            knobs[i].NtSetCurrentState (y, color);
         }
 
         #region MOVING

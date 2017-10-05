@@ -145,12 +145,23 @@ namespace Games.DCG
 
         private void InitializeKnob ()
         {
-
+            for ( int i = 0; i < knobs.Length; i++ )
+            {
+                knobs[i].Initialize (GetColorArray (questionList[i]));
+            }
         }
 
 
 
         #endregion
+
+        private Color[] GetColorArray ( List<DCGColor> color )
+        {
+            var c = new Color[color.Count];
+            for ( int i = 0; i < c.Length; i++ )
+                c[i] = GetColorFromDCGColor (( int ) color[i]);
+            return c;
+        }
 
         private Color GetColorFromDCGColor ( int i )
         {

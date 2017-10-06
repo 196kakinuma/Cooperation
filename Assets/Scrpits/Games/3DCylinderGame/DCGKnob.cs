@@ -40,9 +40,7 @@ namespace Games.DCG
             {
                 heightThreshold[i - 1] = t * i;
             }
-            //TODO:ランダムに高さを変更する
-            float y = Random.Range (0f, firstLocalHeight);
-            master.SetKnobState (knobNum, y);
+            SetColor ();
         }
 
         public void NtSetCurrentState ( float y )
@@ -68,7 +66,6 @@ namespace Games.DCG
 
         Color GetColor ( float y )
         {
-            Debug.Log ("y is " + y);
             for ( int i = 0; i < heightThreshold.Length; i++ )
             {
 
@@ -88,8 +85,9 @@ namespace Games.DCG
 
         public void HoldReceive ( Vector3 pos )
         {
-            Debug.Log ("aaaa");
-            // if ( pos.y > firstLocalHeight || pos.y < 0 ) return;
+            var y = transform.parent.InverseTransformPoint (pos).y;
+            Debug.Log ("local+" + y);
+            if ( y < 0 || firstLocalHeight < y ) return;
             master.SetKnobState (knobNum, pos.y);
         }
     }

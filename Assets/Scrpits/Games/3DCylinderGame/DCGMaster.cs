@@ -98,33 +98,7 @@ namespace Games.DCG
         {
             questionList = new List<List<DCGColor>> ();
             var l = question[randNum].sheets[0].list;
-            /*for ( int i = 0; i < question[randNum].sheets[0].list.Count; i++ )
-            {
-                var list = new List<DCGColor> ();
-                for ( int j = 0; j < knobs.Length; j++ )
-                {
-                    switch ( i )
-                    {
-                        case 0:
-                            list.Add (( DCGColor ) l[i].Knob1);
-                            break;
-                        case 1:
-                            list.Add (( DCGColor ) l[i].Knob2);
-                            break;
-                        case 2:
-                            list.Add (( DCGColor ) l[i].Knob3);
-                            break;
-                        case 3:
-                            list.Add (( DCGColor ) l[i].Knob4);
-                            break;
-                        case 4:
-                            list.Add (( DCGColor ) l[i].Knob5);
-                            break;
-                    }
 
-                }
-                questionList.Add (list);
-            }*/
             for ( int j = 0; j < knobs.Length; j++ )
             {
                 var list = new List<DCGColor> ();
@@ -189,13 +163,15 @@ namespace Games.DCG
         {
             var c = new Color[color.Count];
             for ( int i = 0; i < c.Length; i++ )
+            {
                 c[i] = GetColorFromDCGColor (( int ) color[i]);
+            }
             return c;
         }
 
         private Color GetColorFromDCGColor ( int i )
         {
-            switch ( randNum )
+            switch ( i )
             {
                 case 0:
                     return Color.blue;
@@ -263,15 +239,24 @@ namespace Games.DCG
             return true;
         }
 
-        public void SetKnobState ( int i, float y, Color color )
+        public void SetKnobState ( int i, float y )
         {
 
             if ( !operationAuthority ) return;
-            netTransform.CmdKnobMove (i, y, color);
+            netTransform.CmdKnobMove (i, y);
         }
-        public void NtKnobMove ( int i, float y, Color color )
+        public void NtKnobMove ( int i, float y )
         {
-            knobs[i].NtSetCurrentState (y, color);
+            knobs[i].NtSetCurrentState (y);
+        }
+
+        public void SetHintColor ( int i, Color c )
+        {
+            netTransform.CmdSetHintColor (i, c);
+        }
+        public void NtSetHintColor ( int i, Color c )
+        {
+            knobs[i].NtSetColor (c);
         }
 
         #region MOVING

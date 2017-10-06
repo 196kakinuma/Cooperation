@@ -34,7 +34,7 @@ namespace Games.DCG
         {
             this.colors = colors;
             heightThreshold = new float[colors.Length];
-            firstLocalHeight = transform.position.y;
+            firstLocalHeight = transform.localPosition.y;
             float t = firstLocalHeight / colors.Length;
             for ( int i = 1; i <= colors.Length; i++ )
             {
@@ -42,14 +42,23 @@ namespace Games.DCG
             }
             //TODO:ランダムに高さを変更する
             float y = Random.Range (0f, firstLocalHeight);
-            master.SetKnobState (knobNum, y, GetColor (y));
+            master.SetKnobState (knobNum, y);
         }
 
-        public void NtSetCurrentState ( float y, Color color )
+        public void NtSetCurrentState ( float y )
         {
             transform.position = new Vector3 (transform.position.x, y, transform.position.z);
-            material.color = color;
+            SetColor ();
+        }
 
+        void SetColor ()
+        {
+            master.SetHintColor (knobNum, GetColor (transform.localPosition.y));
+        }
+
+        public void NtSetColor ( Color c )
+        {
+            material.color = c;
         }
 
         public Color GetCurrentColor ()
@@ -59,13 +68,14 @@ namespace Games.DCG
 
         Color GetColor ( float y )
         {
+            Debug.Log ("y is " + y);
             for ( int i = 0; i < heightThreshold.Length; i++ )
             {
 
                 if ( y <= heightThreshold[i] )
                 {
+                    Debug.Log (colors[i]);
                     return colors[i];
-
                 }
             }
             return colors[colors.Length - 1];
@@ -80,7 +90,7 @@ namespace Games.DCG
         {
             Debug.Log ("aaaa");
             // if ( pos.y > firstLocalHeight || pos.y < 0 ) return;
-            master.SetKnobState (knobNum, pos.y, GetColor (pos.y));
+            master.SetKnobState (knobNum, pos.y);
         }
     }
 }

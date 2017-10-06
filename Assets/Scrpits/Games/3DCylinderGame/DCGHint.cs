@@ -16,7 +16,7 @@ namespace Games.DCG
 
         public void NtInitializeHint ( Color c )
         {
-
+            material.color = c;
         }
     }
 }

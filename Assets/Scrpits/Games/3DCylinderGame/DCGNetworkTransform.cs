@@ -42,6 +42,7 @@ namespace Games.DCG
         [ClientRpc]
         void RpcSetHint ( Color c )
         {
+            Debug.Log ("Set Hint");
             master.hintOj.NtInitializeHint (c);
         }
 

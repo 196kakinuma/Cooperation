@@ -18,17 +18,6 @@ namespace Games.DCG
         float firstLocalHeight;
 
         float[] heightThreshold;
-        // Use this for initialization
-        void Start ()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update ()
-        {
-
-        }
 
         public void Initialize ( Color[] colors )
         {
@@ -40,8 +29,8 @@ namespace Games.DCG
             {
                 heightThreshold[i - 1] = t * i;
             }
-            var y = transform.localPosition.y;
-            //var y = Random.Range (0, firstLocalHeight);
+            //var y = transform.localPosition.y;
+            var y = Random.Range (0, firstLocalHeight);
             SetCurrentState (y);
         }
 

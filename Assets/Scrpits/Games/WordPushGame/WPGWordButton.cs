@@ -57,6 +57,11 @@ namespace Games.WordPushGame
             WPGMaster.Instance.ReceiveUserResponse (buttonNum);
         }
 
+        public void HoldReceive ( Vector3 pos )
+        {
+
+        }
+
         public void PushMove ()
         {
             transform.localPosition = new Vector3 (transform.localPosition.x, transform.localPosition.y, transform.localPosition.z - 0.1f);

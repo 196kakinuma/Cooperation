@@ -24,11 +24,13 @@ namespace Objects.Test
 
         public void ClickReceive ()
         {
-            Debug.Log ("Click Receive");
-
             colorScript.CmdColorChange ();
-            //if ( material.color == Color.blue ) material.color = Color.white;
-            //else if ( material.color == Color.white ) material.color = Color.blue;
+
+        }
+
+        public void HoldReceive ( Vector3 pos )
+        {
+
         }
 
     }

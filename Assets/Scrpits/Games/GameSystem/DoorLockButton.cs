@@ -32,5 +32,10 @@ namespace Games.GameSystem
             door.ClickDoorLockButton ();
         }
 
+        public void HoldReceive ( Vector3 pos )
+        {
+
+        }
+
     }
 }

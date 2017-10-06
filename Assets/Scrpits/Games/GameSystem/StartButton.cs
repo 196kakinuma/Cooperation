@@ -21,6 +21,10 @@ namespace Games.GameSystem
             handler.CmdClickStartButton ();
         }
 
+        public void HoldReceive ( Vector3 pos )
+        {
+
+        }
 
 
     }

@@ -21,8 +21,12 @@ namespace Games.WordPushGame
 
         public void ClickReceive ()
         {
-            Debug.Log ("answer button");
             WPGMaster.Instance.Answer ();
+        }
+
+        public void HoldReceive ( Vector3 pos )
+        {
+
         }
     }
 }

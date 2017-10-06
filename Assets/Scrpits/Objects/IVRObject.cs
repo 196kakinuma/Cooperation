@@ -7,5 +7,7 @@ namespace Objects
     public interface IVRObject
     {
         void ClickReceive ();
+
+        void HoldReceive ( Vector3 pos );
     }
 }

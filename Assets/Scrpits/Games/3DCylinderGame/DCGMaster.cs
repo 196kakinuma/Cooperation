@@ -62,6 +62,7 @@ namespace Games.DCG
         public IEnumerator Initialize ( Door d )
         {
             netTransform.CmdSetActive (true);
+
             //準備前でもボタンなどは前後できるため.
             ResetAll ();
 
@@ -74,9 +75,9 @@ namespace Games.DCG
             InitializeAnswer ();
 
             InitializeHint ();
-
+            SetOperationAuthority (true);
             InitializeKnob ();
-
+            SetOperationAuthority (false);
             currentDoor = d;
             PrepareMove ();
 
@@ -153,8 +154,6 @@ namespace Games.DCG
                 knobs[i].Initialize (GetColorArray (questionList[i]));
             }
         }
-
-
 
         #endregion
 
@@ -239,25 +238,16 @@ namespace Games.DCG
             return true;
         }
 
-        public void SetKnobState ( int i, float y )
+        public void SetKnobState ( int i, float y, Color c )
         {
-
             if ( !operationAuthority ) return;
-            netTransform.CmdKnobMove (i, y);
+            netTransform.CmdKnobMove (i, y, c);
         }
-        public void NtKnobMove ( int i, float y )
+        public void NtKnobMove ( int i, float y, Color c )
         {
-            knobs[i].NtSetCurrentState (y);
+            knobs[i].NtSetCurrentState (y, c);
         }
 
-        public void SetHintColor ( int i, Color c )
-        {
-            netTransform.CmdSetHintColor (i, c);
-        }
-        public void NtSetHintColor ( int i, Color c )
-        {
-            knobs[i].NtSetColor (c);
-        }
 
         #region MOVING
         [SerializeField]

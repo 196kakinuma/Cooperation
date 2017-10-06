@@ -40,22 +40,24 @@ namespace Games.DCG
             {
                 heightThreshold[i - 1] = t * i;
             }
-            SetColor ();
+            var y = Random.Range (0, firstLocalHeight);
+            SetCurrentState (y);
         }
 
-        public void NtSetCurrentState ( float y )
+        /// <summary>
+        /// ローカル座標のyを使用する
+        /// </summary>
+        /// <param name="y"></param>
+        void SetCurrentState ( float y )
         {
-            transform.position = new Vector3 (transform.position.x, y, transform.position.z);
-            SetColor ();
+            Debug.Log ("set current");
+            master.SetKnobState (knobNum, y, GetColor (y));
         }
 
-        void SetColor ()
+        public void NtSetCurrentState ( float y, Color c )
         {
-            master.SetHintColor (knobNum, GetColor (transform.localPosition.y));
-        }
-
-        public void NtSetColor ( Color c )
-        {
+            Debug.Log ("set current" + y);
+            transform.localPosition = new Vector3 (transform.localPosition.x, y, transform.localPosition.z);
             material.color = c;
         }
 
@@ -71,7 +73,6 @@ namespace Games.DCG
 
                 if ( y <= heightThreshold[i] )
                 {
-                    Debug.Log (colors[i]);
                     return colors[i];
                 }
             }
@@ -86,9 +87,8 @@ namespace Games.DCG
         public void HoldReceive ( Vector3 pos )
         {
             var y = transform.parent.InverseTransformPoint (pos).y;
-            Debug.Log ("local+" + y);
             if ( y < 0 || firstLocalHeight < y ) return;
-            master.SetKnobState (knobNum, pos.y);
+            SetCurrentState (y);
         }
     }
 }

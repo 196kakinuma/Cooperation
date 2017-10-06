@@ -23,15 +23,15 @@ namespace Games.DCG
         }
 
         [Command]
-        public void CmdKnobMove ( int i, float y )
+        public void CmdKnobMove ( int i, float y, Color c )
         {
-            RpcKnobMove (i, y);
+            RpcKnobMove (i, y, c);
         }
 
         [ClientRpc]
-        public void RpcKnobMove ( int i, float y )
+        public void RpcKnobMove ( int i, float y, Color c )
         {
-            master.NtKnobMove (i, y);
+            master.NtKnobMove (i, y, c);
         }
 
         [Command]
@@ -43,17 +43,6 @@ namespace Games.DCG
         void RpcSetHint ( Color c )
         {
             master.hintOj.NtInitializeHint (c);
-        }
-
-        [Command]
-        public void CmdSetHintColor ( int i, Color c )
-        {
-            RpcSetHintColor (i, c);
-        }
-        [ClientRpc]
-        void RpcSetHintColor ( int i, Color c )
-        {
-            master.NtSetHintColor (i, c);
         }
 
         #region Move

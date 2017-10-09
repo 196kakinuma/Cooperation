@@ -71,6 +71,8 @@ MonoBehaviour:
   timer: {fileID: 114692705932804074}
   startButtonPref: {fileID: 1241750763308820, guid: fcf73b8750f57b843adda2b5d57945d6,
     type: 2}
+  finishButtonPref: {fileID: 1322029167508196, guid: 6849deb6e96f7a444906ad50514da925,
+    type: 2}
   WPGPref: {fileID: 1645879221222944, guid: 867700e2924c41546ba6a76bf2e9e9da, type: 2}
   DWPGPref: {fileID: 1835881311182150, guid: 2561cdc2909f17942b7f5d282c6928a0, type: 2}
   WMGPref: {fileID: 1136722833741138, guid: 67038462c62f8df4c8061ed2faf8e814, type: 2}

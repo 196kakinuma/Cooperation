@@ -46,6 +46,17 @@ namespace Games.Enemy
 
         }
 
+        #region TUTORIAL
+        public void InitializeTutorial ()
+        {
+            GenerateTutorialEnemy ();
+        }
+        void GenerateTutorialEnemy ()
+        {
+            enemys = new Enemy[1];
+            enemys[0] = new Enemy (1f, 120f, EnemyType.RED);
+        }
+        #endregion
 
         /// <summary>
         /// ゲーム開始前の準備

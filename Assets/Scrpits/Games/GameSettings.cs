@@ -5,8 +5,21 @@ using IkLibrary.Unity;
 
 namespace Games
 {
+    public enum KeyGames
+    {
+        WPG,
+        DWPG,
+        WMG,
+        DWMG,
+        CG,
+        DCG
+    }
     public class GameSettings : SingletonMonoBehaviour<GameSettings>
     {
+        public KeyGames game;
+
+        public bool tutorial;
+
         [Range (1, 3)]
         public int EnemyNum = 3;
         [Range (3, 5)]

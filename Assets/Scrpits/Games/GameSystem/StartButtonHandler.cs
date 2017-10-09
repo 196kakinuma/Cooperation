@@ -19,19 +19,22 @@ namespace Games.GameSystem
 
         #region DOWN
         [Command]
-        public void CmdClickStartButton ()
+        public void CmdClickStartButton ( bool tutorial )
         {
-            RpcClickButton ();
+            RpcClickButton (tutorial);
         }
 
         [ClientRpc]
-        void RpcClickButton ()
+        void RpcClickButton ( bool tutorial )
         {
             button.SetEnabled (false);
             var c = StartCoroutine (SlideOut ());
             if ( Networks.NetworkInitializer.Instance.cameraType == CameraType.VR && Networks.NetworkInitializer.Instance.playerType == PlayerType.HOST )
             {
-                StartCoroutine (GameMaster.Instance.StartGame (c));
+                if ( !tutorial )
+                    StartCoroutine (GameMaster.Instance.StartGame (c));
+                else
+                    StartCoroutine (GameMaster.Instance.TutorialStart (c));
             }
         }
 

@@ -293,8 +293,10 @@ namespace Games.GameSystem
         IKeyLockGameMaster GetRandomKeyLockGame ()
         {
             int rand = Random.Range (0, nonUsingGameList.Count);
-            //return nonUsingGameList[rand];
-            return nonUsingGameList[4];
+            return nonUsingGameList[rand];
+            //return nonUsingGameList[4];
         }
+
+
     }
 }

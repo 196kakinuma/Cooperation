@@ -72,9 +72,12 @@ MonoBehaviour:
   startButtonPref: {fileID: 1241750763308820, guid: fcf73b8750f57b843adda2b5d57945d6,
     type: 2}
   WPGPref: {fileID: 1645879221222944, guid: 867700e2924c41546ba6a76bf2e9e9da, type: 2}
+  DWPGPref: {fileID: 1835881311182150, guid: 2561cdc2909f17942b7f5d282c6928a0, type: 2}
   WMGPref: {fileID: 1136722833741138, guid: 67038462c62f8df4c8061ed2faf8e814, type: 2}
   DCGPref: {fileID: 1761782435082068, guid: 3ac10ffc4b350104bb8fc3957c16a5dd, type: 2}
   WPGCalender: {fileID: 1008674032690300, guid: 669ede8479aa0fd4790aba9c31c7a347,
+    type: 2}
+  DWPGCalender: {fileID: 1194276900491478, guid: bca1d8136f006fb4ca493b08d5dc15b7,
     type: 2}
   WMGChair: {fileID: 1403196309542770, guid: 63fd1a78ea7faa843b009955c444deb0, type: 2}
   DCGHint: {fileID: 1157714392573290, guid: 0cbede929ba74174e95b08a7aadbe45f, type: 2}

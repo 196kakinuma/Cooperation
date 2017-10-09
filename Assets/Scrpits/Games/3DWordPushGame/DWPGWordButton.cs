@@ -4,14 +4,12 @@ using UnityEngine;
 using Objects;
 using UnityEngine.UI;
 
-namespace Games.WordPushGame
+namespace Games.DWordPushGame
 {
-    public class WPGWordButton : MonoBehaviour, IVRObject
+    public class DWPGWordButton : MonoBehaviour, IVRObject
     {
         [SerializeField]
         Text text;
-
-
 
         public int buttonNum;
         public string word;
@@ -51,7 +49,7 @@ namespace Games.WordPushGame
         public void ClickReceive ()
         {
             Debug.Log ("button click");
-            WPGMaster.Instance.ReceiveUserResponse (buttonNum);
+            DWPGMaster.Instance.ReceiveUserResponse (buttonNum);
         }
 
         public void HoldReceive ( Vector3 pos )

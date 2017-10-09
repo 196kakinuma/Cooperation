@@ -8,6 +8,7 @@ using Games.WordMuchGame;
 using Games.DWordMuchGame;
 using Games.WordPushGame;
 using Games.DWordPushGame;
+using Games.CG;
 using Games.DCG;
 
 namespace Games.GameSystem
@@ -47,10 +48,13 @@ namespace Games.GameSystem
         [SerializeField]
         GameObject DWMGPref;
         DWMGMaster dwmgMaster;
-
+        [SerializeField]
+        GameObject CGPref;
+        CGMaster cgMaster;
         [SerializeField]
         GameObject DCGPref;
         DCGMaster dcgMaster;
+
 
         //ヒント系
         [SerializeField]
@@ -65,6 +69,9 @@ namespace Games.GameSystem
         [SerializeField]
         GameObject DWMGChair;
         DWMGChair dwmgChair;
+        [SerializeField]
+        GameObject CGHint;
+        CGHint cgHint;
         [SerializeField]
         GameObject DCGHint;
         DCGHint dcgHint;
@@ -91,6 +98,7 @@ namespace Games.GameSystem
             DWPGCreate ();
             WMGCreate ();
             DWMGCreate ();
+            CGCreate ();
             DCGCreate ();
 
         }
@@ -151,6 +159,17 @@ namespace Games.GameSystem
             this.dwmgChair = chair.GetComponent<DWMGChair> ();
             NetworkServer.Spawn (chair);
 
+        }
+        void CGCreate ()
+        {
+            var d = Instantiate (CGPref);
+            this.cgMaster = d.GetComponent<CGMaster> ();
+            gameList.Add (cgMaster);
+            NetworkServer.Spawn (d);
+
+            var h = Instantiate (CGHint);
+            this.cgHint = h.GetComponent<CGHint> ();
+            NetworkServer.Spawn (h);
         }
 
         void DCGCreate ()
@@ -275,7 +294,7 @@ namespace Games.GameSystem
         {
             int rand = Random.Range (0, nonUsingGameList.Count);
             //return nonUsingGameList[rand];
-            return nonUsingGameList[3];
+            return nonUsingGameList[4];
         }
     }
 }

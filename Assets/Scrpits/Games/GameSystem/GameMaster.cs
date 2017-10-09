@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 using Objects;
 using Games.WordMuchGame;
 using Games.WordPushGame;
+using Games.DWordPushGame;
 using Games.DCG;
 
 namespace Games.GameSystem
@@ -37,6 +38,9 @@ namespace Games.GameSystem
         GameObject WPGPref;
         Games.WordPushGame.WPGMaster wpgMaster;
         [SerializeField]
+        GameObject DWPGPref;
+        DWPGMaster dwpgMaster;
+        [SerializeField]
         GameObject WMGPref;
         WMGMaster wmgMaster;
         [SerializeField]
@@ -47,6 +51,9 @@ namespace Games.GameSystem
         [SerializeField]
         GameObject WPGCalender;
         Games.WordPushGame.WPGCalender wpgCalender;
+        [SerializeField]
+        GameObject DWPGCalender;
+        DWPGCalender dwpgCalender;
         [SerializeField]
         GameObject WMGChair;
         WMGChair wmgChair;
@@ -73,6 +80,7 @@ namespace Games.GameSystem
             NetworkServer.Spawn (b);
 
             WPGCreate ();
+            DWPGCreate ();
             WMGCreate ();
             DCGCreate ();
 
@@ -98,6 +106,20 @@ namespace Games.GameSystem
             this.wpgCalender = cal.GetComponent<WordPushGame.WPGCalender> ();
             NetworkServer.Spawn (cal);
         }
+
+        void DWPGCreate ()
+        {
+            //wpg
+            var dwpg = Instantiate (DWPGPref);
+            this.dwpgMaster = dwpg.GetComponent<DWPGMaster> ();
+            gameList.Add (dwpgMaster);
+            NetworkServer.Spawn (dwpg);
+            //Hintオブジェクトの生成
+            var cal = Instantiate (DWPGCalender);
+            this.dwpgCalender = cal.GetComponent<DWPGCalender> ();
+            NetworkServer.Spawn (cal);
+        }
+
         void WMGCreate ()
         {
             var wmg = Instantiate (WMGPref);
@@ -231,7 +253,8 @@ namespace Games.GameSystem
         IKeyLockGameMaster GetRandomKeyLockGame ()
         {
             int rand = Random.Range (0, nonUsingGameList.Count);
-            return nonUsingGameList[rand];
+            //return nonUsingGameList[rand];
+            return nonUsingGameList[1];
         }
     }
 }

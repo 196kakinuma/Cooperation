@@ -18,6 +18,33 @@ namespace Games.GameSystem
         Dictionary<Enemy.Enemy, Door> enemyRoomList;
 
         List<Door> blankRoomList;
+        #region TUTORIAL
+        public void InitializeTutorialt ()
+        {
+            enemyRoomList = new Dictionary<Enemy.Enemy, Door> ();
+            blankRoomList = new List<Door> ();
+            GenarateTutorialDoor ();
+        }
+        void GenarateTutorialDoor ()
+        {
+            if ( doors != null )
+            {
+                Debug.Log ("ドアの初期化は初めてではありません");
+                foreach ( var dor in doors )
+                {
+                    Destroy (dor.gameObject);
+                }
+            }
+            doors = new Door[1];
+            var anchors = WorldAnchorKeeper.Instance.doorSpawnTransform;
+
+            var d = Instantiate (doorPref, anchors[2]);
+            doors[0] = d.GetComponent<Door> ();
+            NetworkServer.Spawn (d);
+            doors[0].Initialize (0, this);
+
+        }
+        #endregion
 
         public void InitializeGameStart ()
         {

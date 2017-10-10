@@ -4,10 +4,10 @@ using UnityEngine;
 using Objects;
 namespace Games.GameSystem
 {
-    public class StartButton : MonoBehaviour, IVRObject
+    public class FinishButton : MonoBehaviour, IVRObject
     {
         [SerializeField]
-        StartButtonHandler handler;
+        FinishButtonHandler handler;
 
         bool enabled = true;
 
@@ -19,7 +19,7 @@ namespace Games.GameSystem
         {
             if ( !enabled ) return;
 
-            handler.CmdClickStartButton (GameSettings.Instance.tutorial);
+            handler.CmdClickFinishButton ();
         }
 
         public void HoldReceive ( Vector3 pos )

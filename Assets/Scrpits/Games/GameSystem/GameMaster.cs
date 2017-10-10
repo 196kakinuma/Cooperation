@@ -30,6 +30,9 @@ namespace Games.GameSystem
         [SerializeField]
         GameObject startButtonPref;
         StartButtonHandler startButton;
+        [SerializeField]
+        GameObject finishButtonPref;
+        FinishButtonHandler finishButton;
 
         //ゲームプレハブ系
         List<IKeyLockGameMaster> gameList = new List<IKeyLockGameMaster> ();
@@ -93,6 +96,10 @@ namespace Games.GameSystem
             var b = Instantiate (startButtonPref);
             this.startButton = b.GetComponent<StartButtonHandler> ();
             NetworkServer.Spawn (b);
+            var f = Instantiate (finishButtonPref);
+            this.finishButton = f.GetComponent<FinishButtonHandler> ();
+            NetworkServer.Spawn (f);
+            finishButton.CmdDisappearButton ();
 
             WPGCreate ();
             DWPGCreate ();
@@ -255,6 +262,7 @@ namespace Games.GameSystem
 
             //スタートボタンを戻す
             startButton.CmdResetStartButton ();
+
         }
 
         /// <summary>
@@ -294,9 +302,72 @@ namespace Games.GameSystem
         {
             int rand = Random.Range (0, nonUsingGameList.Count);
             return nonUsingGameList[rand];
-            //return nonUsingGameList[4];
         }
 
+
+
+        #region TUTORIAL
+        public IEnumerator TutorialStart ( Coroutine buttonAnimation )
+        {
+            Coroutine prepare = StartCoroutine (TutorialStartPrepare ());
+            yield return prepare;
+            yield return buttonAnimation;
+
+            //タイマーなどを開始
+            //timer.GameStart ();
+            //敵を動かし始める
+            //記録を取り始める
+
+            finishButton.CmdAppearFinishButton ();
+
+            //スタートの表示
+            Debug.Log ("start Game!");
+            IsPlaying = true;
+
+        }
+
+        IEnumerator TutorialStartPrepare ()
+        {
+            Debug.Log ("startPrepare");
+            nonUsingGameList = new List<IKeyLockGameMaster> ();
+            usingGameAndDoorList = new Dictionary<Door, IKeyLockGameMaster> ();
+
+
+            switch ( GameSettings.Instance.game )
+            {
+                case KeyGames.WPG:
+                    wpgMaster.Prepare ();
+                    nonUsingGameList.Add (wpgMaster);
+                    break;
+                case KeyGames.DWPG:
+                    dwpgMaster.Prepare ();
+                    nonUsingGameList.Add (dwmgMaster);
+                    break;
+                case KeyGames.WMG:
+                    wmgMaster.Prepare ();
+                    nonUsingGameList.Add (wmgMaster);
+                    break;
+                case KeyGames.DWMG:
+                    dwmgMaster.Prepare ();
+                    nonUsingGameList.Add (dwmgMaster);
+                    break;
+                case KeyGames.CG:
+                    cgMaster.Prepare ();
+                    nonUsingGameList.Add (cgMaster);
+                    break;
+                case KeyGames.DCG:
+                    dcgMaster.Prepare ();
+                    nonUsingGameList.Add (dcgMaster);
+                    break;
+            }
+
+            enemyMaster.InitializeTutorial ();
+            doorManager.InitializeGameStart ();
+
+
+            yield return null;
+        }
+        #endregion
 
     }
 }

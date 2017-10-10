@@ -19,6 +19,10 @@ public class WPGAnswer : ScriptableObject
 		
 		public int answer1;
 		public int answer2;
+		public int answer3;
+		public int answer4;
+		public int answer5;
+		public int answer6;
 	}
 }
 

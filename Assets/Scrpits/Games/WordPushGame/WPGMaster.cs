@@ -85,7 +85,7 @@ namespace Games.WordPushGame
             ResetAll ();
 
             //ランダムを生成
-
+            randNum = Random.Range (0, answer.sheets[0].list.Count);
 
             //問題と正解を読み込む
             InitializeQuestion ();
@@ -135,33 +135,21 @@ namespace Games.WordPushGame
         private void InitializeAnswer ()
         {
             answerList = new List<int> ();
-            for ( int i = 0; i < answer.sheets[0].list.Count; i++ )
-            {
-                switch ( randNum )
-                {
-                    case 0:
-                        answerList.Add (answer.sheets[0].list[i].answer1);
-                        break;
-                    case 1:
-                        answerList.Add (answer.sheets[0].list[i].answer2);
-                        break;
-                }
-            }
+            answerList.Add (answer.sheets[0].list[randNum].answer1);
+            answerList.Add (answer.sheets[0].list[randNum].answer2);
+            answerList.Add (answer.sheets[0].list[randNum].answer3);
+            answerList.Add (answer.sheets[0].list[randNum].answer4);
+            answerList.Add (answer.sheets[0].list[randNum].answer5);
+            answerList.Add (answer.sheets[0].list[randNum].answer6);
+
         }
 
         private void InitializeHint ()
         {
-            switch ( randNum )
-            {
-                case 0:
-                    month = calender.sheets[0].list[0].Month;
-                    day = calender.sheets[0].list[0].Day;
-                    break;
-                case 1:
-                    month = calender.sheets[0].list[1].Month;
-                    day = calender.sheets[0].list[1].Day;
-                    break;
-            }
+            month = calender.sheets[0].list[randNum].Month;
+            day = calender.sheets[0].list[randNum].Day;
+
+
             netTransform.CmdSetCalender (month, day);
         }
         #endregion

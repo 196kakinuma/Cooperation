@@ -5,6 +5,8 @@ using UnityEngine.Networking;
 using Games.GameSystem;
 using IkLibrary.Unity;
 using Objects;
+using System.Linq;
+using System;
 
 namespace Games.WordPushGame
 {
@@ -15,6 +17,7 @@ namespace Games.WordPushGame
         WPGNetworkTransform netTransform;
 
         public WPGWordButton[] wpgWordButtons;
+        WPGWordButton[] currentWpgButton;
         public WPGAnswerButton answerButton;
         public WPGResetButton resetButton;
         [HideInInspector]
@@ -85,7 +88,7 @@ namespace Games.WordPushGame
             ResetAll ();
 
             //ランダムを生成
-            randNum = Random.Range (0, answer.sheets[0].list.Count);
+            randNum = UnityEngine.Random.Range (0, answer.sheets[0].list.Count);
 
             //問題と正解を読み込む
             InitializeQuestion ();
@@ -93,6 +96,7 @@ namespace Games.WordPushGame
             InitializeAnswer ();
 
             InitializeHint ();
+            InitializeButtons ();
 
             currentDoor = d;
             PrepareMove ();
@@ -125,10 +129,7 @@ namespace Games.WordPushGame
                         break;
                 }
 
-                wpgWordButtons[i].InitializeButtonInfo (questionList[i], i);
-                //文字を設置する
 
-                netTransform.CmdSetWord (wpgWordButtons[i].buttonNum, wpgWordButtons[i].word);
             }
         }
 
@@ -148,9 +149,29 @@ namespace Games.WordPushGame
         {
             month = calender.sheets[0].list[randNum].Month;
             day = calender.sheets[0].list[randNum].Day;
-
-
             netTransform.CmdSetCalender (month, day);
+        }
+        private void InitializeButtons ()
+        {
+            var array = GetRandomIntArrayFromButtonLength ();
+            currentWpgButton = new WPGWordButton[wpgWordButtons.Length];
+            //array = new int[5] { 0, 1, 2, 3, 4 }; デバッグ用
+            for ( int i = 0; i < wpgWordButtons.Length; i++ )
+            {
+                wpgWordButtons[array[i]].InitializeButtonInfo (questionList[i], i);
+                netTransform.CmdSetWord (wpgWordButtons[array[i]].buttonNum, wpgWordButtons[array[i]].word);
+                currentWpgButton[i] = wpgWordButtons[array[i]];
+            }
+        }
+
+
+        private int[] GetRandomIntArrayFromButtonLength ()
+        {
+            int[] array = new int[wpgWordButtons.Length];
+            for ( int i = 0; i < array.Length; i++ )
+                array[i] = i;
+
+            return array.OrderBy (i => Guid.NewGuid ()).ToArray ();
         }
         #endregion
 

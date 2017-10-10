@@ -5,6 +5,8 @@ using UnityEngine.Networking;
 using Games.GameSystem;
 using IkLibrary.Unity;
 using Objects;
+using System;
+using System.Linq;
 
 namespace Games.DWordPushGame
 {
@@ -16,6 +18,7 @@ namespace Games.DWordPushGame
 
         public DWPGWordButton[] wpgWordButtons;
         public DWPGAnswerButton answerButton;
+        DWPGWordButton[] currentWpgButton;
         public DWPGResetButton resetButton;
         [HideInInspector]
         public DWPGCalender calenderObj;
@@ -25,6 +28,7 @@ namespace Games.DWordPushGame
         [SerializeField]
         WPGQuestion question;
         List<string> questionList;
+
         [SerializeField]
         WPGAnswer answer;
         List<int> answerList;
@@ -85,7 +89,7 @@ namespace Games.DWordPushGame
             ResetAll ();
 
             //ランダムを生成
-
+            randNum = UnityEngine.Random.Range (0, wpgWordButtons.Length);
 
             //問題と正解を読み込む
             InitializeQuestion ();
@@ -93,6 +97,7 @@ namespace Games.DWordPushGame
             InitializeAnswer ();
 
             InitializeHint ();
+            InitializeButtons ();
 
             currentDoor = d;
             PrepareMove ();
@@ -152,7 +157,28 @@ namespace Games.DWordPushGame
 
             netTransform.CmdSetCalender (month, day);
         }
+        private void InitializeButtons ()
+        {
+            var array = GetRandomIntArrayFromButtonLength ();
+            currentWpgButton = new DWPGWordButton[wpgWordButtons.Length];
+            //array = new int[5] { 0, 1, 2, 3, 4 }; デバッグ用
+            for ( int i = 0; i < wpgWordButtons.Length; i++ )
+            {
+                wpgWordButtons[array[i]].InitializeButtonInfo (questionList[i], i);
+                netTransform.CmdSetWord (wpgWordButtons[array[i]].buttonNum, wpgWordButtons[array[i]].word);
+                currentWpgButton[i] = wpgWordButtons[array[i]];
+            }
+        }
 
+
+        private int[] GetRandomIntArrayFromButtonLength ()
+        {
+            int[] array = new int[wpgWordButtons.Length];
+            for ( int i = 0; i < array.Length; i++ )
+                array[i] = i;
+
+            return array.OrderBy (i => Guid.NewGuid ()).ToArray ();
+        }
         #endregion
 
         /// <summary>

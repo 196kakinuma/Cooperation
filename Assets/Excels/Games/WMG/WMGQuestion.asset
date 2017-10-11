@@ -15,27 +15,27 @@ MonoBehaviour:
   - name: Sheet1
     list:
     - Col1: A
-      Col2: F
+      Col2: "\u0B1B"
       Col3: "\u3042"
       Col4: '!'
-      Col5: "\u304B"
+      Col5: "\u0394"
     - Col1: B
-      Col2: G
+      Col2: "\u0A95"
       Col3: "\u3044"
       Col4: '"'
-      Col5: "\u304D"
+      Col5: "\u03A9"
     - Col1: C
-      Col2: H
+      Col2: "\u0A95\u0AC3"
       Col3: "\u3046"
       Col4: '#'
-      Col5: "\u304F"
+      Col5: "\u03A3"
     - Col1: D
-      Col2: I
+      Col2: "\u0B0F"
       Col3: "\u3048"
       Col4: $
-      Col5: "\u3051"
+      Col5: "\u2020"
     - Col1: E
-      Col2: J
+      Col2: "\u0915"
       Col3: "\u304A"
       Col4: '%'
-      Col5: "\u3053"
+      Col5: "\u045B"

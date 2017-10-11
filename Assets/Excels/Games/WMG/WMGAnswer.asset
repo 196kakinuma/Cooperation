@@ -15,12 +15,27 @@ MonoBehaviour:
   - name: Sheet1
     list:
     - Answer1: 0
-      Answer2: 0
-    - Answer1: 1
       Answer2: 1
-    - Answer1: 2
+      Answer3: 0
+      Answer4: 0
+      Answer5: 0
+    - Answer1: 1
       Answer2: 2
-    - Answer1: 3
+      Answer3: 0
+      Answer4: 0
+      Answer5: 0
+    - Answer1: 2
       Answer2: 3
-    - Answer1: 4
+      Answer3: 0
+      Answer4: 0
+      Answer5: 0
+    - Answer1: 1
       Answer2: 4
+      Answer3: 0
+      Answer4: 0
+      Answer5: 0
+    - Answer1: 4
+      Answer2: 3
+      Answer3: 0
+      Answer4: 0
+      Answer5: 0

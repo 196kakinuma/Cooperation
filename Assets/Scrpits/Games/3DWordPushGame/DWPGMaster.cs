@@ -18,7 +18,7 @@ namespace Games.DWordPushGame
 
         public DWPGWordButton[] wpgWordButtons;
         public DWPGAnswerButton answerButton;
-        DWPGWordButton[] currentWpgButton;
+        public DWPGWordButton[] currentWpgButton;
         public DWPGResetButton resetButton;
         [HideInInspector]
         public DWPGCalender calenderObj;

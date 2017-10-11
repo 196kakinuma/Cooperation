@@ -17,7 +17,7 @@ namespace Games.WordPushGame
         WPGNetworkTransform netTransform;
 
         public WPGWordButton[] wpgWordButtons;
-        WPGWordButton[] currentWpgButton;
+        public WPGWordButton[] currentWpgButton;
         public WPGAnswerButton answerButton;
         public WPGResetButton resetButton;
         [HideInInspector]
@@ -119,7 +119,7 @@ namespace Games.WordPushGame
             for ( int i = 0; i < question.sheets[0].list.Count; i++ )
             {
                 //問題
-                switch ( randNum )
+                switch ( 1 )
                 {
                     case 0:
                         questionList.Add (question.sheets[0].list[i].one);
@@ -142,7 +142,6 @@ namespace Games.WordPushGame
             answerList.Add (answer.sheets[0].list[randNum].answer4);
             answerList.Add (answer.sheets[0].list[randNum].answer5);
             answerList.Add (answer.sheets[0].list[randNum].answer6);
-
         }
 
         private void InitializeHint ()

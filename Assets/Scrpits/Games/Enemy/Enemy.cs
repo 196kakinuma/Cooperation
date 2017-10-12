@@ -30,6 +30,12 @@ namespace Games.Enemy
             private set { stayTime = value; }
         }
 
+        float afterLockStaryTime;
+        public float AfterLockStayTime
+        {
+            get { return afterLockStaryTime; }
+            private set { afterLockStaryTime = value; }
+        }
 
 
         //敵の色
@@ -55,11 +61,12 @@ namespace Games.Enemy
         /// <param name="cycle"></param>
         /// <param name="stayTime"></param>
         /// <param name="type"></param>
-        public Enemy ( float cycle, float stayTime, EnemyType type )
+        public Enemy ( float cycle, float stayTime, float afterTime, EnemyType type )
         {
             this.Cycle = cycle;
             this.StayTime = stayTime;
             this.Type = type;
+            this.AfterLockStayTime = afterTime;
             nextCheckTime = Cycle;
         }
 
@@ -71,6 +78,14 @@ namespace Games.Enemy
         {
             if ( roomIn ) nextCheckTime += StayTime;
             else NextCheckTime += Cycle;
+        }
+
+        /// <summary>
+        /// ドアをロックスたらその後の待ち時間を減らす
+        /// </summary>
+        public void SetLockDoorStayTime ()
+        {
+            NextCheckTime = Games.GameSystem.GameTimer.Instance.GetTime () + AfterLockStayTime;
         }
     }
 }

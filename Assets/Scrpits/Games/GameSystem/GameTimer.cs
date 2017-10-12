@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using IkLibrary.Unity;
 
 namespace Games.GameSystem
 {
-    public class GameTimer : MonoBehaviour
+    public class GameTimer : SingletonMonoBehaviour<GameTimer>
     {
         [SerializeField]
         GameMaster master;

@@ -67,6 +67,7 @@ namespace Games.DCG
             ResetAll ();
 
             //ランダムを生成
+            randNum = UnityEngine.Random.Range (0, answer.sheets[0].list.Count);
 
 
             //問題と正解を読み込む
@@ -98,14 +99,14 @@ namespace Games.DCG
         public void InitializeQuestion ()
         {
             questionList = new List<List<DCGColor>> ();
-            var l = question[randNum].sheets[0].list;
+            var l = question[0].sheets[0].list;
 
             for ( int j = 0; j < knobs.Length; j++ )
             {
                 var list = new List<DCGColor> ();
                 for ( int i = 0; i < l.Count; i++ )
                 {
-                    switch ( i )
+                    switch ( j )
                     {
                         case 0:
                             list.Add (( DCGColor ) l[i].Knob1);

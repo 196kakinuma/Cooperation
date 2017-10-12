@@ -19,6 +19,9 @@ public class WMGAnswer : ScriptableObject
 		
 		public int Answer1;
 		public int Answer2;
+		public int Answer3;
+		public int Answer4;
+		public int Answer5;
 	}
 }
 

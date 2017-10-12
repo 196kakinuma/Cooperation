@@ -77,7 +77,7 @@ namespace Games.WordMuchGame
             ResetAll ();
 
             //FIXED:ME ランダムを生成
-            randNum = UnityEngine.Random.Range (0, question.Length);
+            randNum = UnityEngine.Random.Range (0, answer.sheets[0].list.Count);
 
 
             //問題と正解を読み込む
@@ -100,7 +100,7 @@ namespace Games.WordMuchGame
         private void InitializeQuestion ()
         {
             questionList = new List<List<string>> ();
-            var question = this.question[randNum];
+            var question = this.question[0];
             for ( int j = 0; j < question.sheets[0].list.Count; j++ )
             {
                 var texts = new List<string> ();
@@ -133,18 +133,11 @@ namespace Games.WordMuchGame
         private void InitializeAnswer ()
         {
             answerList = new List<int> ();
-            for ( int i = 0; i < answer.sheets[0].list.Count; i++ )
-            {
-                switch ( randNum )
-                {
-                    case 0:
-                        answerList.Add (answer.sheets[0].list[i].Answer1);
-                        break;
-                    case 1:
-                        answerList.Add (answer.sheets[0].list[i].Answer2);
-                        break;
-                }
-            }
+            answerList.Add (answer.sheets[0].list[randNum].Answer1);
+            answerList.Add (answer.sheets[0].list[randNum].Answer2);
+            answerList.Add (answer.sheets[0].list[randNum].Answer3);
+            answerList.Add (answer.sheets[0].list[randNum].Answer4);
+            answerList.Add (answer.sheets[0].list[randNum].Answer5);
         }
 
         private void InitializeHint ()

@@ -52,6 +52,10 @@ public class WPGAnswer_importer : AssetPostprocessor {
 						
 					cell = row.GetCell(0); p.answer1 = (int)(cell == null ? 0 : cell.NumericCellValue);
 					cell = row.GetCell(1); p.answer2 = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(2); p.answer3 = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(3); p.answer4 = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(4); p.answer5 = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(5); p.answer6 = (int)(cell == null ? 0 : cell.NumericCellValue);
 						s.list.Add (p);
 					}
 					data.sheets.Add(s);

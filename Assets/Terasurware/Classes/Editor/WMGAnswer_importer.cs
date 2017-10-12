@@ -52,6 +52,9 @@ public class WMGAnswer_importer : AssetPostprocessor {
 						
 					cell = row.GetCell(0); p.Answer1 = (int)(cell == null ? 0 : cell.NumericCellValue);
 					cell = row.GetCell(1); p.Answer2 = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(2); p.Answer3 = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(3); p.Answer4 = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(4); p.Answer5 = (int)(cell == null ? 0 : cell.NumericCellValue);
 						s.list.Add (p);
 					}
 					data.sheets.Add(s);

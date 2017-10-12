@@ -341,7 +341,7 @@ namespace Games.GameSystem
                     break;
                 case KeyGames.DWPG:
                     dwpgMaster.Prepare ();
-                    nonUsingGameList.Add (dwmgMaster);
+                    nonUsingGameList.Add (dwpgMaster);
                     break;
                 case KeyGames.WMG:
                     wmgMaster.Prepare ();

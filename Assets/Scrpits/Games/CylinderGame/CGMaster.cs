@@ -67,7 +67,7 @@ namespace Games.CG
             ResetAll ();
 
             //ランダムを生成
-
+            randNum = UnityEngine.Random.Range (0, answer.sheets[0].list.Count);
 
             //問題と正解を読み込む
             InitializeQuestion ();
@@ -98,14 +98,14 @@ namespace Games.CG
         public void InitializeQuestion ()
         {
             questionList = new List<List<DCGColor>> ();
-            var l = question[randNum].sheets[0].list;
+            var l = question[0].sheets[0].list;
 
             for ( int j = 0; j < knobs.Length; j++ )
             {
                 var list = new List<DCGColor> ();
                 for ( int i = 0; i < l.Count; i++ )
                 {
-                    switch ( i )
+                    switch ( j )
                     {
                         case 0:
                             list.Add (( DCGColor ) l[i].Knob1);
@@ -144,7 +144,36 @@ namespace Games.CG
 
         public void InitializeHint ()
         {
-            netTransform.CmdSetHint (GetColorFromDCGColor (randNum));
+            netTransform.CmdSetHint (GetColorFromHint (randNum));
+        }
+
+        private Color GetColorFromHint ( int i )
+        {
+            switch ( i )
+            {
+                case 0:
+                    return Color.blue;
+                case 1:
+                    return Color.cyan;
+                case 2:
+                    return Color.gray;
+                case 3:
+                    return Color.green;
+                case 4:
+                    return Color.red;
+                case 5:
+                    return Color.white;
+                case 6:
+                    return Color.yellow;
+                case 7:
+                    return Color.black;
+                case 8:
+                    return Color.magenta;
+                case 9:
+                    return new Color (128, 0, 128);
+            }
+            Debug.Log ("color is overflow");
+            return Color.black;
         }
 
         private void InitializeKnob ()

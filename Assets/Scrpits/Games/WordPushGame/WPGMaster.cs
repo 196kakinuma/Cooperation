@@ -5,6 +5,8 @@ using UnityEngine.Networking;
 using Games.GameSystem;
 using IkLibrary.Unity;
 using Objects;
+using System.Linq;
+using System;
 
 namespace Games.WordPushGame
 {
@@ -15,6 +17,7 @@ namespace Games.WordPushGame
         WPGNetworkTransform netTransform;
 
         public WPGWordButton[] wpgWordButtons;
+        public WPGWordButton[] currentWpgButton;
         public WPGAnswerButton answerButton;
         public WPGResetButton resetButton;
         [HideInInspector]
@@ -85,7 +88,7 @@ namespace Games.WordPushGame
             ResetAll ();
 
             //ランダムを生成
-
+            randNum = UnityEngine.Random.Range (0, answer.sheets[0].list.Count);
 
             //問題と正解を読み込む
             InitializeQuestion ();
@@ -93,6 +96,7 @@ namespace Games.WordPushGame
             InitializeAnswer ();
 
             InitializeHint ();
+            InitializeButtons ();
 
             currentDoor = d;
             PrepareMove ();
@@ -115,7 +119,7 @@ namespace Games.WordPushGame
             for ( int i = 0; i < question.sheets[0].list.Count; i++ )
             {
                 //問題
-                switch ( randNum )
+                switch ( 1 )
                 {
                     case 0:
                         questionList.Add (question.sheets[0].list[i].one);
@@ -125,44 +129,48 @@ namespace Games.WordPushGame
                         break;
                 }
 
-                wpgWordButtons[i].InitializeButtonInfo (questionList[i], i);
-                //文字を設置する
 
-                netTransform.CmdSetWord (wpgWordButtons[i].buttonNum, wpgWordButtons[i].word);
             }
         }
 
         private void InitializeAnswer ()
         {
             answerList = new List<int> ();
-            for ( int i = 0; i < answer.sheets[0].list.Count; i++ )
-            {
-                switch ( randNum )
-                {
-                    case 0:
-                        answerList.Add (answer.sheets[0].list[i].answer1);
-                        break;
-                    case 1:
-                        answerList.Add (answer.sheets[0].list[i].answer2);
-                        break;
-                }
-            }
+            answerList.Add (answer.sheets[0].list[randNum].answer1);
+            answerList.Add (answer.sheets[0].list[randNum].answer2);
+            answerList.Add (answer.sheets[0].list[randNum].answer3);
+            answerList.Add (answer.sheets[0].list[randNum].answer4);
+            answerList.Add (answer.sheets[0].list[randNum].answer5);
+            answerList.Add (answer.sheets[0].list[randNum].answer6);
         }
 
         private void InitializeHint ()
         {
-            switch ( randNum )
-            {
-                case 0:
-                    month = calender.sheets[0].list[0].Month;
-                    day = calender.sheets[0].list[0].Day;
-                    break;
-                case 1:
-                    month = calender.sheets[0].list[1].Month;
-                    day = calender.sheets[0].list[1].Day;
-                    break;
-            }
+            month = calender.sheets[0].list[randNum].Month;
+            day = calender.sheets[0].list[randNum].Day;
             netTransform.CmdSetCalender (month, day);
+        }
+        private void InitializeButtons ()
+        {
+            var array = GetRandomIntArrayFromButtonLength ();
+            currentWpgButton = new WPGWordButton[wpgWordButtons.Length];
+            //array = new int[5] { 0, 1, 2, 3, 4 }; デバッグ用
+            for ( int i = 0; i < wpgWordButtons.Length; i++ )
+            {
+                wpgWordButtons[array[i]].InitializeButtonInfo (questionList[i], i);
+                netTransform.CmdSetWord (wpgWordButtons[array[i]].buttonNum, wpgWordButtons[array[i]].word);
+                currentWpgButton[i] = wpgWordButtons[array[i]];
+            }
+        }
+
+
+        private int[] GetRandomIntArrayFromButtonLength ()
+        {
+            int[] array = new int[wpgWordButtons.Length];
+            for ( int i = 0; i < array.Length; i++ )
+                array[i] = i;
+
+            return array.OrderBy (i => Guid.NewGuid ()).ToArray ();
         }
         #endregion
 

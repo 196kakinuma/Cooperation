@@ -4,6 +4,8 @@ using UnityEngine;
 using IkLibrary.Unity;
 using Objects;
 using Games.GameSystem;
+using System.Linq;
+using System;
 
 namespace Games.CG
 {
@@ -23,6 +25,7 @@ namespace Games.CG
         CGNetworkTransform netTransform;
         [SerializeField]
         CGKnob[] knobs;
+        CGKnob[] currentKnobs;
 
         [SerializeField]
         DCGQuestion[] question;
@@ -178,12 +181,24 @@ namespace Games.CG
 
         private void InitializeKnob ()
         {
+            currentKnobs = new CGKnob[knobs.Length];
+            int[] array = GetRandomIntArrayFromKnobLength ();
             for ( int i = 0; i < knobs.Length; i++ )
             {
-                knobs[i].Initialize (GetColorArray (questionList[i]));
+
+                knobs[array[i]].Initialize (GetColorArray (questionList[i]));
+                currentKnobs[i] = knobs[array[i]];
             }
         }
 
+        private int[] GetRandomIntArrayFromKnobLength ()
+        {
+            int[] array = new int[knobs.Length];
+            for ( int i = 0; i < array.Length; i++ )
+                array[i] = i;
+
+            return array.OrderBy (i => Guid.NewGuid ()).ToArray ();
+        }
         #endregion
 
         #region DCGColor
@@ -261,7 +276,7 @@ namespace Games.CG
         {
             for ( int i = 0; i < knobs.Length; i++ )
             {
-                if ( answerList[i] != GetDCGColorFromColor (knobs[i].GetCurrentColor ()) )
+                if ( answerList[i] != GetDCGColorFromColor (currentKnobs[i].GetCurrentColor ()) )
                     return false;
             }
             return true;

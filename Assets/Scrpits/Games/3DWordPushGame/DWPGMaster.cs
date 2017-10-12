@@ -89,7 +89,7 @@ namespace Games.DWordPushGame
             ResetAll ();
 
             //ランダムを生成
-            randNum = UnityEngine.Random.Range (0, wpgWordButtons.Length);
+            randNum = UnityEngine.Random.Range (0, answer.sheets[0].list.Count);
 
             //問題と正解を読み込む
             InitializeQuestion ();

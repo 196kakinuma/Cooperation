@@ -112,7 +112,7 @@ namespace Games.GameSystem
 
         void Update ()
         {
-            if ( !isPlaying ) return;
+            if ( !isPlaying || GameSettings.Instance.debug ) return;
             //ゲームクリア
             if ( timer.IsGameEnd () ) GameClear ();
         }

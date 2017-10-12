@@ -19,11 +19,16 @@ namespace Games.CG
 
         float[] heightThreshold;
 
+        void Start ()
+        {
+            firstLocalHeight = transform.localPosition.y;
+        }
+
         public void Initialize ( Color[] colors )
         {
             this.colors = colors;
             heightThreshold = new float[colors.Length];
-            firstLocalHeight = transform.localPosition.y;
+            //firstLocalHeight = transform.localPosition.y;
             float t = firstLocalHeight / colors.Length;
             for ( int i = 1; i <= colors.Length; i++ )
             {

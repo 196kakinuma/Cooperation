@@ -2714,7 +2714,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8999f8d2193f0d74fbc905097856666a, type: 2}
   answer: {fileID: 11400000, guid: 85e13849e7eb76a45b0a2d6a2b30e1e2, type: 2}
   chairobj: {fileID: 0}
-  moveDistance: 2
+  moveDistance: 2.2
 --- !u!114 &114144203431231192
 MonoBehaviour:
   m_ObjectHideFlags: 1

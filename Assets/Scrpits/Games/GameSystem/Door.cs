@@ -58,7 +58,7 @@ namespace Games.GameSystem
         public Enemy.Enemy VisitEnemy
         {
             get { return enemy; }
-            private set { enemy = value; }
+            set { enemy = value; }
         }
 
         bool keyLock = false;
@@ -68,7 +68,8 @@ namespace Games.GameSystem
             set
             {
                 network.CmdSetLockText (value);
-                VisitEnemy.SetLockDoorStayTime ();
+                if ( value == true && VisitEnemy != null ) //扉をロックするときで、エネミーがいるとき
+                    VisitEnemy.SetLockDoorStayTime ();
                 keyLock = value;
             }
         }

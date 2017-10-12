@@ -120,7 +120,7 @@ namespace Games.DWordPushGame
             for ( int i = 0; i < question.sheets[0].list.Count; i++ )
             {
                 //問題
-                switch ( randNum )
+                switch ( 1 )
                 {
                     case 0:
                         questionList.Add (question.sheets[0].list[i].one);
@@ -130,10 +130,7 @@ namespace Games.DWordPushGame
                         break;
                 }
 
-                wpgWordButtons[i].InitializeButtonInfo (questionList[i], i);
-                //文字を設置する
 
-                netTransform.CmdSetWord (wpgWordButtons[i].buttonNum, wpgWordButtons[i].word);
             }
         }
 

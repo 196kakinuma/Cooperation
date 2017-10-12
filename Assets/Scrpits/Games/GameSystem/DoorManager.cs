@@ -165,6 +165,7 @@ namespace Games.GameSystem
             }
             Debug.Log ("入室しました");
             d.SetImageActive (e.Type);
+            d.VisitEnemy = e;
             GameMaster.Instance.ActivateKeyLockGame (d);
             enemyRoomList.Add (e, d);
 
@@ -175,6 +176,7 @@ namespace Games.GameSystem
 
             Debug.Log ("鍵が締まっていました撤退");
             d.SetImageNonActive (e.Type);
+            d.VisitEnemy = null;
             GameMaster.Instance.DisActivateKeyLockGame (d);
             enemyRoomList.Remove (e);
             StartCoroutine (BlankRoomTime (d));

@@ -68,6 +68,7 @@ namespace Games.GameSystem
             set
             {
                 network.CmdSetLockText (value);
+                VisitEnemy.SetLockDoorStayTime ();
                 keyLock = value;
             }
         }

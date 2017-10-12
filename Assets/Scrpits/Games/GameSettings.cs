@@ -20,6 +20,9 @@ namespace Games
 
         public bool tutorial;
 
+        [Tooltip ("Answerを押したら正解になる")]
+        public bool debug;
+
         [Range (1, 3)]
         public int EnemyNum = 3;
         [Range (3, 5)]

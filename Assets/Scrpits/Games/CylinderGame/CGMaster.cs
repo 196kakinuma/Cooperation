@@ -244,7 +244,7 @@ namespace Games.CG
 
             bool correction = CheckAnswer ();
 
-            if ( correction )
+            if ( correction || GameSettings.Instance.debug )
             {
                 Debug.Log ("answer is correct!!");
                 currentDoor.KeyLock = true;

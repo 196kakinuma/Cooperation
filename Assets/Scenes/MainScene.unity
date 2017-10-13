@@ -393,12 +393,12 @@ Prefab:
         type: 2}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1800705330}
+      objectReference: {fileID: 1327664664}
     - target: {fileID: 23342881851894932, guid: fce2155142ff3f64abc3745505f3897c,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 836159641}
+      objectReference: {fileID: 1097533758}
     - target: {fileID: 1658584406051400, guid: fce2155142ff3f64abc3745505f3897c, type: 2}
       propertyPath: m_IsActive
       value: 1
@@ -516,7 +516,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &836159641
+--- !u!21 &1097533758
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -582,7 +582,7 @@ Transform:
   m_Father: {fileID: 61831133}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!43 &1800705330
+--- !u!43 &1327664664
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -783,6 +783,7 @@ GameObject:
   - component: {fileID: 1897459341}
   - component: {fileID: 1897459342}
   - component: {fileID: 1897459344}
+  - component: {fileID: 1897459343}
   m_Layer: 0
   m_Name: GlobalManagers
   m_TagString: Untagged
@@ -950,6 +951,17 @@ MonoBehaviour:
   showGUI: 1
   offsetX: 0
   offsetY: 0
+--- !u!114 &1897459343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1897459337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b225ee23453a5544b5b1c0feccdab32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1897459344
 MonoBehaviour:
   m_ObjectHideFlags: 0

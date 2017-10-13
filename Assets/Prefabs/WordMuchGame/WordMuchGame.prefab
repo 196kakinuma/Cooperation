@@ -1284,7 +1284,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1136722833741138}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.20057628, y: -1.048, z: -0.498}
+  m_LocalPosition: {x: -0.20057628, y: -1.088, z: -0.498}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4949429227349526}
@@ -2714,7 +2714,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8999f8d2193f0d74fbc905097856666a, type: 2}
   answer: {fileID: 11400000, guid: 85e13849e7eb76a45b0a2d6a2b30e1e2, type: 2}
   chairobj: {fileID: 0}
-  moveDistance: 2
+  moveDistance: 2.2
 --- !u!114 &114144203431231192
 MonoBehaviour:
   m_ObjectHideFlags: 1

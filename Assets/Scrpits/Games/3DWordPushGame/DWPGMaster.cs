@@ -89,7 +89,7 @@ namespace Games.DWordPushGame
             ResetAll ();
 
             //ランダムを生成
-            randNum = UnityEngine.Random.Range (0, wpgWordButtons.Length);
+            randNum = UnityEngine.Random.Range (0, answer.sheets[0].list.Count);
 
             //問題と正解を読み込む
             InitializeQuestion ();
@@ -120,7 +120,7 @@ namespace Games.DWordPushGame
             for ( int i = 0; i < question.sheets[0].list.Count; i++ )
             {
                 //問題
-                switch ( randNum )
+                switch ( 1 )
                 {
                     case 0:
                         questionList.Add (question.sheets[0].list[i].one);
@@ -130,10 +130,7 @@ namespace Games.DWordPushGame
                         break;
                 }
 
-                wpgWordButtons[i].InitializeButtonInfo (questionList[i], i);
-                //文字を設置する
 
-                netTransform.CmdSetWord (wpgWordButtons[i].buttonNum, wpgWordButtons[i].word);
             }
         }
 
@@ -203,7 +200,8 @@ namespace Games.DWordPushGame
             if ( !operationAuthority ) return;
 
             bool correction = true;
-            if ( clientAnswerList.Count != answerList.Count ) correction = false;
+            if ( GameSettings.Instance.debug ) correction = true;
+            else if ( clientAnswerList.Count != answerList.Count ) correction = false;
 
             if ( correction )
             {

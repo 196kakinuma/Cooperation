@@ -196,7 +196,8 @@ namespace Games.WordPushGame
             if ( !operationAuthority ) return;
 
             bool correction = true;
-            if ( clientAnswerList.Count != answerList.Count ) correction = false;
+            if ( GameSettings.Instance.debug ) correction = true;
+            else if ( clientAnswerList.Count != answerList.Count ) correction = false;
 
             if ( correction )
             {

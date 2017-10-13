@@ -54,7 +54,7 @@ namespace Games.Enemy
         void GenerateTutorialEnemy ()
         {
             enemys = new Enemy[1];
-            enemys[0] = new Enemy (1f, 120f, EnemyType.RED);
+            enemys[0] = new Enemy (1f, 120f, 5f, EnemyType.RED);
         }
         #endregion
 
@@ -79,13 +79,13 @@ namespace Games.Enemy
                 switch ( ( EnemyType ) enemyColor[i] )
                 {
                     case EnemyType.RED:
-                        enemys[i] = new Enemy (6f, 30f, EnemyType.RED);
+                        enemys[i] = new Enemy (6f, 30f, 10f, EnemyType.RED);
                         break;
                     case EnemyType.BLUE:
-                        enemys[i] = new Enemy (70f, 40f, EnemyType.BLUE);
+                        enemys[i] = new Enemy (70f, 40f, 10f, EnemyType.BLUE);
                         break;
                     case EnemyType.GREEN:
-                        enemys[i] = new Enemy (80f, 25f, EnemyType.GREEN);
+                        enemys[i] = new Enemy (80f, 25f, 10f, EnemyType.GREEN);
                         break;
                 }
             }

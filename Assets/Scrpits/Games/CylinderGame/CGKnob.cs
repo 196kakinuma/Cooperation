@@ -50,8 +50,9 @@ namespace Games.CG
 
         public void NtSetCurrentState ( float y, Color c )
         {
+            Debug.Log ("HOld!");
             transform.localPosition = new Vector3 (transform.localPosition.x, y, transform.localPosition.z);
-            material.color = c;
+            GetComponent<Renderer> ().material.SetColor ("_Color", c);
         }
 
         public Color GetCurrentColor ()

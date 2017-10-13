@@ -49,7 +49,7 @@ namespace Device
                 holdTime += Time.deltaTime;
 
                 if ( holdTimeFrom < holdTime && selectedObject != null )
-                    IsHolding = true;
+                    ActivateHold ();
 
             }
             if ( IsHolding )
@@ -60,13 +60,18 @@ namespace Device
             }
             if ( device.GetPressUp (SteamVR_Controller.ButtonMask.Trigger) )
             {
-                if ( IsSelecting == true && !IsHolding )
+                if ( IsSelecting == true && !IsHolding && selectedObject != null )
                 {
                     selectedObject.SendMessage ("ClickReceive");
+                    NullSelectObject ();
                 }
+
                 IsCounting = false;
+                if ( IsHolding )
+                    NullSelectObject ();
                 IsHolding = false;
                 holdTime = 0f;
+
             }
         }
 
@@ -76,7 +81,7 @@ namespace Device
 
             Debug.Log ("find");
             IsSelecting = true;
-            selectedObject = othre.gameObject;
+            SelectObject (othre.gameObject);
 
         }
 
@@ -85,9 +90,27 @@ namespace Device
             if ( other.gameObject != selectedObject || IsHolding ) return;
 
             IsSelecting = false;
-            selectedObject = null;
+            NullSelectObject ();
+
+        }
+        void SelectObject ( GameObject select )
+        {
+            selectedObject = select;
+            selectedObject.GetComponent<Renderer> ().material.EnableKeyword ("_EMISSION");
+            selectedObject.GetComponent<Renderer> ().material.SetColor ("_EmissionColor", new Color (1, 0, 0));
+        }
+        void ActivateHold ()
+        {
+            selectedObject.GetComponent<Renderer> ().material.DisableKeyword ("_EMISSION");
+            IsHolding = true;
         }
 
+        void NullSelectObject ()
+        {
+            selectedObject.GetComponent<Renderer> ().material.DisableKeyword ("_EMISSION");
+            selectedObject = null;
+
+        }
 
 
 #endif

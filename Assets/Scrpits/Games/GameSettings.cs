@@ -12,7 +12,8 @@ namespace Games
         WMG,
         DWMG,
         CG,
-        DCG
+        DCG,
+        NONE
     }
     public class GameSettings : SingletonMonoBehaviour<GameSettings>
     {

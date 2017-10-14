@@ -15,7 +15,7 @@ namespace Games.GameSystem
         string extension = ".scv";
         ExcelWriter eWriter;
 
-        List<int> expGameNums;
+        List<string> expGameNums;
         List<float> expTimes;
         List<string> expSituations;
         // Use this for initialization
@@ -32,7 +32,7 @@ namespace Games.GameSystem
         {
             eWriter.InitializeFile (name);
             eWriter.InitWriteUserInfo (day, name);
-            expGameNums = new List<int> ();
+            expGameNums = new List<string> ();
             expTimes = new List<float> ();
             expSituations = new List<string> ();
 
@@ -44,9 +44,9 @@ namespace Games.GameSystem
         /// <param name="gameNum"></param>
         /// <param name="time"></param>
         /// <param name="situation"></param>
-        public void SetExperimentData ( int gameNum, float time, string situation )
+        public void SetExperimentData ( KeyGames game, float time, string situation )
         {
-            expGameNums.Add (gameNum);
+            expGameNums.Add (game.ToString ());
             expTimes.Add (time);
             expSituations.Add (situation);
         }

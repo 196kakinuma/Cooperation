@@ -1,33 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using IkLibrary.Unity;
 using UnityEngine;
 using System.IO;
 namespace Games.GameSystem
 {
-    public class ExcelWriter : SingletonMonoBehaviour<ExcelWriter>
+    public class ExcelWriter
     {
-        public string day;
-        public string UserName;
-        public string memo = "";
 
-        string extension = ".scv";
 
         string filename;
+        string extension = ".csv";
         StreamWriter sw;
-        // Use this for initialization
-        void Start ()
-        {
 
-        }
 
-        // Update is called once per frame
-        void Update ()
-        {
-
-        }
-
-        public void InitializeFile ()
+        public void InitializeFile ( string name )
         {
             filename = name + extension;
 
@@ -44,7 +30,7 @@ namespace Games.GameSystem
             sw.WriteLine ("test output");
         }
 
-        public void InitWriteUserInfo ()
+        public void InitWriteUserInfo ( string day, string name )
         {
             sw.WriteLine (day + ",");
             sw.WriteLine (name + ",");

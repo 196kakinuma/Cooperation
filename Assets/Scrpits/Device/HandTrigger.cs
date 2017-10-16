@@ -80,12 +80,6 @@ namespace Device
 
             if ( ( othre.gameObject.GetComponent (typeof (Objects.IVRObject)) == null ) || IsHolding ) return;
 
-<<<<<<< HEAD
-			if (other.gameObject != selectedObject)
-				NullSelectObject ();
-				
-=======
->>>>>>> f9314aafa474e2b31052f034df2c40823b53572e
             IsSelecting = true;
             SelectObject (othre.gameObject);
 

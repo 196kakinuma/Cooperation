@@ -42,6 +42,14 @@ namespace Games.GameSystem
             sw.Write (word + ",");
         }
 
+        /// <summary>
+        /// 改行を書き出す
+        /// </summary>
+        public void WriteNewLine ()
+        {
+            sw.WriteLine ("");
+        }
+
         public void CloseFile ()
         {
             sw.Flush ();

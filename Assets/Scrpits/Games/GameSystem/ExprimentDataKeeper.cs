@@ -28,7 +28,7 @@ namespace Games.GameSystem
         /// <summary>
         /// 実験前にそのユーザの情報を格納するファイルを生成
         /// </summary>
-        void InitializeNewFile ()
+        public void InitializeNewFile ()
         {
             eWriter.InitializeFile (name);
             eWriter.InitWriteUserInfo (day, name);
@@ -55,9 +55,17 @@ namespace Games.GameSystem
         /// <summary>
         /// 実験後のデータ書き出し用
         /// </summary>
-        void AllWriteDownExcel ()
+        public void AllWriteDownExcel ()
         {
-
+            foreach ( var a in expGameNums )
+                eWriter.WriteWord (a);
+            eWriter.WriteNewLine ();
+            foreach ( var a in expTimes )
+                eWriter.WriteWord (a.ToString ());
+            eWriter.WriteNewLine ();
+            foreach ( var a in expSituations )
+                eWriter.WriteWord (a);
+            eWriter.WriteNewLine ();
         }
     }
 }

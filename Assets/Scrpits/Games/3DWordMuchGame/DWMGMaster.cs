@@ -149,6 +149,15 @@ namespace Games.DWordMuchGame
                 case 1:
                     netTransform.CmdSetChairMatColor (Color.blue);
                     break;
+                case 2:
+                    netTransform.CmdSetChairMatColor (Color.green);
+                    break;
+                case 3:
+                    netTransform.CmdSetChairMatColor (Color.yellow);
+                    break;
+                case 4:
+                    netTransform.CmdSetChairMatColor (Color.white);
+                    break;
             }
         }
 

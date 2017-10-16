@@ -16,6 +16,7 @@ namespace Games.CG
 
         public void NtInitializeHint ( Color c )
         {
+			Debug.Log ("set hint color ");
             material.color = c;
         }
     }

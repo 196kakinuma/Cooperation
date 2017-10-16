@@ -21,6 +21,8 @@ namespace Games
 
         public bool tutorial;
 
+		public bool detaWrite;
+
         [Tooltip ("Answerを押したら正解になる")]
         public bool debug;
 

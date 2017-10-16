@@ -77,9 +77,14 @@ namespace Device
 
         void OnTriggerEnter ( Collider othre )
         {
+
             if ( ( othre.gameObject.GetComponent (typeof (Objects.IVRObject)) == null ) || IsHolding ) return;
 
-            Debug.Log ("find");
+			if (selectedObject != null)
+			{
+				selectedObject.GetComponent<Renderer> ().material.DisableKeyword ("_EMISSION");
+			}
+
             IsSelecting = true;
             SelectObject (othre.gameObject);
 

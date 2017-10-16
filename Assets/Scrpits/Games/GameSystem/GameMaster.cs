@@ -231,7 +231,7 @@ namespace Games.GameSystem
             enemyMaster.InitializeGameStart ();
             doorManager.InitializeGameStart ();
 
-
+            ExprimentDataKeeper.Instance.InitializeNewFile ();
             yield return null;
         }
 
@@ -260,6 +260,7 @@ namespace Games.GameSystem
                 g.SetOperationAuthority (false);
             }
 
+            ExprimentDataKeeper.Instance.AllWriteDownExcel ();
             //スタートボタンを戻す
             startButton.CmdResetStartButton ();
 
@@ -271,14 +272,17 @@ namespace Games.GameSystem
         /// <returns></returns>
         public void ActivateKeyLockGame ( Door d )
         {
-            var g = GetRandomKeyLockGame ();
+            int rand;
+            var g = GetRandomKeyLockGame (out rand);
             nonUsingGameList.Remove (g);
             usingGameAndDoorList.Add (d, g);
+            ExprimentDataKeeper.Instance.SetExperimentData (( KeyGames ) rand, GameTimer.Instance.GetTime (), "GameInit");
             StartCoroutine (g.Initialize (d));
         }
 
         public void AppearKeyLockGame ( Door d )
         {
+            ExprimentDataKeeper.Instance.SetExperimentData (KeyGames.NONE, GameTimer.Instance.GetTime (), "Apppear");
             usingGameAndDoorList[d].AppearRoom ();
         }
 
@@ -291,6 +295,7 @@ namespace Games.GameSystem
             var g = usingGameAndDoorList[d];
             nonUsingGameList.Add (g);
             g.Clear ();
+            ExprimentDataKeeper.Instance.SetExperimentData (( KeyGames.NONE ), GameTimer.Instance.GetTime (), "Answer Correct");
             usingGameAndDoorList.Remove (d);
         }
 
@@ -298,9 +303,9 @@ namespace Games.GameSystem
         /// 現在使われていないゲームをランダムに入手する
         /// </summary>
         /// <returns></returns>
-        IKeyLockGameMaster GetRandomKeyLockGame ()
+        IKeyLockGameMaster GetRandomKeyLockGame ( out int rand )
         {
-            int rand = Random.Range (0, nonUsingGameList.Count);
+            rand = Random.Range (0, nonUsingGameList.Count);
             return nonUsingGameList[rand];
         }
 

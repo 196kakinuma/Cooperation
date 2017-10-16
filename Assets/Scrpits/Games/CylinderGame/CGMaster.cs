@@ -230,6 +230,12 @@ namespace Games.CG
                     return Color.white;
                 case 6:
                     return Color.yellow;
+                case 7:
+                    return Color.magenta;
+                case 8:
+                    return new Color (128f, 0, 128f); //紫
+                case 9:
+                    return new Color (128, 0, 0); //brown
             }
             Debug.Log ("color is overflow");
             return Color.black;

@@ -195,9 +195,15 @@ namespace Games.GameSystem
             {
                 wait += Time.deltaTime;
                 d.BlankTime = wait;
-                if ( !d.KeyLock ) break;
+                if ( !d.KeyLock )
+                {
+                    ExprimentDataKeeper.Instance.SetExperimentData (KeyGames.NONE, wait, "wait end  time");
+                    break;
+                }
+
                 yield return new WaitForEndOfFrame ();
             }
+            ExprimentDataKeeper.Instance.SetExperimentData (KeyGames.NONE, wait, "Blanktime finish");
             blankRoomList.Remove (d);
             d.BlankTime = 0f;
         }

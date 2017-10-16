@@ -80,11 +80,9 @@ namespace Device
 
             if ( ( othre.gameObject.GetComponent (typeof (Objects.IVRObject)) == null ) || IsHolding ) return;
 
-			if (selectedObject != null)
-			{
-				selectedObject.GetComponent<Renderer> ().material.DisableKeyword ("_EMISSION");
-			}
-
+			if (other.gameObject != selectedObject)
+				NullSelectObject ();
+				
             IsSelecting = true;
             SelectObject (othre.gameObject);
 

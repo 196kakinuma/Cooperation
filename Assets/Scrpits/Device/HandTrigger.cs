@@ -119,8 +119,6 @@ namespace Device
             selectedObject = null;
 
         }
-
-
 #endif
     }
 

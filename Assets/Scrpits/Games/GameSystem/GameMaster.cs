@@ -196,12 +196,12 @@ namespace Games.GameSystem
         /// <summary>
         /// startButtonから呼ばれる.ゲームを開始する
         /// </summary>
-        public IEnumerator StartGame ( Coroutine buttonAnimation )
+        public IEnumerator ColStartGame ( Coroutine buttonAnimation )
         {
+            ExprimentDataKeeper.Instance.InitializeNewFile ();
             Coroutine prepare = StartCoroutine (StartPrepare ());
             yield return prepare;
             yield return buttonAnimation;
-			ExprimentDataKeeper.Instance.InitializeNewFile ();
             //タイマーなどを開始
             timer.GameStart ();
             //敵を動かし始める
@@ -219,7 +219,6 @@ namespace Games.GameSystem
         /// <returns></returns>
         IEnumerator StartPrepare ()
         {
-            Debug.Log ("startPrepare");
             nonUsingGameList = new List<IKeyLockGameMaster> ();
             usingGameAndDoorList = new Dictionary<Door, IKeyLockGameMaster> ();
 
@@ -260,7 +259,8 @@ namespace Games.GameSystem
                 g.SetOperationAuthority (false);
             }
 
-            //ExprimentDataKeeper.Instance.AllWriteDownExcel ();
+            if ( !GameSettings.Instance.tutorial )
+                ExprimentDataKeeper.Instance.AllWriteDownExcel ();
             //スタートボタンを戻す
             startButton.CmdResetStartButton ();
 
@@ -276,13 +276,15 @@ namespace Games.GameSystem
             var g = GetRandomKeyLockGame (out rand);
             nonUsingGameList.Remove (g);
             usingGameAndDoorList.Add (d, g);
-            //ExprimentDataKeeper.Instance.SetExperimentData (( KeyGames ) rand, GameTimer.Instance.GetTime (), "GameInit");
+            if ( !GameSettings.Instance.tutorial )
+                ExprimentDataKeeper.Instance.SetExperimentData (( KeyGames ) rand, GameTimer.Instance.GetTime (), "GameInit");
             StartCoroutine (g.Initialize (d));
         }
 
         public void AppearKeyLockGame ( Door d )
         {
-            //ExprimentDataKeeper.Instance.SetExperimentData (KeyGames.NONE, GameTimer.Instance.GetTime (), "Apppear");
+            if ( !GameSettings.Instance.tutorial )
+                ExprimentDataKeeper.Instance.SetExperimentData (KeyGames.NONE, GameTimer.Instance.GetTime (), "Apppear");
             usingGameAndDoorList[d].AppearRoom ();
         }
 
@@ -295,7 +297,8 @@ namespace Games.GameSystem
             var g = usingGameAndDoorList[d];
             nonUsingGameList.Add (g);
             g.Clear ();
-            //ExprimentDataKeeper.Instance.SetExperimentData (( KeyGames.NONE ), GameTimer.Instance.GetTime (), "Answer Correct");
+            if ( !GameSettings.Instance.tutorial )
+                ExprimentDataKeeper.Instance.SetExperimentData (( KeyGames.NONE ), GameTimer.Instance.GetTime (), "Answer Correct");
             usingGameAndDoorList.Remove (d);
         }
 

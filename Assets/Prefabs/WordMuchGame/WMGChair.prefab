@@ -149,7 +149,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 8d844a50f739acb49a3dd82337f73370, type: 2}
+  - {fileID: 2100000, guid: f413150072fc8574d82d182f589909be, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -246,4 +246,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c17132ade89ecb45a5c6a2ed1e7b995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chairMat: {fileID: 2100000, guid: 8d844a50f739acb49a3dd82337f73370, type: 2}
+  chairMat: {fileID: 2100000, guid: f413150072fc8574d82d182f589909be, type: 2}

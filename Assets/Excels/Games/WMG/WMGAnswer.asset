@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!114 &11400000
 MonoBehaviour:
-  m_ObjectHideFlags: 8
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -16,26 +16,26 @@ MonoBehaviour:
     list:
     - Answer1: 0
       Answer2: 1
-      Answer3: 0
-      Answer4: 0
-      Answer5: 0
+      Answer3: 2
+      Answer4: 3
+      Answer5: 4
     - Answer1: 1
       Answer2: 2
-      Answer3: 0
-      Answer4: 0
+      Answer3: 3
+      Answer4: 4
       Answer5: 0
     - Answer1: 2
       Answer2: 3
-      Answer3: 0
+      Answer3: 4
       Answer4: 0
-      Answer5: 0
+      Answer5: 1
     - Answer1: 1
       Answer2: 4
-      Answer3: 0
+      Answer3: 2
       Answer4: 0
-      Answer5: 0
+      Answer5: 3
     - Answer1: 4
       Answer2: 3
-      Answer3: 0
+      Answer3: 2
       Answer4: 0
-      Answer5: 0
+      Answer5: 1

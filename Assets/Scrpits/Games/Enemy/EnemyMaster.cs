@@ -54,7 +54,7 @@ namespace Games.Enemy
         void GenerateTutorialEnemy ()
         {
             enemys = new Enemy[1];
-            enemys[0] = new Enemy (1f, 120f, 5f, EnemyType.RED);
+            enemys[0] = new Enemy (5f, 300f, 5f, EnemyType.RED);
         }
         #endregion
 

@@ -14,6 +14,7 @@ namespace Games.DCG
         Color[] colors;
         [SerializeField]
         Material material;
+		Color currentColor;
 
         float firstLocalHeight;
 
@@ -51,12 +52,13 @@ namespace Games.DCG
         public void NtSetCurrentState ( float y, Color c )
         {
             transform.localPosition = new Vector3 (transform.localPosition.x, y, transform.localPosition.z);
-            material.color = c;
+			GetComponent<Renderer> ().material.SetColor ("_Color", c);
+			currentColor = c;
         }
 
         public Color GetCurrentColor ()
         {
-            return material.color;
+			return currentColor;
         }
 
         Color GetColor ( float y )

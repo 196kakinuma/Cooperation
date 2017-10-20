@@ -14,6 +14,7 @@ namespace Games.CG
         Color[] colors;
         [SerializeField]
         Material material;
+		Color currentColor;
 
         float firstLocalHeight;
 
@@ -50,14 +51,14 @@ namespace Games.CG
 
         public void NtSetCurrentState ( float y, Color c )
         {
-            Debug.Log ("HOld!");
             transform.localPosition = new Vector3 (transform.localPosition.x, y, transform.localPosition.z);
             GetComponent<Renderer> ().material.SetColor ("_Color", c);
+			currentColor = c;
         }
 
         public Color GetCurrentColor ()
         {
-            return material.color;
+			return currentColor;
         }
 
         Color GetColor ( float y )

@@ -68,7 +68,9 @@ namespace Device
 
                 IsCounting = false;
                 if ( IsHolding )
+                {
                     NullSelectObject ();
+                }
                 IsHolding = false;
                 holdTime = 0f;
 
@@ -77,9 +79,15 @@ namespace Device
 
         void OnTriggerEnter ( Collider othre )
         {
+
             if ( ( othre.gameObject.GetComponent (typeof (Objects.IVRObject)) == null ) || IsHolding ) return;
 
-            Debug.Log ("find");
+            if ( selectedObject != null )
+            {
+                NullSelectObject ();
+
+            }
+
             IsSelecting = true;
             SelectObject (othre.gameObject);
 
@@ -97,7 +105,7 @@ namespace Device
         {
             selectedObject = select;
             selectedObject.GetComponent<Renderer> ().material.EnableKeyword ("_EMISSION");
-            selectedObject.GetComponent<Renderer> ().material.SetColor ("_EmissionColor", new Color (1, 0, 0));
+            selectedObject.GetComponent<Renderer> ().material.SetColor ("_EmissionColor", new Color (255, 204, 0));
         }
         void ActivateHold ()
         {
@@ -111,8 +119,6 @@ namespace Device
             selectedObject = null;
 
         }
-
-
 #endif
     }
 

@@ -157,7 +157,6 @@ namespace Games.DCG
             int[] array = GetRandomIntArrayFromKnobLength ();
             for ( int i = 0; i < knobs.Length; i++ )
             {
-
                 knobs[array[i]].Initialize (GetColorArray (questionList[i]));
                 currentKnobs[i] = knobs[array[i]];
             }
@@ -184,6 +183,7 @@ namespace Games.DCG
             return c;
         }
 
+		//ヒント用
         private Color GetColorFromDCGColor ( int i )
         {
             switch ( i )
@@ -202,12 +202,6 @@ namespace Games.DCG
                     return Color.white;
                 case 6:
                     return Color.yellow;
-                case 7:
-                    return Color.magenta;
-                case 8:
-                    return new Color (128f, 0, 128f); //紫
-                case 9:
-                    return new Color (128, 0, 0); //brown
             }
             Debug.Log ("color is overflow");
             return Color.black;
@@ -254,7 +248,7 @@ namespace Games.DCG
         {
             for ( int i = 0; i < knobs.Length; i++ )
             {
-                if ( answerList[i] != GetDCGColorFromColor (knobs[i].GetCurrentColor ()) )
+				if ( answerList[i] != GetDCGColorFromColor (currentKnobs[i].GetCurrentColor ()) )
                     return false;
             }
             return true;

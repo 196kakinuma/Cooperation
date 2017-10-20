@@ -68,7 +68,9 @@ namespace Device
 
                 IsCounting = false;
                 if ( IsHolding )
+                {
                     NullSelectObject ();
+                }
                 IsHolding = false;
                 holdTime = 0f;
 
@@ -80,10 +82,11 @@ namespace Device
 
             if ( ( othre.gameObject.GetComponent (typeof (Objects.IVRObject)) == null ) || IsHolding ) return;
 
-			if (selectedObject != null)
-			{
-				selectedObject.GetComponent<Renderer> ().material.DisableKeyword ("_EMISSION");
-			}
+            if ( selectedObject != null )
+            {
+                NullSelectObject ();
+
+            }
 
             IsSelecting = true;
             SelectObject (othre.gameObject);
@@ -102,7 +105,7 @@ namespace Device
         {
             selectedObject = select;
             selectedObject.GetComponent<Renderer> ().material.EnableKeyword ("_EMISSION");
-            selectedObject.GetComponent<Renderer> ().material.SetColor ("_EmissionColor", new Color (1, 0, 0));
+            selectedObject.GetComponent<Renderer> ().material.SetColor ("_EmissionColor", new Color (255, 204, 0));
         }
         void ActivateHold ()
         {

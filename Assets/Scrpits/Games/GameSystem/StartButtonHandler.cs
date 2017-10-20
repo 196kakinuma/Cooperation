@@ -32,7 +32,7 @@ namespace Games.GameSystem
             if ( Networks.NetworkInitializer.Instance.cameraType == CameraType.VR && Networks.NetworkInitializer.Instance.playerType == PlayerType.HOST )
             {
                 if ( !tutorial )
-                    StartCoroutine (GameMaster.Instance.StartGame (c));
+                    StartCoroutine (GameMaster.Instance.ColStartGame (c));
                 else
                     StartCoroutine (GameMaster.Instance.TutorialStart (c));
             }

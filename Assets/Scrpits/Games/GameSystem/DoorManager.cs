@@ -197,13 +197,15 @@ namespace Games.GameSystem
                 d.BlankTime = wait;
                 if ( !d.KeyLock )
                 {
-                   // ExprimentDataKeeper.Instance.SetExperimentData (KeyGames.NONE, wait, "wait end  time");
+                    if ( !GameSettings.Instance.tutorial )
+                        ExprimentDataKeeper.Instance.SetExperimentData (KeyGames.NONE, wait, "wait end  time");
                     break;
                 }
 
                 yield return new WaitForEndOfFrame ();
             }
-            //ExprimentDataKeeper.Instance.SetExperimentData (KeyGames.NONE, wait, "Blanktime finish");
+            if ( !GameSettings.Instance.tutorial )
+                ExprimentDataKeeper.Instance.SetExperimentData (KeyGames.NONE, wait, "Blanktime finish");
             blankRoomList.Remove (d);
             d.BlankTime = 0f;
         }

@@ -63,7 +63,6 @@ namespace Device
                 if ( IsSelecting == true && !IsHolding && selectedObject != null )
                 {
                     selectedObject.SendMessage ("ClickReceive");
-                    NullSelectObject ();
                 }
 
                 IsCounting = false;

@@ -22,6 +22,7 @@ namespace Games.GameSystem
         void Start ()
         {
             eWriter = new ExcelWriter ();
+            Debug.Log ("ExprimentDataKeeper init ");
         }
 
 
@@ -30,11 +31,12 @@ namespace Games.GameSystem
         /// </summary>
         public void InitializeNewFile ()
         {
-            eWriter.InitializeFile (name);
+            eWriter.InitializeFile (UserName);
             eWriter.InitWriteUserInfo (day, name);
             expGameNums = new List<string> ();
             expTimes = new List<float> ();
             expSituations = new List<string> ();
+
 
         }
 

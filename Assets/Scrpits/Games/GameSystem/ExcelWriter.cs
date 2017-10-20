@@ -17,9 +17,10 @@ namespace Games.GameSystem
         {
             filename = name + extension;
 
+
             FileStream fs = File.Create (Application.dataPath + "/ExperimentData/" + filename);
 
-            Debug.Log (fs.Name);
+            Debug.Log (name);
             // ファイルストリームを閉じて、変更を確定させる
             // 呼ばなくても using を抜けた時点で Dispose メソッドが呼び出される
             fs.Close ();

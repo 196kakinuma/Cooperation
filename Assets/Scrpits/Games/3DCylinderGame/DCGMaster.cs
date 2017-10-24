@@ -97,6 +97,10 @@ namespace Games.DCG
 
         }
 
+        public string GetName ()
+        {
+            return gameObject.name;
+        }
         #region INIT
 
         public void InitializeQuestion ()
@@ -183,7 +187,7 @@ namespace Games.DCG
             return c;
         }
 
-		//ヒント用
+        //ヒント用
         private Color GetColorFromDCGColor ( int i )
         {
             switch ( i )
@@ -248,7 +252,7 @@ namespace Games.DCG
         {
             for ( int i = 0; i < knobs.Length; i++ )
             {
-				if ( answerList[i] != GetDCGColorFromColor (currentKnobs[i].GetCurrentColor ()) )
+                if ( answerList[i] != GetDCGColorFromColor (currentKnobs[i].GetCurrentColor ()) )
                     return false;
             }
             return true;

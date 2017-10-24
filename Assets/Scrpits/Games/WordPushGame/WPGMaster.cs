@@ -112,6 +112,11 @@ namespace Games.WordPushGame
             netTransform.CmdSetActive (false);
 
         }
+
+        public string GetName ()
+        {
+            return gameObject.name;
+        }
         #region INIT
         private void InitializeQuestion ()
         {

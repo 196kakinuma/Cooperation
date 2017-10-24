@@ -272,16 +272,15 @@ namespace Games.GameSystem
         /// <returns></returns>
         public void ActivateKeyLockGame ( Door d )
         {
-            int rand;
             IKeyLockGameMaster g;
             if ( GameSettings.Instance.experiment )
-                g = GetExpKeyLockGame (out rand);
+                g = GetExpKeyLockGame ();
             else
-                g = GetRandomKeyLockGame (out rand);
+                g = GetRandomKeyLockGame ();
             nonUsingGameList.Remove (g);
             usingGameAndDoorList.Add (d, g);
             if ( !GameSettings.Instance.tutorial )
-                ExprimentDataKeeper.Instance.SetExperimentData (( KeyGames ) rand, GameTimer.Instance.GetTime (), "GameInit");
+                ExprimentDataKeeper.Instance.SetExperimentData (g.GetName (), GameTimer.Instance.GetTime (), "GameInit");
             StartCoroutine (g.Initialize (d));
         }
 
@@ -314,10 +313,10 @@ namespace Games.GameSystem
         /// 現在使われていないゲームをランダムに入手する
         /// </summary>
         /// <returns></returns>
-        IKeyLockGameMaster GetRandomKeyLockGame ( out int rand )
+        IKeyLockGameMaster GetRandomKeyLockGame ()
         {
 
-            rand = Random.Range (0, nonUsingGameList.Count);
+            var rand = Random.Range (0, nonUsingGameList.Count);
             return nonUsingGameList[rand];
         }
 
@@ -390,6 +389,7 @@ namespace Games.GameSystem
         #region EXP
         public IEnumerator ExperimentStart ( Coroutine buttonAnimation )
         {
+            ExprimentDataKeeper.Instance.InitializeNewFile ();
             Coroutine prepare = StartCoroutine (ExperimentStartPrepare ());
             yield return prepare;
             yield return buttonAnimation;
@@ -406,21 +406,80 @@ namespace Games.GameSystem
 
         }
 
+        List<IKeyLockGameMaster> ExpGames;
         IEnumerator ExperimentStartPrepare ()
         {
-            Debug.Log ("startPrepare");
+            Debug.Log ("startExpPrepare");
             nonUsingGameList = new List<IKeyLockGameMaster> ();
             usingGameAndDoorList = new Dictionary<Door, IKeyLockGameMaster> ();
 
-            if ( GameSettings.Instance.wpg )
-                wpgMaster.Prepare ();
-            if ( GameSettings.Instance.dwpg )
-                dwpgMaster.Prepare ();
-            if ( GameSettings.Instance.cg )
-                cgMaster.Prepare ();
-            if ( GameSettings.Instance.dcg )
-                dcgMaster.Prepare ();
-
+            ExpGames = new List<IKeyLockGameMaster> ();
+            switch ( GameSettings.Instance.FirstExpGame )
+            {
+                case KeyGames.WPG:
+                    wpgMaster.Prepare ();
+                    nonUsingGameList.Add (wpgMaster);
+                    ExpGames.Add (wpgMaster);
+                    break;
+                case KeyGames.DWPG:
+                    dwpgMaster.Prepare ();
+                    nonUsingGameList.Add (dwpgMaster);
+                    ExpGames.Add (dwpgMaster);
+                    break;
+                case KeyGames.WMG:
+                    wmgMaster.Prepare ();
+                    nonUsingGameList.Add (wmgMaster);
+                    ExpGames.Add (wmgMaster);
+                    break;
+                case KeyGames.DWMG:
+                    dwmgMaster.Prepare ();
+                    nonUsingGameList.Add (dwmgMaster);
+                    ExpGames.Add (dwmgMaster);
+                    break;
+                case KeyGames.CG:
+                    cgMaster.Prepare ();
+                    nonUsingGameList.Add (cgMaster);
+                    ExpGames.Add (cgMaster);
+                    break;
+                case KeyGames.DCG:
+                    dcgMaster.Prepare ();
+                    nonUsingGameList.Add (dcgMaster);
+                    ExpGames.Add (dcgMaster);
+                    break;
+            }
+            switch ( GameSettings.Instance.SecondExpGame )
+            {
+                case KeyGames.WPG:
+                    wpgMaster.Prepare ();
+                    nonUsingGameList.Add (wpgMaster);
+                    ExpGames.Add (wpgMaster);
+                    break;
+                case KeyGames.DWPG:
+                    dwpgMaster.Prepare ();
+                    nonUsingGameList.Add (dwpgMaster);
+                    ExpGames.Add (dwpgMaster);
+                    break;
+                case KeyGames.WMG:
+                    wmgMaster.Prepare ();
+                    nonUsingGameList.Add (wmgMaster);
+                    ExpGames.Add (wmgMaster);
+                    break;
+                case KeyGames.DWMG:
+                    dwmgMaster.Prepare ();
+                    nonUsingGameList.Add (dwmgMaster);
+                    ExpGames.Add (dwmgMaster);
+                    break;
+                case KeyGames.CG:
+                    cgMaster.Prepare ();
+                    nonUsingGameList.Add (cgMaster);
+                    ExpGames.Add (cgMaster);
+                    break;
+                case KeyGames.DCG:
+                    dcgMaster.Prepare ();
+                    nonUsingGameList.Add (dcgMaster);
+                    ExpGames.Add (dcgMaster);
+                    break;
+            }
 
 
             enemyMaster.InitializeTutorial ();
@@ -430,17 +489,14 @@ namespace Games.GameSystem
             yield return null;
         }
         int keygamePlayCount = 0;
-        int keyGameNum = 0;
-        IKeyLockGameMaster GetExpKeyLockGame ( out int rand )
+        IKeyLockGameMaster GetExpKeyLockGame ()
         {
             keygamePlayCount++;
-            if ( keygamePlayCount > GameMaster.Instance.keygamePlayCount )
+            if ( keygamePlayCount > GameSettings.Instance.ExpGameTimes )
             {
-
-                keyGameNum = 1;
+                return ExpGames[1];
             }
-            rand = keyGameNum;
-            return nonUsingGameList[rand];
+            return ExpGames[0];
         }
         #endregion
 

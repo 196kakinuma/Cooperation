@@ -95,7 +95,10 @@ namespace Games.CG
             netTransform.CmdSetActive (false);
 
         }
-
+        public string GetName ()
+        {
+            return gameObject.name;
+        }
         #region INIT
 
         public void InitializeQuestion ()

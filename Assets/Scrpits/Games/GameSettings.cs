@@ -25,11 +25,8 @@ namespace Games
         public int ExpGameTimes = 5;
         public int totalGameNum = 2;
 
-        public bool wpg;
-        public bool dwpg;
-
-        public bool cg;
-        public bool dcg;
+        public KeyGames FirstExpGame;
+        public KeyGames SecondExpGame;
 
         public bool tutorial;
         public bool experiment;

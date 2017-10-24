@@ -112,7 +112,7 @@ namespace Games.GameSystem
 
         void Update ()
         {
-            if ( !isPlaying || GameSettings.Instance.debug ) return;
+            if ( !isPlaying || GameSettings.Instance.debug || GameSettings.Instance.experiment || GameSettings.Instance.tutorial ) return;
             //ゲームクリア
             if ( timer.IsGameEnd () ) GameClear ();
         }
@@ -273,7 +273,11 @@ namespace Games.GameSystem
         public void ActivateKeyLockGame ( Door d )
         {
             int rand;
-            var g = GetRandomKeyLockGame (out rand);
+            IKeyLockGameMaster g;
+            if ( GameSettings.Instance.experiment )
+                g = GetExpKeyLockGame (out rand);
+            else
+                g = GetRandomKeyLockGame (out rand);
             nonUsingGameList.Remove (g);
             usingGameAndDoorList.Add (d, g);
             if ( !GameSettings.Instance.tutorial )
@@ -300,6 +304,10 @@ namespace Games.GameSystem
             if ( !GameSettings.Instance.tutorial )
                 ExprimentDataKeeper.Instance.SetExperimentData (( KeyGames.NONE ), GameTimer.Instance.GetTime (), "Answer Correct");
             usingGameAndDoorList.Remove (d);
+
+            if ( GameSettings.Instance.experiment && keygamePlayCount == GameSettings.Instance.totalGameNum * GameSettings.Instance.ExpGameTimes )
+                FinishGame ();
+
         }
 
         /// <summary>
@@ -308,6 +316,7 @@ namespace Games.GameSystem
         /// <returns></returns>
         IKeyLockGameMaster GetRandomKeyLockGame ( out int rand )
         {
+
             rand = Random.Range (0, nonUsingGameList.Count);
             return nonUsingGameList[rand];
         }
@@ -374,6 +383,64 @@ namespace Games.GameSystem
 
 
             yield return null;
+        }
+        #endregion
+
+
+        #region EXP
+        public IEnumerator ExperimentStart ( Coroutine buttonAnimation )
+        {
+            Coroutine prepare = StartCoroutine (ExperimentStartPrepare ());
+            yield return prepare;
+            yield return buttonAnimation;
+
+            //タイマーなどを開始
+            timer.GameStart ();
+            //敵を動かし始める
+            //記録を取り始める
+
+
+            //スタートの表示
+            Debug.Log ("start Game!");
+            IsPlaying = true;
+
+        }
+
+        IEnumerator ExperimentStartPrepare ()
+        {
+            Debug.Log ("startPrepare");
+            nonUsingGameList = new List<IKeyLockGameMaster> ();
+            usingGameAndDoorList = new Dictionary<Door, IKeyLockGameMaster> ();
+
+            if ( GameSettings.Instance.wpg )
+                wpgMaster.Prepare ();
+            if ( GameSettings.Instance.dwpg )
+                dwpgMaster.Prepare ();
+            if ( GameSettings.Instance.cg )
+                cgMaster.Prepare ();
+            if ( GameSettings.Instance.dcg )
+                dcgMaster.Prepare ();
+
+
+
+            enemyMaster.InitializeTutorial ();
+            doorManager.InitializeGameStart ();
+
+
+            yield return null;
+        }
+        int keygamePlayCount = 0;
+        int keyGameNum = 0;
+        IKeyLockGameMaster GetExpKeyLockGame ( out int rand )
+        {
+            keygamePlayCount++;
+            if ( keygamePlayCount > GameMaster.Instance.keygamePlayCount )
+            {
+
+                keyGameNum = 1;
+            }
+            rand = keyGameNum;
+            return nonUsingGameList[rand];
         }
         #endregion
 

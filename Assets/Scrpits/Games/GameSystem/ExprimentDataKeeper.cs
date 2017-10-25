@@ -81,6 +81,8 @@ namespace Games.GameSystem
             foreach ( var a in expSituations )
                 eWriter.WriteWord (a);
             eWriter.WriteNewLine ();
+
+            eWriter.CloseFile ();
         }
     }
 }

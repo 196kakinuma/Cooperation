@@ -301,12 +301,17 @@ namespace Games.GameSystem
             nonUsingGameList.Add (g);
             g.Clear ();
             if ( !GameSettings.Instance.tutorial )
-                ExprimentDataKeeper.Instance.SetExperimentData (( KeyGames.NONE ), GameTimer.Instance.GetTime (), "Answer Correct");
+                ExprimentDataKeeper.Instance.SetExperimentData (( KeyGames.NONE ), GameTimer.Instance.GetTime (), "Ghost disappear");
             usingGameAndDoorList.Remove (d);
 
             if ( GameSettings.Instance.experiment && keygamePlayCount == GameSettings.Instance.totalGameNum * GameSettings.Instance.ExpGameTimes )
                 FinishGame ();
 
+        }
+
+        public void WriteDwonAnswerData ()
+        {
+            ExprimentDataKeeper.Instance.SetExperimentData (( KeyGames.NONE ), GameTimer.Instance.GetTime (), "Answer Correct");
         }
 
         /// <summary>

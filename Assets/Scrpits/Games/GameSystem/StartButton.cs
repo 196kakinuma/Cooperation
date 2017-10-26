@@ -19,7 +19,7 @@ namespace Games.GameSystem
         {
             if ( !enabled ) return;
 
-            handler.CmdClickStartButton (GameSettings.Instance.tutorial);
+            handler.CmdClickStartButton (GameSettings.Instance.tutorial, GameSettings.Instance.experiment);
         }
 
         public void HoldReceive ( Vector3 pos )

@@ -53,6 +53,19 @@ namespace Games.GameSystem
             expSituations.Add (situation);
         }
 
+        /// <summary>
+        /// 書き込む実験データを受け取る
+        /// </summary>
+        /// <param name="gameNum"></param>
+        /// <param name="time"></param>
+        /// <param name="situation"></param>
+        public void SetExperimentData ( string game, float time, string situation )
+        {
+            expGameNums.Add (game);
+            expTimes.Add (time);
+            expSituations.Add (situation);
+        }
+
 
         /// <summary>
         /// 実験後のデータ書き出し用
@@ -68,6 +81,8 @@ namespace Games.GameSystem
             foreach ( var a in expSituations )
                 eWriter.WriteWord (a);
             eWriter.WriteNewLine ();
+
+            eWriter.CloseFile ();
         }
     }
 }

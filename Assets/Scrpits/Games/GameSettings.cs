@@ -19,9 +19,18 @@ namespace Games
     {
         public KeyGames game;
 
-        public bool tutorial;
+        /// <summary>
+        /// 一つのゲームの試行回数
+        /// </summary>
+        public int ExpGameTimes = 5;
+        public int totalGameNum = 2;
 
-		public bool detaWrite;
+        public KeyGames FirstExpGame;
+        public KeyGames SecondExpGame;
+
+        public bool tutorial;
+        public bool experiment;
+        public bool detaWrite;
 
         [Tooltip ("Answerを押したら正解になる")]
         public bool debug;

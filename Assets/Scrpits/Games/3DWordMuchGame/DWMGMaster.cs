@@ -94,7 +94,10 @@ namespace Games.DWordMuchGame
 
             yield return true;
         }
-
+        public string GetName ()
+        {
+            return gameObject.name;
+        }
         #region INIT
         private void InitializeQuestion ()
         {

@@ -23,6 +23,8 @@ namespace Objects
 
         void Answer ();
 
+        string GetName ();
+
         #region MOVING
         /// <summary>
         /// ドアの下にセット

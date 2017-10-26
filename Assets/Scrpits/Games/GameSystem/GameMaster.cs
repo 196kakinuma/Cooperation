@@ -304,11 +304,16 @@ namespace Games.GameSystem
                 ExprimentDataKeeper.Instance.SetExperimentData (( KeyGames.NONE ), GameTimer.Instance.GetTime (), "Ghost disappear");
             usingGameAndDoorList.Remove (d);
 
-            if ( GameSettings.Instance.experiment && keygamePlayCount == GameSettings.Instance.totalGameNum * GameSettings.Instance.ExpGameTimes )
-                FinishGame ();
+
 
         }
 
+        public bool IsReachToEndExperimentTime ()
+        {
+            if ( GameSettings.Instance.experiment && keygamePlayCount == GameSettings.Instance.totalGameNum * GameSettings.Instance.ExpGameTimes )
+                return true;
+            else return false;
+        }
         public void WriteDwonAnswerData ()
         {
             ExprimentDataKeeper.Instance.SetExperimentData (( KeyGames.NONE ), GameTimer.Instance.GetTime (), "Answer Correct");

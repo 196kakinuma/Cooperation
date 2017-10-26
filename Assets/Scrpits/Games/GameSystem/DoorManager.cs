@@ -208,6 +208,10 @@ namespace Games.GameSystem
                 ExprimentDataKeeper.Instance.SetExperimentData (KeyGames.NONE, wait, "Blanktime finish");
             blankRoomList.Remove (d);
             d.BlankTime = 0f;
+
+            //実験の終了判定
+            if ( GameSettings.Instance.experiment && GameMaster.Instance.IsReachToEndExperimentTime () )
+                GameMaster.Instance.FinishGame ();
         }
 
         void GamesOver ( Enemy.Enemy e, Door d )

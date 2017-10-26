@@ -102,8 +102,10 @@ namespace Games.GameSystem
             else //まだenemyはどこの部屋にも入っていなかった
             {
                 //入る部屋を決める
-                //int decideRoom = Random.Range (0, doors.Length);
-                int decideRoom = 1;
+
+                int decideRoom = Random.Range (0, doors.Length);
+                if ( GameSettings.Instance.debug )
+                    decideRoom = 1;
                 if ( enemyRoomList.ContainsValue (doors[decideRoom]) || blankRoomList.Contains (doors[decideRoom]) )//入ろうとした部屋にすでにだれか入っていた
                 {
                     Debug.Log ("だれかすでにいた");

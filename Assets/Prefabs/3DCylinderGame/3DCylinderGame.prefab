@@ -100,7 +100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1414660356620114
 GameObject:
   m_ObjectHideFlags: 1
@@ -135,7 +135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1514740593067548
 GameObject:
   m_ObjectHideFlags: 1
@@ -1004,8 +1004,6 @@ MonoBehaviour:
   - {fileID: 114193994487940968}
   - {fileID: 114883682098402148}
   - {fileID: 114874237308665182}
-  - {fileID: 114964752843945242}
-  - {fileID: 114299416774071088}
   question:
   - {fileID: 11400000, guid: ddb79ac6848b03d4a9798cabec2059e4, type: 2}
   answer: {fileID: 11400000, guid: cdb9ff905e20c654ba6febc226067edc, type: 2}

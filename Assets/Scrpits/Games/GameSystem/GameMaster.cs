@@ -310,7 +310,7 @@ namespace Games.GameSystem
 
         public bool IsReachToEndExperimentTime ()
         {
-            if ( GameSettings.Instance.experiment && keygamePlayCount == GameSettings.Instance.totalGameNum * GameSettings.Instance.ExpGameTimes )
+            if ( GameSettings.Instance.experiment && keygamePlayCount == GameSettings.Instance.ExpGameTimes )
                 return true;
             else return false;
         }
@@ -456,56 +456,18 @@ namespace Games.GameSystem
                     nonUsingGameList.Add (dcgMaster);
                     ExpGames.Add (dcgMaster);
                     break;
-            }
-            switch ( GameSettings.Instance.SecondExpGame )
-            {
-                case KeyGames.WPG:
-                    wpgMaster.Prepare ();
-                    nonUsingGameList.Add (wpgMaster);
-                    ExpGames.Add (wpgMaster);
-                    break;
-                case KeyGames.DWPG:
-                    dwpgMaster.Prepare ();
-                    nonUsingGameList.Add (dwpgMaster);
-                    ExpGames.Add (dwpgMaster);
-                    break;
-                case KeyGames.WMG:
-                    wmgMaster.Prepare ();
-                    nonUsingGameList.Add (wmgMaster);
-                    ExpGames.Add (wmgMaster);
-                    break;
-                case KeyGames.DWMG:
-                    dwmgMaster.Prepare ();
-                    nonUsingGameList.Add (dwmgMaster);
-                    ExpGames.Add (dwmgMaster);
-                    break;
-                case KeyGames.CG:
-                    cgMaster.Prepare ();
-                    nonUsingGameList.Add (cgMaster);
-                    ExpGames.Add (cgMaster);
-                    break;
-                case KeyGames.DCG:
-                    dcgMaster.Prepare ();
-                    nonUsingGameList.Add (dcgMaster);
-                    ExpGames.Add (dcgMaster);
-                    break;
-            }
 
-
+            }
             enemyMaster.InitializeTutorial ();
             doorManager.InitializeGameStart ();
 
 
             yield return null;
         }
-        int keygamePlayCount = 0;
+        public int keygamePlayCount = 0;
         IKeyLockGameMaster GetExpKeyLockGame ()
         {
             keygamePlayCount++;
-            if ( keygamePlayCount > GameSettings.Instance.ExpGameTimes )
-            {
-                return ExpGames[1];
-            }
             return ExpGames[0];
         }
         #endregion

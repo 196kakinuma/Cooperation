@@ -350,7 +350,7 @@ Transform:
   m_Father: {fileID: 1214901302}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &315661455
+--- !u!21 &493755772
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -426,12 +426,12 @@ Prefab:
         type: 2}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1684639197}
+      objectReference: {fileID: 1852723663}
     - target: {fileID: 23342881851894932, guid: fce2155142ff3f64abc3745505f3897c,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 315661455}
+      objectReference: {fileID: 493755772}
     - target: {fileID: 1658584406051400, guid: fce2155142ff3f64abc3745505f3897c, type: 2}
       propertyPath: m_IsActive
       value: 1
@@ -582,7 +582,7 @@ Transform:
   m_Father: {fileID: 61831133}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!43 &1684639197
+--- !u!43 &1852723663
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -979,7 +979,7 @@ MonoBehaviour:
   game: 0
   turn: 0
   ExpGameTimes: 2
-  FirstExpGame: 0
+  FirstExpGame: 4
   tutorial: 0
   experiment: 1
   detaWrite: 1

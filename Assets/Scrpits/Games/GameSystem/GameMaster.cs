@@ -260,7 +260,10 @@ namespace Games.GameSystem
             }
 
             if ( !GameSettings.Instance.tutorial )
+            {
+                ExprimentDataKeeper.Instance.SetExperimentData (( KeyGames.NONE ), GameTimer.Instance.GetTime (), "GameFinish");
                 ExprimentDataKeeper.Instance.AllWriteDownExcel ();
+            }
             //スタートボタンを戻す
             startButton.CmdResetStartButton ();
 
@@ -412,6 +415,7 @@ namespace Games.GameSystem
 
             //スタートの表示
             Debug.Log ("start Game!");
+            ExprimentDataKeeper.Instance.SetExperimentData (( KeyGames.NONE ), GameTimer.Instance.GetTime (), "Game Start");
             IsPlaying = true;
 
         }
@@ -420,6 +424,7 @@ namespace Games.GameSystem
         IEnumerator ExperimentStartPrepare ()
         {
             Debug.Log ("startExpPrepare");
+
             nonUsingGameList = new List<IKeyLockGameMaster> ();
             usingGameAndDoorList = new Dictionary<Door, IKeyLockGameMaster> ();
 

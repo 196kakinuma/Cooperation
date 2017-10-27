@@ -162,7 +162,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1433321031140160
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,7 +252,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1818988399541988
 GameObject:
   m_ObjectHideFlags: 1
@@ -992,7 +992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29ca668d13e23a049a045aaec9de800a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knobNum: 1
+  knobNum: 0
   master: {fileID: 114522104021391420}
   material: {fileID: 2100000, guid: c300e694143a1d14aa1ce155c2ff3d92, type: 2}
 --- !u!114 &114333230721518484
@@ -1006,7 +1006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29ca668d13e23a049a045aaec9de800a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knobNum: 2
+  knobNum: 1
   master: {fileID: 114522104021391420}
   material: {fileID: 2100000, guid: 5788ae0241ea2e343aa0e58ad00c4612, type: 2}
 --- !u!114 &114344987468960370
@@ -1082,9 +1082,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   netTransform: {fileID: 114582547556975768}
   knobs:
-  - {fileID: 114344987468960370}
   - {fileID: 114332437440491630}
   - {fileID: 114333230721518484}
+  - {fileID: 114834028007049530}
   question:
   - {fileID: 11400000, guid: ddb79ac6848b03d4a9798cabec2059e4, type: 2}
   answer: {fileID: 11400000, guid: cdb9ff905e20c654ba6febc226067edc, type: 2}
@@ -1151,7 +1151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29ca668d13e23a049a045aaec9de800a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knobNum: 3
+  knobNum: 2
   master: {fileID: 114522104021391420}
   material: {fileID: 2100000, guid: a6b51f269827d844b9507c7e10154eb3, type: 2}
 --- !u!114 &114846491180040288

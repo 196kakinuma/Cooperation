@@ -15,7 +15,7 @@ namespace Games.GameSystem
 
         public void InitializeFile ( string name )
         {
-            filename = name + System.DateTime.Today.Date.Day + extension;
+            filename = name + System.DateTime.Today.Date.Day + GameSettings.Instance.FirstExpGame.ToString () + extension;
 #if !UNITY_WSA_10_0
 
             FileStream fs = File.Create (Application.dataPath + "/ExperimentData/" + filename);

@@ -124,12 +124,12 @@ namespace Games.WordPushGame
             for ( int i = 0; i < question.sheets[0].list.Count; i++ )
             {
                 //問題
-                switch ( 1 )
+                switch ( GameSettings.Instance.turn )
                 {
-                    case 0:
+                    case ExpTurn.BEFORE:
                         questionList.Add (question.sheets[0].list[i].one);
                         break;
-                    case 1:
+                    case ExpTurn.AFTER:
                         questionList.Add (question.sheets[0].list[i].two);
                         break;
                 }
@@ -141,12 +141,13 @@ namespace Games.WordPushGame
         private void InitializeAnswer ()
         {
             answerList = new List<int> ();
-            answerList.Add (answer.sheets[0].list[randNum].answer1);
-            answerList.Add (answer.sheets[0].list[randNum].answer2);
-            answerList.Add (answer.sheets[0].list[randNum].answer3);
-            answerList.Add (answer.sheets[0].list[randNum].answer4);
-            answerList.Add (answer.sheets[0].list[randNum].answer5);
-            answerList.Add (answer.sheets[0].list[randNum].answer6);
+            var i = GameMaster.Instance.keygamePlayCount - 1;
+            answerList.Add (answer.sheets[0].list[i].answer1);
+            answerList.Add (answer.sheets[0].list[i].answer2);
+            answerList.Add (answer.sheets[0].list[i].answer3);
+            answerList.Add (answer.sheets[0].list[i].answer4);
+            //answerList.Add (answer.sheets[0].list[i].answer5);
+            //answerList.Add (answer.sheets[0].list[randNum].answer6);
         }
 
         private void InitializeHint ()
@@ -221,11 +222,13 @@ namespace Games.WordPushGame
                 Debug.Log ("answer is correct!!");
                 currentDoor.KeyLock = true;
                 ExitRoom ();
+                GameMaster.Instance.WriteDownAnswerData ();
             }
             else
             {
                 ResetAll ();
                 Debug.Log ("missed");
+                GameMaster.Instance.WriteDownMissData ();
             }
 
         }

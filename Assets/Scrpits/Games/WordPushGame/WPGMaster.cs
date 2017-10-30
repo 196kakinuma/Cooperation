@@ -146,7 +146,7 @@ namespace Games.WordPushGame
             answerList.Add (answer.sheets[0].list[i].answer2);
             answerList.Add (answer.sheets[0].list[i].answer3);
             answerList.Add (answer.sheets[0].list[i].answer4);
-            answerList.Add (answer.sheets[0].list[i].answer5);
+            //answerList.Add (answer.sheets[0].list[i].answer5);
             //answerList.Add (answer.sheets[0].list[randNum].answer6);
         }
 
@@ -166,6 +166,7 @@ namespace Games.WordPushGame
                 wpgWordButtons[array[i]].InitializeButtonInfo (questionList[i], i);
                 netTransform.CmdSetWord (wpgWordButtons[array[i]].buttonNum, wpgWordButtons[array[i]].word);
                 currentWpgButton[i] = wpgWordButtons[array[i]];
+                Debug.Log (array[i]);
             }
         }
 

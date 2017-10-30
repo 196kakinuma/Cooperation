@@ -147,7 +147,7 @@ namespace Games.DWordPushGame
             answerList.Add (answer.sheets[0].list[i].answer2);
             answerList.Add (answer.sheets[0].list[i].answer3);
             answerList.Add (answer.sheets[0].list[i].answer4);
-            answerList.Add (answer.sheets[0].list[i].answer5);
+            // answerList.Add (answer.sheets[0].list[i].answer5);
 
         }
 

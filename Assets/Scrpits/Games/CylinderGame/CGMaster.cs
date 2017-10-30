@@ -283,11 +283,13 @@ namespace Games.CG
                 Debug.Log ("answer is correct!!");
                 currentDoor.KeyLock = true;
                 ExitRoom ();
+                GameMaster.Instance.WriteDownAnswerData ();
             }
             else
             {
                 ResetAll ();
                 Debug.Log ("missed");
+                GameMaster.Instance.WriteDownMissData ();
             }
 
         }

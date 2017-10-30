@@ -166,7 +166,6 @@ namespace Games.WordPushGame
                 wpgWordButtons[array[i]].InitializeButtonInfo (questionList[i], i);
                 netTransform.CmdSetWord (wpgWordButtons[array[i]].buttonNum, wpgWordButtons[array[i]].word);
                 currentWpgButton[i] = wpgWordButtons[array[i]];
-                Debug.Log (array[i]);
             }
         }
 
@@ -223,11 +222,13 @@ namespace Games.WordPushGame
                 Debug.Log ("answer is correct!!");
                 currentDoor.KeyLock = true;
                 ExitRoom ();
+                GameMaster.Instance.WriteDownAnswerData ();
             }
             else
             {
                 ResetAll ();
                 Debug.Log ("missed");
+                GameMaster.Instance.WriteDownMissData ();
             }
 
         }

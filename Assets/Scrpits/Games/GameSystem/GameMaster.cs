@@ -317,9 +317,13 @@ namespace Games.GameSystem
                 return true;
             else return false;
         }
-        public void WriteDwonAnswerData ()
+        public void WriteDownAnswerData ()
         {
             ExprimentDataKeeper.Instance.SetExperimentData (( KeyGames.NONE ), GameTimer.Instance.GetTime (), "Answer Correct");
+        }
+        public void WriteDownMissData ()
+        {
+            ExprimentDataKeeper.Instance.SetExperimentData (( KeyGames.NONE ), GameTimer.Instance.GetTime (), "Answer not Correct");
         }
 
         /// <summary>

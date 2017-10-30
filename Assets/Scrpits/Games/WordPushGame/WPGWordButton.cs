@@ -43,7 +43,6 @@ namespace Games.WordPushGame
         /// <param name="word"></param>
         public void SetWord ( string word )
         {
-            Debug.Log ("word set");
             this.text.text = word;
         }
 

@@ -49,7 +49,7 @@ namespace Games.DWordPushGame
 
         Door currentDoor;
 
-
+        int[] answerArray;
         // Use this for initialization
         void Start ()
         {
@@ -58,9 +58,17 @@ namespace Games.DWordPushGame
 
             //ゲーム開始前に入力が入った場合のエラーを排除
             clientAnswerList = new List<int> ();
+            answerArray = GetRandomAnserInt ();
 
 
+        }
+        private int[] GetRandomAnserInt ()
+        {
+            int[] array = new int[GameSettings.Instance.ExpGameTimes];
+            for ( int i = 0; i < array.Length; i++ )
+                array[i] = i;
 
+            return array.OrderBy (i => Guid.NewGuid ()).ToArray ();
         }
 
         public void SetOperationAuthority ( bool b )
@@ -142,7 +150,8 @@ namespace Games.DWordPushGame
         private void InitializeAnswer ()
         {
             answerList = new List<int> ();
-            var i = GameMaster.Instance.keygamePlayCount - 1;
+            //var i = GameMaster.Instance.keygamePlayCount - 1;
+            var i = answerArray[GameMaster.Instance.keygamePlayCount - 1];
             answerList.Add (answer.sheets[0].list[i].answer1);
             answerList.Add (answer.sheets[0].list[i].answer2);
             answerList.Add (answer.sheets[0].list[i].answer3);

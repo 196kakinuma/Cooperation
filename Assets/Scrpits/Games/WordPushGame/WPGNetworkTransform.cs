@@ -24,7 +24,7 @@ namespace Games.WordPushGame
         void RpcPushMove ( int i )
         {
             Debug.Log ("Rpc ");
-            master.currentWpgButton[i].PushMove ();
+            master.wpgWordButtons[i].PushMove ();
 
         }
 

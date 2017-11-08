@@ -15,6 +15,8 @@ namespace Games.DWordPushGame
         public string word;
         public Vector3 initPos;
 
+        public int positionNum;
+
 
         void Start ()
         {
@@ -49,7 +51,7 @@ namespace Games.DWordPushGame
         public void ClickReceive ()
         {
             Debug.Log ("button click");
-            DWPGMaster.Instance.ReceiveUserResponse (buttonNum);
+            DWPGMaster.Instance.ReceiveUserResponse (buttonNum, positionNum);
         }
 
         public void HoldReceive ( Vector3 pos )

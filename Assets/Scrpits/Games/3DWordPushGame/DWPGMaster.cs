@@ -60,15 +60,14 @@ namespace Games.DWordPushGame
             clientAnswerList = new List<int> ();
             answerArray = GetRandomAnserInt ();
 
-
         }
         private int[] GetRandomAnserInt ()
         {
             int[] array = new int[GameSettings.Instance.ExpGameTimes];
             for ( int i = 0; i < array.Length; i++ )
                 array[i] = i;
-
             return array.OrderBy (i => Guid.NewGuid ()).ToArray ();
+
         }
 
         public void SetOperationAuthority ( bool b )
@@ -162,10 +161,8 @@ namespace Games.DWordPushGame
 
         private void InitializeHint ()
         {
-            month = calender.sheets[0].list[randNum].Month;
-            day = calender.sheets[0].list[randNum].Day;
-
-
+            month = calender.sheets[0].list[answerArray[GameMaster.Instance.keygamePlayCount - 1]].Month;
+            day = calender.sheets[0].list[answerArray[GameMaster.Instance.keygamePlayCount - 1]].Day;
             netTransform.CmdSetCalender (month, day);
         }
         private void InitializeButtons ()
@@ -248,12 +245,12 @@ namespace Games.DWordPushGame
         /// <summary>
         /// クライアントのボタン入力をここで受け取り、リストに保持する
         /// </summary>
-        public void ReceiveUserResponse ( int i )
+        public void ReceiveUserResponse ( int i, int posNum )
         {
             if ( !operationAuthority ) return;
             if ( clientAnswerList.Contains (i) ) return;
             clientAnswerList.Add (i);
-            netTransform.CmdPushMove (i);
+            netTransform.CmdPushMove (posNum);
 
         }
 

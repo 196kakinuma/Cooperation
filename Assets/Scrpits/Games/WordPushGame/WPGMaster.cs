@@ -163,8 +163,8 @@ namespace Games.WordPushGame
 
         private void InitializeHint ()
         {
-            month = calender.sheets[0].list[randNum].Month;
-            day = calender.sheets[0].list[randNum].Day;
+            month = calender.sheets[0].list[answerArray[GameMaster.Instance.keygamePlayCount - 1]].Month;
+            day = calender.sheets[0].list[answerArray[GameMaster.Instance.keygamePlayCount - 1]].Day;
             netTransform.CmdSetCalender (month, day);
         }
         private void InitializeButtons ()

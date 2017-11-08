@@ -38,12 +38,12 @@ MonoBehaviour:
       answer4: 3
       answer5: 0
       answer6: 0
-    - answer1: 2
-      answer2: 3
-      answer3: 5
-      answer4: 6
-      answer5: 9
-      answer6: 18
+    - answer1: 6
+      answer2: 10
+      answer3: 13
+      answer4: 15
+      answer5: 0
+      answer6: 0
     - answer1: 1
       answer2: 3
       answer3: 4

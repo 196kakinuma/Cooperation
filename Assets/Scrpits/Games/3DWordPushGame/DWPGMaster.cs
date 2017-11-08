@@ -60,15 +60,14 @@ namespace Games.DWordPushGame
             clientAnswerList = new List<int> ();
             answerArray = GetRandomAnserInt ();
 
-
         }
         private int[] GetRandomAnserInt ()
         {
             int[] array = new int[GameSettings.Instance.ExpGameTimes];
             for ( int i = 0; i < array.Length; i++ )
                 array[i] = i;
-
             return array.OrderBy (i => Guid.NewGuid ()).ToArray ();
+
         }
 
         public void SetOperationAuthority ( bool b )

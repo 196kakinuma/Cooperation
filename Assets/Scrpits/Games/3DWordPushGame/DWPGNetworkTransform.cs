@@ -50,7 +50,7 @@ namespace Games.DWordPushGame
         [ClientRpc]
         void RpcSetWord ( int i, string text )
         {
-            master.currentWpgButton[i].SetWord (text);
+            master.wpgWordButtons[i].SetWord (text);
         }
         #endregion
         [Command]

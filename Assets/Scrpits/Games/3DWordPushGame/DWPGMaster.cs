@@ -176,7 +176,7 @@ namespace Games.DWordPushGame
             for ( int i = 0; i < wpgWordButtons.Length; i++ )
             {
                 wpgWordButtons[array[i]].InitializeButtonInfo (questionList[i], i);
-                netTransform.CmdSetWord (wpgWordButtons[array[i]].buttonNum, wpgWordButtons[array[i]].word);
+                netTransform.CmdSetWord (array[i], wpgWordButtons[array[i]].word);
                 currentWpgButton[i] = wpgWordButtons[array[i]];
             }
         }

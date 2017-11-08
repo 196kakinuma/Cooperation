@@ -3936,6 +3936,7 @@ MonoBehaviour:
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 6
 --- !u!114 &114069011196706088
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4085,6 +4086,7 @@ MonoBehaviour:
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 15
 --- !u!114 &114119456632258754
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4121,6 +4123,7 @@ MonoBehaviour:
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 0
 --- !u!114 &114137255155237500
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4256,6 +4259,7 @@ MonoBehaviour:
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 11
 --- !u!114 &114183693399827724
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4373,6 +4377,7 @@ MonoBehaviour:
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 5
 --- !u!114 &114221080507858104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4512,6 +4517,7 @@ MonoBehaviour:
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 3
 --- !u!114 &114293457353493498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4548,6 +4554,7 @@ MonoBehaviour:
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 7
 --- !u!114 &114299244231371786
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4563,6 +4570,7 @@ MonoBehaviour:
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 17
 --- !u!114 &114312646194899432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4644,6 +4652,7 @@ MonoBehaviour:
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 14
 --- !u!114 &114345421366954494
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4659,6 +4668,7 @@ MonoBehaviour:
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 9
 --- !u!114 &114355145206262700
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4674,6 +4684,7 @@ MonoBehaviour:
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 2
 --- !u!114 &114359322944983320
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4733,6 +4744,7 @@ MonoBehaviour:
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 8
 --- !u!114 &114403790339816566
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4764,6 +4776,7 @@ MonoBehaviour:
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 13
 --- !u!114 &114435426917105384
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4935,6 +4948,7 @@ MonoBehaviour:
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 12
 --- !u!114 &114535388163211832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5209,6 +5223,7 @@ MonoBehaviour:
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 10
 --- !u!114 &114658105385330262
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5354,6 +5369,7 @@ MonoBehaviour:
   - {fileID: 114845536842177096}
   - {fileID: 114907313812135206}
   answerButton: {fileID: 114581164540717966}
+  currentWpgButton: []
   resetButton: {fileID: 114384852361117122}
   calenderObj: {fileID: 0}
   question: {fileID: 11400000, guid: 8d1c3d163f597fd4f9f61055c05002e1, type: 2}
@@ -5424,6 +5440,7 @@ MonoBehaviour:
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 18
 --- !u!114 &114846370214608756
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5472,6 +5489,7 @@ MonoBehaviour:
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 16
 --- !u!114 &114854297689385690
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5610,6 +5628,7 @@ MonoBehaviour:
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 19
 --- !u!114 &114909727918036176
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5662,6 +5681,7 @@ MonoBehaviour:
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 4
 --- !u!114 &114980951275139240
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5764,6 +5784,7 @@ MonoBehaviour:
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 1
 --- !u!114 &114997970679456208
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -4013,10 +4013,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 114753754187503126}
-  networker: {fileID: 0}
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 17
 --- !u!114 &114060272979865710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4083,10 +4083,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 114535325642673212}
-  networker: {fileID: 0}
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 8
 --- !u!114 &114098640839976652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4099,10 +4099,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 114519699669387224}
-  networker: {fileID: 0}
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 19
 --- !u!114 &114099989652188942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4148,10 +4148,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 114099989652188942}
-  networker: {fileID: 0}
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 4
 --- !u!114 &114126377009185212
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4218,10 +4218,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 114269949009551346}
-  networker: {fileID: 0}
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 9
 --- !u!114 &114180110546725960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4267,10 +4267,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 114736291703075018}
-  networker: {fileID: 0}
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 16
 --- !u!114 &114202702106109758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4299,10 +4299,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 114796333262806980}
-  networker: {fileID: 0}
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 15
 --- !u!114 &114262538382821740
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4396,10 +4396,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 114693155068104998}
-  networker: {fileID: 0}
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 0
 --- !u!114 &114286631648347482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4507,10 +4507,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 114060272979865710}
-  networker: {fileID: 0}
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 12
 --- !u!114 &114339969494696452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4874,10 +4874,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 114180110546725960}
-  networker: {fileID: 0}
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 5
 --- !u!114 &114519699669387224
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5019,6 +5019,7 @@ MonoBehaviour:
   - {fileID: 114050448955658742}
   - {fileID: 114870651777454898}
   - {fileID: 114098640839976652}
+  currentWpgButton: []
   answerButton: {fileID: 114262538382821740}
   resetButton: {fileID: 114016079306895356}
   calenderObj: {fileID: 0}
@@ -5054,10 +5055,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 114351007518926646}
-  networker: {fileID: 0}
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 3
 --- !u!114 &114584317803930778
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5091,10 +5092,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 114627226087078898}
-  networker: {fileID: 0}
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 2
 --- !u!114 &114601254690160032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5284,10 +5285,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 114452498378557968}
-  networker: {fileID: 0}
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 6
 --- !u!114 &114659446091900768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5555,10 +5556,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 114892546048016312}
-  networker: {fileID: 0}
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 13
 --- !u!114 &114792724121510542
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5620,10 +5621,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 114139860601219454}
-  networker: {fileID: 0}
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 1
 --- !u!114 &114850192450597740
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5652,10 +5653,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 114339969494696452}
-  networker: {fileID: 0}
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 14
 --- !u!114 &114858495126068650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5668,10 +5669,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 114640317418861170}
-  networker: {fileID: 0}
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 7
 --- !u!114 &114865649472547904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5705,10 +5706,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 114936883887696674}
-  networker: {fileID: 0}
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 18
 --- !u!114 &114880375566874480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5856,10 +5857,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 114706377021326462}
-  networker: {fileID: 0}
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 11
 --- !u!114 &114977767598973980
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5893,10 +5894,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 114465639394773128}
-  networker: {fileID: 0}
   buttonNum: 0
   word: 
   initPos: {x: 0, y: 0, z: 0}
+  positionNum: 10
 --- !u!114 &114990309458309428
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -247,12 +247,12 @@ namespace Games.WordPushGame
         /// <summary>
         /// クライアントのボタン入力をここで受け取り、リストに保持する
         /// </summary>
-        public void ReceiveUserResponse ( int i )
+        public void ReceiveUserResponse ( int i, int posNum )
         {
             if ( !operationAuthority ) return;
             if ( clientAnswerList.Contains (i) ) return;
             clientAnswerList.Add (i);
-            netTransform.CmdPushMove (i);
+            netTransform.CmdPushMove (posNum);
 
         }
 

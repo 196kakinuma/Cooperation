@@ -47,6 +47,9 @@ namespace Games.DCG
         void Start ()
         {
             if ( Networks.NetworkInitializer.Instance.cameraType != CameraType.VR ) return;
+
+
+            InitEpxRandom ();
         }
 
 
@@ -68,11 +71,14 @@ namespace Games.DCG
 
             //準備前でもボタンなどは前後できるため.
             ResetAll ();
-
+            int randNum;
             //ランダムを生成
-            randNum = UnityEngine.Random.Range (0, answer.sheets[0].list.Count);
-
-
+            if ( !GameSettings.Instance.experiment )
+                randNum = UnityEngine.Random.Range (0, answer.sheets[0].list.Count);
+            else
+            {
+                randNum = expRand[GameMaster.Instance.keygamePlayCount - 1];
+            }
             //問題と正解を読み込む
             InitializeQuestion ();
 
@@ -89,6 +95,16 @@ namespace Games.DCG
             yield return true;
         }
 
+        int[] expRand;
+        public void InitEpxRandom ()
+        {
+            int[] array = new int[GameSettings.Instance.ExpGameTimes];
+            for ( int i = 0; i < array.Length; i++ )
+                array[i] = i;
+
+            expRand = array.OrderBy (i => Guid.NewGuid ()).ToArray ();
+        }
+
         public void Clear ()
         {
             currentDoor = null;
@@ -97,6 +113,10 @@ namespace Games.DCG
 
         }
 
+        public string GetName ()
+        {
+            return gameObject.name;
+        }
         #region INIT
 
         public void InitializeQuestion ()
@@ -142,8 +162,8 @@ namespace Games.DCG
             answerList.Add (( DCGColor ) a.Knob1);
             answerList.Add (( DCGColor ) a.Knob2);
             answerList.Add (( DCGColor ) a.Knob3);
-            answerList.Add (( DCGColor ) a.Knob4);
-            answerList.Add (( DCGColor ) a.Knob5);
+            //answerList.Add (( DCGColor ) a.Knob4);
+            //answerList.Add (( DCGColor ) a.Knob5);
         }
 
         public void InitializeHint ()
@@ -183,7 +203,7 @@ namespace Games.DCG
             return c;
         }
 
-		//ヒント用
+        //ヒント用
         private Color GetColorFromDCGColor ( int i )
         {
             switch ( i )
@@ -230,17 +250,18 @@ namespace Games.DCG
             if ( !operationAuthority ) return;
 
             bool correction = CheckAnswer ();
-
             if ( correction || GameSettings.Instance.debug )
             {
                 Debug.Log ("answer is correct!!");
                 currentDoor.KeyLock = true;
                 ExitRoom ();
+                GameMaster.Instance.WriteDownAnswerData ();
             }
             else
             {
                 ResetAll ();
                 Debug.Log ("missed");
+                GameMaster.Instance.WriteDownMissData ();
             }
 
         }
@@ -248,7 +269,7 @@ namespace Games.DCG
         {
             for ( int i = 0; i < knobs.Length; i++ )
             {
-				if ( answerList[i] != GetDCGColorFromColor (currentKnobs[i].GetCurrentColor ()) )
+                if ( answerList[i] != GetDCGColorFromColor (currentKnobs[i].GetCurrentColor ()) )
                     return false;
             }
             return true;

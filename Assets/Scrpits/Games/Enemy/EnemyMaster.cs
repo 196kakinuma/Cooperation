@@ -58,6 +58,18 @@ namespace Games.Enemy
         }
         #endregion
 
+        #region EXP
+        public void InitializeExp ()
+        {
+            GenerateExpEnemy ();
+        }
+        public void GenerateExpEnemy ()
+        {
+            enemys = new Enemy[1];
+            enemys[0] = new Enemy (5f, 1000f, 5f, EnemyType.RED);
+        }
+        #endregion
+
         /// <summary>
         /// ゲーム開始前の準備
         /// </summary>

@@ -22,6 +22,7 @@ namespace Games.GameSystem
         void Start ()
         {
             eWriter = new ExcelWriter ();
+            Debug.Log ("ExprimentDataKeeper init ");
         }
 
 
@@ -30,11 +31,12 @@ namespace Games.GameSystem
         /// </summary>
         public void InitializeNewFile ()
         {
-            eWriter.InitializeFile (name);
+            eWriter.InitializeFile (UserName);
             eWriter.InitWriteUserInfo (day, name);
             expGameNums = new List<string> ();
             expTimes = new List<float> ();
             expSituations = new List<string> ();
+
 
         }
 
@@ -47,6 +49,19 @@ namespace Games.GameSystem
         public void SetExperimentData ( KeyGames game, float time, string situation )
         {
             expGameNums.Add (game.ToString ());
+            expTimes.Add (time);
+            expSituations.Add (situation);
+        }
+
+        /// <summary>
+        /// 書き込む実験データを受け取る
+        /// </summary>
+        /// <param name="gameNum"></param>
+        /// <param name="time"></param>
+        /// <param name="situation"></param>
+        public void SetExperimentData ( string game, float time, string situation )
+        {
+            expGameNums.Add (game);
             expTimes.Add (time);
             expSituations.Add (situation);
         }
@@ -66,6 +81,8 @@ namespace Games.GameSystem
             foreach ( var a in expSituations )
                 eWriter.WriteWord (a);
             eWriter.WriteNewLine ();
+
+            eWriter.CloseFile ();
         }
     }
 }

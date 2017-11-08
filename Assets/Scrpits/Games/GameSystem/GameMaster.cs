@@ -112,7 +112,7 @@ namespace Games.GameSystem
 
         void Update ()
         {
-            if ( !isPlaying || GameSettings.Instance.debug ) return;
+            if ( !isPlaying || GameSettings.Instance.debug || GameSettings.Instance.experiment || GameSettings.Instance.tutorial ) return;
             //ゲームクリア
             if ( timer.IsGameEnd () ) GameClear ();
         }
@@ -196,12 +196,12 @@ namespace Games.GameSystem
         /// <summary>
         /// startButtonから呼ばれる.ゲームを開始する
         /// </summary>
-        public IEnumerator StartGame ( Coroutine buttonAnimation )
+        public IEnumerator ColStartGame ( Coroutine buttonAnimation )
         {
+            ExprimentDataKeeper.Instance.InitializeNewFile ();
             Coroutine prepare = StartCoroutine (StartPrepare ());
             yield return prepare;
             yield return buttonAnimation;
-			ExprimentDataKeeper.Instance.InitializeNewFile ();
             //タイマーなどを開始
             timer.GameStart ();
             //敵を動かし始める
@@ -219,7 +219,6 @@ namespace Games.GameSystem
         /// <returns></returns>
         IEnumerator StartPrepare ()
         {
-            Debug.Log ("startPrepare");
             nonUsingGameList = new List<IKeyLockGameMaster> ();
             usingGameAndDoorList = new Dictionary<Door, IKeyLockGameMaster> ();
 
@@ -260,7 +259,11 @@ namespace Games.GameSystem
                 g.SetOperationAuthority (false);
             }
 
-            //ExprimentDataKeeper.Instance.AllWriteDownExcel ();
+            if ( !GameSettings.Instance.tutorial )
+            {
+                ExprimentDataKeeper.Instance.SetExperimentData (( KeyGames.NONE ), GameTimer.Instance.GetTime (), "GameFinish");
+                ExprimentDataKeeper.Instance.AllWriteDownExcel ();
+            }
             //スタートボタンを戻す
             startButton.CmdResetStartButton ();
 
@@ -272,17 +275,22 @@ namespace Games.GameSystem
         /// <returns></returns>
         public void ActivateKeyLockGame ( Door d )
         {
-            int rand;
-            var g = GetRandomKeyLockGame (out rand);
+            IKeyLockGameMaster g;
+            if ( GameSettings.Instance.experiment )
+                g = GetExpKeyLockGame ();
+            else
+                g = GetRandomKeyLockGame ();
             nonUsingGameList.Remove (g);
             usingGameAndDoorList.Add (d, g);
-            //ExprimentDataKeeper.Instance.SetExperimentData (( KeyGames ) rand, GameTimer.Instance.GetTime (), "GameInit");
+            if ( !GameSettings.Instance.tutorial )
+                ExprimentDataKeeper.Instance.SetExperimentData (g.GetName (), GameTimer.Instance.GetTime (), "GameInit");
             StartCoroutine (g.Initialize (d));
         }
 
         public void AppearKeyLockGame ( Door d )
         {
-            //ExprimentDataKeeper.Instance.SetExperimentData (KeyGames.NONE, GameTimer.Instance.GetTime (), "Apppear");
+            if ( !GameSettings.Instance.tutorial )
+                ExprimentDataKeeper.Instance.SetExperimentData (KeyGames.NONE, GameTimer.Instance.GetTime (), "Apppear");
             usingGameAndDoorList[d].AppearRoom ();
         }
 
@@ -295,17 +303,37 @@ namespace Games.GameSystem
             var g = usingGameAndDoorList[d];
             nonUsingGameList.Add (g);
             g.Clear ();
-            //ExprimentDataKeeper.Instance.SetExperimentData (( KeyGames.NONE ), GameTimer.Instance.GetTime (), "Answer Correct");
+            if ( !GameSettings.Instance.tutorial )
+                ExprimentDataKeeper.Instance.SetExperimentData (( KeyGames.NONE ), GameTimer.Instance.GetTime (), "Ghost disappear");
             usingGameAndDoorList.Remove (d);
+
+
+
+        }
+
+        public bool IsReachToEndExperimentTime ()
+        {
+            if ( GameSettings.Instance.experiment && keygamePlayCount == GameSettings.Instance.ExpGameTimes )
+                return true;
+            else return false;
+        }
+        public void WriteDownAnswerData ()
+        {
+            ExprimentDataKeeper.Instance.SetExperimentData (( KeyGames.NONE ), GameTimer.Instance.GetTime (), "Answer Correct");
+        }
+        public void WriteDownMissData ()
+        {
+            ExprimentDataKeeper.Instance.SetExperimentData (( KeyGames.NONE ), GameTimer.Instance.GetTime (), "Answer not Correct");
         }
 
         /// <summary>
         /// 現在使われていないゲームをランダムに入手する
         /// </summary>
         /// <returns></returns>
-        IKeyLockGameMaster GetRandomKeyLockGame ( out int rand )
+        IKeyLockGameMaster GetRandomKeyLockGame ()
         {
-            rand = Random.Range (0, nonUsingGameList.Count);
+
+            var rand = Random.Range (0, nonUsingGameList.Count);
             return nonUsingGameList[rand];
         }
 
@@ -371,6 +399,85 @@ namespace Games.GameSystem
 
 
             yield return null;
+        }
+        #endregion
+
+
+        #region EXP
+        public IEnumerator ExperimentStart ( Coroutine buttonAnimation )
+        {
+            ExprimentDataKeeper.Instance.InitializeNewFile ();
+            Coroutine prepare = StartCoroutine (ExperimentStartPrepare ());
+            yield return prepare;
+            yield return buttonAnimation;
+
+            //タイマーなどを開始
+            timer.GameStart ();
+            //敵を動かし始める
+            //記録を取り始める
+
+
+            //スタートの表示
+            Debug.Log ("start Game!");
+            ExprimentDataKeeper.Instance.SetExperimentData (( KeyGames.NONE ), GameTimer.Instance.GetTime (), "Game Start");
+            IsPlaying = true;
+
+        }
+
+        List<IKeyLockGameMaster> ExpGames;
+        IEnumerator ExperimentStartPrepare ()
+        {
+            Debug.Log ("startExpPrepare");
+
+            nonUsingGameList = new List<IKeyLockGameMaster> ();
+            usingGameAndDoorList = new Dictionary<Door, IKeyLockGameMaster> ();
+
+            ExpGames = new List<IKeyLockGameMaster> ();
+            switch ( GameSettings.Instance.FirstExpGame )
+            {
+                case KeyGames.WPG:
+                    wpgMaster.Prepare ();
+                    nonUsingGameList.Add (wpgMaster);
+                    ExpGames.Add (wpgMaster);
+                    break;
+                case KeyGames.DWPG:
+                    dwpgMaster.Prepare ();
+                    nonUsingGameList.Add (dwpgMaster);
+                    ExpGames.Add (dwpgMaster);
+                    break;
+                case KeyGames.WMG:
+                    wmgMaster.Prepare ();
+                    nonUsingGameList.Add (wmgMaster);
+                    ExpGames.Add (wmgMaster);
+                    break;
+                case KeyGames.DWMG:
+                    dwmgMaster.Prepare ();
+                    nonUsingGameList.Add (dwmgMaster);
+                    ExpGames.Add (dwmgMaster);
+                    break;
+                case KeyGames.CG:
+                    cgMaster.Prepare ();
+                    nonUsingGameList.Add (cgMaster);
+                    ExpGames.Add (cgMaster);
+                    break;
+                case KeyGames.DCG:
+                    dcgMaster.Prepare ();
+                    nonUsingGameList.Add (dcgMaster);
+                    ExpGames.Add (dcgMaster);
+                    break;
+
+            }
+            enemyMaster.InitializeTutorial ();
+            doorManager.InitializeGameStart ();
+
+
+            yield return null;
+        }
+        public int keygamePlayCount = 0;
+        IKeyLockGameMaster GetExpKeyLockGame ()
+        {
+            keygamePlayCount++;
+            return ExpGames[0];
         }
         #endregion
 

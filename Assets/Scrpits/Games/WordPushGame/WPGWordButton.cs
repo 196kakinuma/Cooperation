@@ -17,6 +17,8 @@ namespace Games.WordPushGame
         public string word;
         public Vector3 initPos;
 
+        public int positionNum;
+
 
         void Start ()
         {
@@ -43,7 +45,6 @@ namespace Games.WordPushGame
         /// <param name="word"></param>
         public void SetWord ( string word )
         {
-            Debug.Log ("word set");
             this.text.text = word;
         }
 
@@ -51,7 +52,7 @@ namespace Games.WordPushGame
         public void ClickReceive ()
         {
             Debug.Log ("button click");
-            WPGMaster.Instance.ReceiveUserResponse (buttonNum);
+            WPGMaster.Instance.ReceiveUserResponse (buttonNum, positionNum);
         }
 
         public void HoldReceive ( Vector3 pos )

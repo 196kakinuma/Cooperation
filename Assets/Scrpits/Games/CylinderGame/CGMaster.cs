@@ -47,6 +47,9 @@ namespace Games.CG
         void Start ()
         {
             if ( Networks.NetworkInitializer.Instance.cameraType != CameraType.VR ) return;
+
+
+            InitEpxRandom ();
         }
 
 
@@ -69,8 +72,12 @@ namespace Games.CG
             //準備前でもボタンなどは前後できるため.
             ResetAll ();
 
-            //ランダムを生成
-            randNum = UnityEngine.Random.Range (0, answer.sheets[0].list.Count);
+            if ( !GameSettings.Instance.experiment )
+                randNum = UnityEngine.Random.Range (0, answer.sheets[0].list.Count);
+            else
+            {
+                randNum = expRand[GameMaster.Instance.keygamePlayCount - 1];
+            }
 
             //問題と正解を読み込む
             InitializeQuestion ();
@@ -88,6 +95,15 @@ namespace Games.CG
             yield return true;
         }
 
+        int[] expRand;
+        public void InitEpxRandom ()
+        {
+            int[] array = new int[GameSettings.Instance.ExpGameTimes];
+            for ( int i = 0; i < array.Length; i++ )
+                array[i] = i;
+
+            expRand = array.OrderBy (i => Guid.NewGuid ()).ToArray ();
+        }
         public void Clear ()
         {
             currentDoor = null;
@@ -95,7 +111,10 @@ namespace Games.CG
             netTransform.CmdSetActive (false);
 
         }
-
+        public string GetName ()
+        {
+            return gameObject.name;
+        }
         #region INIT
 
         public void InitializeQuestion ()
@@ -141,8 +160,8 @@ namespace Games.CG
             answerList.Add (( DCGColor ) a.Knob1);
             answerList.Add (( DCGColor ) a.Knob2);
             answerList.Add (( DCGColor ) a.Knob3);
-            answerList.Add (( DCGColor ) a.Knob4);
-            answerList.Add (( DCGColor ) a.Knob5);
+            //answerList.Add (( DCGColor ) a.Knob4);
+            //answerList.Add (( DCGColor ) a.Knob5);
         }
 
         public void InitializeHint ()
@@ -264,11 +283,13 @@ namespace Games.CG
                 Debug.Log ("answer is correct!!");
                 currentDoor.KeyLock = true;
                 ExitRoom ();
+                GameMaster.Instance.WriteDownAnswerData ();
             }
             else
             {
                 ResetAll ();
                 Debug.Log ("missed");
+                GameMaster.Instance.WriteDownMissData ();
             }
 
         }

@@ -48,7 +48,7 @@ namespace Games.WordPushGame
 
         Door currentDoor;
 
-
+        int[] answerArray;
         // Use this for initialization
         void Start ()
         {
@@ -59,7 +59,17 @@ namespace Games.WordPushGame
             clientAnswerList = new List<int> ();
 
 
+            answerArray = GetRandomAnserInt ();
 
+
+        }
+        private int[] GetRandomAnserInt ()
+        {
+            int[] array = new int[GameSettings.Instance.ExpGameTimes];
+            for ( int i = 0; i < array.Length; i++ )
+                array[i] = i;
+
+            return array.OrderBy (i => Guid.NewGuid ()).ToArray ();
         }
 
         public void SetOperationAuthority ( bool b )
@@ -112,6 +122,11 @@ namespace Games.WordPushGame
             netTransform.CmdSetActive (false);
 
         }
+
+        public string GetName ()
+        {
+            return gameObject.name;
+        }
         #region INIT
         private void InitializeQuestion ()
         {
@@ -119,12 +134,12 @@ namespace Games.WordPushGame
             for ( int i = 0; i < question.sheets[0].list.Count; i++ )
             {
                 //問題
-                switch ( 1 )
+                switch ( GameSettings.Instance.turn )
                 {
-                    case 0:
+                    case ExpTurn.BEFORE:
                         questionList.Add (question.sheets[0].list[i].one);
                         break;
-                    case 1:
+                    case ExpTurn.AFTER:
                         questionList.Add (question.sheets[0].list[i].two);
                         break;
                 }
@@ -136,18 +151,20 @@ namespace Games.WordPushGame
         private void InitializeAnswer ()
         {
             answerList = new List<int> ();
-            answerList.Add (answer.sheets[0].list[randNum].answer1);
-            answerList.Add (answer.sheets[0].list[randNum].answer2);
-            answerList.Add (answer.sheets[0].list[randNum].answer3);
-            answerList.Add (answer.sheets[0].list[randNum].answer4);
-            answerList.Add (answer.sheets[0].list[randNum].answer5);
-            answerList.Add (answer.sheets[0].list[randNum].answer6);
+            //var i = GameMaster.Instance.keygamePlayCount - 1;
+            var i = answerArray[GameMaster.Instance.keygamePlayCount - 1];
+            answerList.Add (answer.sheets[0].list[i].answer1);
+            answerList.Add (answer.sheets[0].list[i].answer2);
+            answerList.Add (answer.sheets[0].list[i].answer3);
+            answerList.Add (answer.sheets[0].list[i].answer4);
+            //answerList.Add (answer.sheets[0].list[i].answer5);
+            //answerList.Add (answer.sheets[0].list[randNum].answer6);
         }
 
         private void InitializeHint ()
         {
-            month = calender.sheets[0].list[randNum].Month;
-            day = calender.sheets[0].list[randNum].Day;
+            month = calender.sheets[0].list[answerArray[GameMaster.Instance.keygamePlayCount - 1]].Month;
+            day = calender.sheets[0].list[answerArray[GameMaster.Instance.keygamePlayCount - 1]].Day;
             netTransform.CmdSetCalender (month, day);
         }
         private void InitializeButtons ()
@@ -158,7 +175,7 @@ namespace Games.WordPushGame
             for ( int i = 0; i < wpgWordButtons.Length; i++ )
             {
                 wpgWordButtons[array[i]].InitializeButtonInfo (questionList[i], i);
-                netTransform.CmdSetWord (wpgWordButtons[array[i]].buttonNum, wpgWordButtons[array[i]].word);
+                netTransform.CmdSetWord (array[i], wpgWordButtons[array[i]].word);
                 currentWpgButton[i] = wpgWordButtons[array[i]];
             }
         }
@@ -216,11 +233,13 @@ namespace Games.WordPushGame
                 Debug.Log ("answer is correct!!");
                 currentDoor.KeyLock = true;
                 ExitRoom ();
+                GameMaster.Instance.WriteDownAnswerData ();
             }
             else
             {
                 ResetAll ();
                 Debug.Log ("missed");
+                GameMaster.Instance.WriteDownMissData ();
             }
 
         }
@@ -228,12 +247,12 @@ namespace Games.WordPushGame
         /// <summary>
         /// クライアントのボタン入力をここで受け取り、リストに保持する
         /// </summary>
-        public void ReceiveUserResponse ( int i )
+        public void ReceiveUserResponse ( int i, int posNum )
         {
             if ( !operationAuthority ) return;
             if ( clientAnswerList.Contains (i) ) return;
             clientAnswerList.Add (i);
-            netTransform.CmdPushMove (i);
+            netTransform.CmdPushMove (posNum);
 
         }
 

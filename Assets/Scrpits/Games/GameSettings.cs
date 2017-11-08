@@ -15,13 +15,32 @@ namespace Games
         DCG,
         NONE
     }
+    public enum ExpTurn
+    {
+        BEFORE,
+        AFTER
+    }
     public class GameSettings : SingletonMonoBehaviour<GameSettings>
     {
         public KeyGames game;
 
-        public bool tutorial;
+        /// <summary>
+        /// 先行か後攻かの選択
+        /// </summary>
+        public ExpTurn turn;
 
-		public bool detaWrite;
+        /// <summary>
+        /// 一つのゲームの試行回数
+        /// </summary>
+        public int ExpGameTimes = 5;
+        /// <summary>
+        /// 実験に使うゲームの種類
+        /// </summary>
+        public KeyGames FirstExpGame;
+
+        public bool tutorial;
+        public bool experiment;
+        public bool detaWrite;
 
         [Tooltip ("Answerを押したら正解になる")]
         public bool debug;

@@ -24,7 +24,7 @@ namespace Games.WordPushGame
         void RpcPushMove ( int i )
         {
             Debug.Log ("Rpc ");
-            master.currentWpgButton[i].PushMove ();
+            master.wpgWordButtons[i].PushMove ();
 
         }
 
@@ -50,7 +50,7 @@ namespace Games.WordPushGame
         [ClientRpc]
         void RpcSetWord ( int i, string text )
         {
-            master.currentWpgButton[i].SetWord (text);
+            master.wpgWordButtons[i].SetWord (text);
         }
         #endregion
         [Command]

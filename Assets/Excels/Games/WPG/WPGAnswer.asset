@@ -15,35 +15,35 @@ MonoBehaviour:
   - name: Sheet1
     list:
     - answer1: 0
+      answer2: 8
+      answer3: 16
+      answer4: 11
+      answer5: 0
+      answer6: 0
+    - answer1: 14
       answer2: 1
-      answer3: 2
-      answer4: 3
-      answer5: 4
-      answer6: 5
-    - answer1: 3
-      answer2: 5
-      answer3: 11
-      answer4: 12
-      answer5: 15
-      answer6: 16
-    - answer1: 4
-      answer2: 6
       answer3: 9
-      answer4: 10
-      answer5: 14
-      answer6: 17
-    - answer1: 1
-      answer2: 4
-      answer3: 5
-      answer4: 6
-      answer5: 12
-      answer6: 16
-    - answer1: 2
-      answer2: 3
-      answer3: 5
-      answer4: 6
-      answer5: 9
-      answer6: 18
+      answer4: 5
+      answer5: 0
+      answer6: 0
+    - answer1: 4
+      answer2: 19
+      answer3: 2
+      answer4: 18
+      answer5: 0
+      answer6: 0
+    - answer1: 17
+      answer2: 7
+      answer3: 12
+      answer4: 3
+      answer5: 0
+      answer6: 0
+    - answer1: 6
+      answer2: 10
+      answer3: 13
+      answer4: 15
+      answer5: 0
+      answer6: 0
     - answer1: 1
       answer2: 3
       answer3: 4

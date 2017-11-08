@@ -102,8 +102,10 @@ namespace Games.GameSystem
             else //まだenemyはどこの部屋にも入っていなかった
             {
                 //入る部屋を決める
-                //int decideRoom = Random.Range (0, doors.Length);
-                int decideRoom = 1;
+
+                int decideRoom = Random.Range (0, doors.Length);
+                if ( GameSettings.Instance.debug )
+                    decideRoom = 1;
                 if ( enemyRoomList.ContainsValue (doors[decideRoom]) || blankRoomList.Contains (doors[decideRoom]) )//入ろうとした部屋にすでにだれか入っていた
                 {
                     Debug.Log ("だれかすでにいた");
@@ -197,15 +199,21 @@ namespace Games.GameSystem
                 d.BlankTime = wait;
                 if ( !d.KeyLock )
                 {
-                   // ExprimentDataKeeper.Instance.SetExperimentData (KeyGames.NONE, wait, "wait end  time");
+                    if ( !GameSettings.Instance.tutorial )
+                        ExprimentDataKeeper.Instance.SetExperimentData (KeyGames.NONE, wait, "wait end  time");
                     break;
                 }
 
                 yield return new WaitForEndOfFrame ();
             }
-            //ExprimentDataKeeper.Instance.SetExperimentData (KeyGames.NONE, wait, "Blanktime finish");
+            if ( !GameSettings.Instance.tutorial )
+                ExprimentDataKeeper.Instance.SetExperimentData (KeyGames.NONE, wait, "Blanktime finish");
             blankRoomList.Remove (d);
             d.BlankTime = 0f;
+
+            //実験の終了判定
+            if ( GameSettings.Instance.experiment && GameMaster.Instance.IsReachToEndExperimentTime () )
+                GameMaster.Instance.FinishGame ();
         }
 
         void GamesOver ( Enemy.Enemy e, Door d )

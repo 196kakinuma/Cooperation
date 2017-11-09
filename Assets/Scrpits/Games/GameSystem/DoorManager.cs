@@ -211,6 +211,8 @@ namespace Games.GameSystem
             blankRoomList.Remove (d);
             d.BlankTime = 0f;
 
+            //すぐに扉を開ける（実験用）
+            d.ClickDoorLockButton ();
             //実験の終了判定
             if ( GameSettings.Instance.experiment && GameMaster.Instance.IsReachToEndExperimentTime () )
                 GameMaster.Instance.FinishGame ();

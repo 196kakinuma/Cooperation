@@ -66,7 +66,7 @@ namespace Games.Enemy
         public void GenerateExpEnemy ()
         {
             enemys = new Enemy[1];
-            enemys[0] = new Enemy (5f, 1000f, 5f, EnemyType.RED);
+            enemys[0] = new Enemy (5f, 1000f, 0.5f, EnemyType.RED);
         }
         #endregion
 

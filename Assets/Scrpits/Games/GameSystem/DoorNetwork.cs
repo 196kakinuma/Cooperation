@@ -11,6 +11,9 @@ namespace Games.GameSystem
         [SerializeField]
         Door door;
 
+        [SerializeField]
+        GameObject button;
+
 
         [Command]
         public void CmdSetWindowsImageActive ( Enemy.EnemyType type )
@@ -59,6 +62,18 @@ namespace Games.GameSystem
         void RpcSetButtonText ( bool isLock )
         {
             door.NtSetButtonText (isLock);
+        }
+
+        [Command]
+        public void CmdButtonActive ( bool active )
+        {
+            RpcButtonActive (active);
+        }
+
+        [ClientRpc]
+        void RpcButtonActive ( bool active )
+        {
+            button.SetActive (active);
         }
     }
 }

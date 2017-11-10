@@ -291,6 +291,7 @@ namespace Games.GameSystem
         {
             if ( !GameSettings.Instance.tutorial )
                 ExprimentDataKeeper.Instance.SetExperimentData (KeyGames.NONE, GameTimer.Instance.GetTime (), "Apppear");
+
             usingGameAndDoorList[d].AppearRoom ();
         }
 

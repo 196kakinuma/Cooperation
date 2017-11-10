@@ -7,6 +7,8 @@ namespace Device
     public class CameraSetter : MonoBehaviour
     {
         Camera camera;
+        [SerializeField]
+        GameObject backGround;
         // Use this for initialization
         void Start ()
         {
@@ -18,6 +20,7 @@ namespace Device
                 case CameraType.MR:
                     camera.clearFlags = CameraClearFlags.SolidColor;
                     camera.backgroundColor = Color.black;
+                    backGround.SetActive (true);
                     break;
             }
         }

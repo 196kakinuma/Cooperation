@@ -429,7 +429,7 @@ namespace Games.GameSystem
         IEnumerator ExperimentStartPrepare ()
         {
             Debug.Log ("startExpPrepare");
-
+            keygamePlayCount = 0;
             nonUsingGameList = new List<IKeyLockGameMaster> ();
             usingGameAndDoorList = new Dictionary<Door, IKeyLockGameMaster> ();
 

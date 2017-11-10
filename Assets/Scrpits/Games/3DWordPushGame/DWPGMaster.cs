@@ -58,7 +58,7 @@ namespace Games.DWordPushGame
 
             //ゲーム開始前に入力が入った場合のエラーを排除
             clientAnswerList = new List<int> ();
-            answerArray = GetRandomAnserInt ();
+
 
         }
         private int[] GetRandomAnserInt ()
@@ -94,7 +94,7 @@ namespace Games.DWordPushGame
             netTransform.CmdSetActive (true);
             //準備前でもボタンなどは前後できるため.
             ResetAll ();
-
+            answerArray = GetRandomAnserInt ();
             //ランダムを生成
             randNum = UnityEngine.Random.Range (0, answer.sheets[0].list.Count);
 

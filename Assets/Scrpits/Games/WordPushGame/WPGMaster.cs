@@ -59,7 +59,7 @@ namespace Games.WordPushGame
             clientAnswerList = new List<int> ();
 
 
-            answerArray = GetRandomAnserInt ();
+
 
 
         }
@@ -96,6 +96,7 @@ namespace Games.WordPushGame
             netTransform.CmdSetActive (true);
             //準備前でもボタンなどは前後できるため.
             ResetAll ();
+            answerArray = GetRandomAnserInt ();
 
             //ランダムを生成
             randNum = UnityEngine.Random.Range (0, answer.sheets[0].list.Count);

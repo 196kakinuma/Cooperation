@@ -1316,6 +1316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 114462303826164574}
+  button: {fileID: 1571839933356952}
 --- !u!222 &222676304687274262
 CanvasRenderer:
   m_ObjectHideFlags: 1

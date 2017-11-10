@@ -129,14 +129,20 @@ namespace Games.GameSystem
                 if ( manager.AppearKeyLockGame (this) )
                 {
                     //操作不能に
-                    SetButtonActive (false);
+                    SetButtonActive (false, false);
                 }
             }
         }
 
         public void SetButtonActive ( bool b )
         {
+            SetButtonActive (b, true);
+        }
+        public void SetButtonActive ( bool b, bool onlyManip )
+        {
+            network.CmdButtonActive (b);
             button.CanManipurate = b;
+
         }
 
         public void SetButtonWord ( bool isLock )
@@ -154,6 +160,8 @@ namespace Games.GameSystem
         public void NtSetImageActive ( Enemy.EnemyType type )
         {
             windowImage.gameObject.SetActive (true);
+            lockText.text = "WARNING";
+            lockText.color = Color.red;
         }
 
         public void SetImageNonActive ( Enemy.EnemyType type )

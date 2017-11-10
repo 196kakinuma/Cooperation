@@ -277,6 +277,7 @@ namespace Games.DWordMuchGame
             Debug.Log ("appear");
 
             //表示する
+            currentDoor.SetButtonActive (true);
 
             //アニメーション
             var pos = transform.position;

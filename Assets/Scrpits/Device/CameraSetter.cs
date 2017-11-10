@@ -20,7 +20,6 @@ namespace Device
                 case CameraType.MR:
                     camera.clearFlags = CameraClearFlags.SolidColor;
                     camera.backgroundColor = Color.black;
-                    backGround.SetActive (true);
                     break;
             }
         }

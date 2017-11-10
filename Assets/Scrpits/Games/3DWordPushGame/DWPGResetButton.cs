@@ -23,6 +23,7 @@ namespace Games.DWordPushGame
         public void ClickReceive ()
         {
             DWPGMaster.Instance.ResetAll ();
+            Games.GameSystem.GameMaster.Instance.WriteDownMissData ();
         }
 
         public void HoldReceive ( Vector3 pos )

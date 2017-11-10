@@ -327,6 +327,11 @@ namespace Games.GameSystem
             ExprimentDataKeeper.Instance.SetExperimentData (( KeyGames.NONE ), GameTimer.Instance.GetTime (), "Answer not Correct");
         }
 
+        public void WriteDownResetData ()
+        {
+            ExprimentDataKeeper.Instance.SetExperimentData (( KeyGames.NONE ), GameTimer.Instance.GetTime (), "Press Reset Button");
+        }
+
         /// <summary>
         /// 現在使われていないゲームをランダムに入手する
         /// </summary>

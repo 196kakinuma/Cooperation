@@ -7,6 +7,8 @@ namespace Device
     public class CameraSetter : MonoBehaviour
     {
         Camera camera;
+        [SerializeField]
+        GameObject backGround;
         // Use this for initialization
         void Start ()
         {

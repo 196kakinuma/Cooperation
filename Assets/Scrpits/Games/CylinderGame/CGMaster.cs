@@ -156,7 +156,7 @@ namespace Games.CG
         public void InitializeAnswer ()
         {
             answerList = new List<DCGColor> ();
-            var a = answer.sheets[0].list[randNum];
+            var a = answer.sheets[0].list[GameMaster.Instance.keygamePlayCount - 1];
             answerList.Add (( DCGColor ) a.Knob1);
             answerList.Add (( DCGColor ) a.Knob2);
             answerList.Add (( DCGColor ) a.Knob3);
@@ -166,7 +166,7 @@ namespace Games.CG
 
         public void InitializeHint ()
         {
-            netTransform.CmdSetHint (GetColorFromHint (randNum));
+            netTransform.CmdSetHint (GetColorFromHint (GameMaster.Instance.keygamePlayCount - 1));
         }
 
         private Color GetColorFromHint ( int i )

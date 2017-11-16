@@ -49,7 +49,7 @@ namespace Games.DCG
             if ( Networks.NetworkInitializer.Instance.cameraType != CameraType.VR ) return;
 
 
-            InitEpxRandom ();
+
         }
 
 
@@ -67,17 +67,18 @@ namespace Games.DCG
 
         public IEnumerator Initialize ( Door d )
         {
+            Debug.Log ("Init");
             netTransform.CmdSetActive (true);
 
             //準備前でもボタンなどは前後できるため.
             ResetAll ();
-            int randNum;
+
             //ランダムを生成
             if ( !GameSettings.Instance.experiment )
                 randNum = UnityEngine.Random.Range (0, answer.sheets[0].list.Count);
             else
             {
-                randNum = expRand[GameMaster.Instance.keygamePlayCount - 1];
+                randNum = GameMaster.Instance.GetRandomQuestionNum ();
             }
             //問題と正解を読み込む
             InitializeQuestion ();
@@ -93,16 +94,6 @@ namespace Games.DCG
 
 
             yield return true;
-        }
-
-        int[] expRand;
-        public void InitEpxRandom ()
-        {
-            int[] array = new int[GameSettings.Instance.ExpGameTimes];
-            for ( int i = 0; i < array.Length; i++ )
-                array[i] = i;
-
-            expRand = array.OrderBy (i => Guid.NewGuid ()).ToArray ();
         }
 
         public void Clear ()
@@ -158,7 +149,7 @@ namespace Games.DCG
         public void InitializeAnswer ()
         {
             answerList = new List<DCGColor> ();
-            var a = answer.sheets[0].list[GameMaster.Instance.keygamePlayCount - 1];
+            var a = answer.sheets[0].list[randNum];
             answerList.Add (( DCGColor ) a.Knob1);
             answerList.Add (( DCGColor ) a.Knob2);
             answerList.Add (( DCGColor ) a.Knob3);
@@ -168,7 +159,7 @@ namespace Games.DCG
 
         public void InitializeHint ()
         {
-            netTransform.CmdSetHint (GetColorFromDCGColor (GameMaster.Instance.keygamePlayCount - 1));
+            netTransform.CmdSetHint (GetColorFromDCGColor (randNum));
         }
 
         private void InitializeKnob ()

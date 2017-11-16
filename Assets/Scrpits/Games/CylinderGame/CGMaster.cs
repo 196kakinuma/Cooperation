@@ -49,7 +49,7 @@ namespace Games.CG
             if ( Networks.NetworkInitializer.Instance.cameraType != CameraType.VR ) return;
 
 
-            InitEpxRandom ();
+
         }
 
 
@@ -76,7 +76,7 @@ namespace Games.CG
                 randNum = UnityEngine.Random.Range (0, answer.sheets[0].list.Count);
             else
             {
-                randNum = expRand[GameMaster.Instance.keygamePlayCount - 1];
+                randNum = GameMaster.Instance.GetRandomQuestionNum ();
             }
 
             //問題と正解を読み込む
@@ -95,15 +95,6 @@ namespace Games.CG
             yield return true;
         }
 
-        int[] expRand;
-        public void InitEpxRandom ()
-        {
-            int[] array = new int[GameSettings.Instance.ExpGameTimes];
-            for ( int i = 0; i < array.Length; i++ )
-                array[i] = i;
-
-            expRand = array.OrderBy (i => Guid.NewGuid ()).ToArray ();
-        }
         public void Clear ()
         {
             currentDoor = null;
@@ -156,7 +147,7 @@ namespace Games.CG
         public void InitializeAnswer ()
         {
             answerList = new List<DCGColor> ();
-            var a = answer.sheets[0].list[GameMaster.Instance.keygamePlayCount - 1];
+            var a = answer.sheets[0].list[randNum];
             answerList.Add (( DCGColor ) a.Knob1);
             answerList.Add (( DCGColor ) a.Knob2);
             answerList.Add (( DCGColor ) a.Knob3);
@@ -166,7 +157,7 @@ namespace Games.CG
 
         public void InitializeHint ()
         {
-            netTransform.CmdSetHint (GetColorFromHint (GameMaster.Instance.keygamePlayCount - 1));
+            netTransform.CmdSetHint (GetColorFromHint (randNum));
         }
 
         private Color GetColorFromHint ( int i )

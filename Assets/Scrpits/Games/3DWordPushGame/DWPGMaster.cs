@@ -49,7 +49,6 @@ namespace Games.DWordPushGame
 
         Door currentDoor;
 
-        int[] answerArray;
         // Use this for initialization
         void Start ()
         {
@@ -59,14 +58,6 @@ namespace Games.DWordPushGame
             //ゲーム開始前に入力が入った場合のエラーを排除
             clientAnswerList = new List<int> ();
 
-
-        }
-        private int[] GetRandomAnserInt ()
-        {
-            int[] array = new int[GameSettings.Instance.ExpGameTimes];
-            for ( int i = 0; i < array.Length; i++ )
-                array[i] = i;
-            return array.OrderBy (i => Guid.NewGuid ()).ToArray ();
 
         }
 
@@ -94,9 +85,13 @@ namespace Games.DWordPushGame
             netTransform.CmdSetActive (true);
             //準備前でもボタンなどは前後できるため.
             ResetAll ();
-            answerArray = GetRandomAnserInt ();
+
             //ランダムを生成
-            randNum = UnityEngine.Random.Range (0, answer.sheets[0].list.Count);
+            if ( !GameSettings.Instance.experiment )
+                randNum = UnityEngine.Random.Range (0, answer.sheets[0].list.Count);
+            else
+                randNum = GameMaster.Instance.GetRandomQuestionNum ();
+
 
             //問題と正解を読み込む
             InitializeQuestion ();
@@ -150,7 +145,7 @@ namespace Games.DWordPushGame
         {
             answerList = new List<int> ();
             //var i = GameMaster.Instance.keygamePlayCount - 1;
-            var i = answerArray[GameMaster.Instance.keygamePlayCount - 1];
+            var i = randNum;
             answerList.Add (answer.sheets[0].list[i].answer1);
             answerList.Add (answer.sheets[0].list[i].answer2);
             answerList.Add (answer.sheets[0].list[i].answer3);
@@ -161,8 +156,8 @@ namespace Games.DWordPushGame
 
         private void InitializeHint ()
         {
-            month = calender.sheets[0].list[answerArray[GameMaster.Instance.keygamePlayCount - 1]].Month;
-            day = calender.sheets[0].list[answerArray[GameMaster.Instance.keygamePlayCount - 1]].Day;
+            month = calender.sheets[0].list[randNum].Month;
+            day = calender.sheets[0].list[randNum].Day;
             netTransform.CmdSetCalender (month, day);
         }
         private void InitializeButtons ()

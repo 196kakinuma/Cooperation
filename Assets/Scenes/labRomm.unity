@@ -393,12 +393,12 @@ Prefab:
         type: 2}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1243232385}
+      objectReference: {fileID: 1586999138}
     - target: {fileID: 23342881851894932, guid: fce2155142ff3f64abc3745505f3897c,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 992895720}
+      objectReference: {fileID: 820447933}
     - target: {fileID: 1658584406051400, guid: fce2155142ff3f64abc3745505f3897c, type: 2}
       propertyPath: m_IsActive
       value: 1
@@ -516,7 +516,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &992895720
+--- !u!21 &820447933
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -587,7 +587,7 @@ Transform:
   m_Father: {fileID: 61831133}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!43 &1243232385
+--- !u!43 &1586999138
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -968,7 +968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   day: 2017/10/16
-  UserName: M002
+  UserName: test
   memo: test
 --- !u!114 &1897459344
 MonoBehaviour:

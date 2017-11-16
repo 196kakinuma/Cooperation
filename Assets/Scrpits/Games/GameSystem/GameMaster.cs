@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using IkLibrary.Unity;
 using UnityEngine.Networking;
@@ -339,7 +341,7 @@ namespace Games.GameSystem
         IKeyLockGameMaster GetRandomKeyLockGame ()
         {
 
-            var rand = Random.Range (0, nonUsingGameList.Count);
+            var rand = UnityEngine.Random.Range (0, nonUsingGameList.Count);
             return nonUsingGameList[rand];
         }
 
@@ -433,8 +435,8 @@ namespace Games.GameSystem
         List<IKeyLockGameMaster> ExpGames;
         IEnumerator ExperimentStartPrepare ()
         {
-            Debug.Log ("startExpPrepare");
             keygamePlayCount = 0;
+            InitRandomQuestionNum ();
             nonUsingGameList = new List<IKeyLockGameMaster> ();
             usingGameAndDoorList = new Dictionary<Door, IKeyLockGameMaster> ();
 
@@ -484,6 +486,31 @@ namespace Games.GameSystem
         {
             keygamePlayCount++;
             return ExpGames[0];
+        }
+
+        int[] randomQuestionNum;
+        /// <summary>
+        /// 実験で使用する重複しない問題番号を生成
+        /// </summary>
+        void InitRandomQuestionNum ()
+        {
+            int[] array = new int[GameSettings.Instance.ExpGameTimes];
+            for ( int i = 0; i < array.Length; i++ )
+                array[i] = i;
+            randomQuestionNum = array.OrderBy (i => Guid.NewGuid ()).ToArray ();
+            foreach ( var a in randomQuestionNum )
+            {
+                Debug.Log (a);
+            }
+        }
+
+        /// <summary>
+        /// keygamePlayCountから重複しない問題番号を渡す
+        /// </summary>
+        /// <returns></returns>
+        public int GetRandomQuestionNum ()
+        {
+            return randomQuestionNum[keygamePlayCount - 1];
         }
         #endregion
 

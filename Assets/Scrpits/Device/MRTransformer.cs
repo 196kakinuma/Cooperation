@@ -40,7 +40,7 @@ namespace Device
                 if ( hasAuthority )
                 {
                     Debug.Log ("trackerpos=" + tracker.pos);
-                    positionParent.transform.position = ( -1 * InputTracking.GetLocalPosition (VRNode.CenterEye) + tracker.pos );
+                    positionParent.transform.position = ( -1 * UnityEngine.XR.InputTracking.GetLocalPosition (UnityEngine.XR.XRNode.CenterEye) + tracker.pos );
                     Debug.Log ("coerrect pos setted");
                     //rotationは自分の値を使用する
                 }

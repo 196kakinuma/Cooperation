@@ -10,7 +10,7 @@ namespace Device
     public class HandTracker : NetworkBehaviour
     {
         [SerializeField]
-        VRNode hand;
+        UnityEngine.XR.XRNode hand;
 
         // Use this for initialization
         void Start ()
@@ -25,9 +25,9 @@ namespace Device
             //権限のあるクライアントのみ、位置を変更できる
             if ( hasAuthority )
             {
-                var hand = InputTracking.GetLocalPosition (this.hand);
+                var hand = UnityEngine.XR.InputTracking.GetLocalPosition (this.hand);
                 transform.localPosition = hand;
-                transform.rotation = InputTracking.GetLocalRotation (this.hand);
+                transform.rotation = UnityEngine.XR.InputTracking.GetLocalRotation (this.hand);
             }
         }
     }

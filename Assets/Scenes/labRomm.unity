@@ -384,12 +384,12 @@ Prefab:
         type: 2}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 1751203157}
+      objectReference: {fileID: 1792137726}
     - target: {fileID: 23342881851894932, guid: fce2155142ff3f64abc3745505f3897c,
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2022440470}
+      objectReference: {fileID: 1069498059}
     - target: {fileID: 1658584406051400, guid: fce2155142ff3f64abc3745505f3897c, type: 2}
       propertyPath: m_IsActive
       value: 1
@@ -507,6 +507,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &1069498059
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Sprites/Default
+  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1198182755 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4387168042292300, guid: fce2155142ff3f64abc3745505f3897c,
@@ -545,7 +578,7 @@ Transform:
   m_Father: {fileID: 61831133}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!43 &1751203157
+--- !u!43 &1792137726
 Mesh:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -747,8 +780,6 @@ GameObject:
   - component: {fileID: 1897459338}
   - component: {fileID: 1897459341}
   - component: {fileID: 1897459342}
-  - component: {fileID: 1897459344}
-  - component: {fileID: 1897459343}
   m_Layer: 0
   m_Name: GlobalManagers
   m_TagString: Untagged
@@ -787,22 +818,8 @@ MonoBehaviour:
   - {fileID: 1056631468386282, guid: 283260e3653353b4fb055e2ff8b8cf1b, type: 2}
   - {fileID: 1809804692222998, guid: 8bbb0073ab6f0264caa873571ba871ca, type: 2}
   - {fileID: 1401882710443416, guid: 839bab398d06bd94da789f53f54cf193, type: 2}
-  - {fileID: 1662385596694584, guid: 82c21b633ff09de4f836e8449e9db892, type: 2}
   - {fileID: 1241750763308820, guid: fcf73b8750f57b843adda2b5d57945d6, type: 2}
   - {fileID: 1322029167508196, guid: 6849deb6e96f7a444906ad50514da925, type: 2}
-  - {fileID: 1845080528482818, guid: 0eed3f40564438144a9bf13eac4b84ed, type: 2}
-  - {fileID: 1645879221222944, guid: 867700e2924c41546ba6a76bf2e9e9da, type: 2}
-  - {fileID: 1835881311182150, guid: 2561cdc2909f17942b7f5d282c6928a0, type: 2}
-  - {fileID: 1136722833741138, guid: 67038462c62f8df4c8061ed2faf8e814, type: 2}
-  - {fileID: 1212455305081740, guid: 312293657bf36b84198cfcf7d2b6dc35, type: 2}
-  - {fileID: 1433321031140160, guid: eb3e0e9260991ea4bbe1c6ad1230835a, type: 2}
-  - {fileID: 1761782435082068, guid: 3ac10ffc4b350104bb8fc3957c16a5dd, type: 2}
-  - {fileID: 1008674032690300, guid: 669ede8479aa0fd4790aba9c31c7a347, type: 2}
-  - {fileID: 1194276900491478, guid: bca1d8136f006fb4ca493b08d5dc15b7, type: 2}
-  - {fileID: 1403196309542770, guid: 63fd1a78ea7faa843b009955c444deb0, type: 2}
-  - {fileID: 1762342638978146, guid: ecb6ebec0ed36554f9d823cbd0403f0a, type: 2}
-  - {fileID: 1759666186652842, guid: 769a784b7eed8804584f4dc75a73b901, type: 2}
-  - {fileID: 1157714392573290, guid: 0cbede929ba74174e95b08a7aadbe45f, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -900,7 +917,6 @@ MonoBehaviour:
     type: 2}
   trackerMasterPref: {fileID: 1809804692222998, guid: 8bbb0073ab6f0264caa873571ba871ca,
     type: 2}
-  room: {fileID: 1401882710443416, guid: 839bab398d06bd94da789f53f54cf193, type: 2}
 --- !u!114 &1897459342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -916,73 +932,3 @@ MonoBehaviour:
   showGUI: 1
   offsetX: 0
   offsetY: 0
---- !u!114 &1897459343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1897459337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97ea494ad67c77e4a891531259407363, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  day: 2017/11/27
-  UserName: A010
-  memo: test
---- !u!114 &1897459344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1897459337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1a77be3ab1afca4f962e1a9bbb275f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  game: 4
-  turn: 1
-  ExpGameTimes: 1
-  FirstExpGame: 4
-  tutorial: 0
-  experiment: 1
-  detaWrite: 1
-  debug: 0
-  EnemyNum: 3
-  doorNum: 3
-  blankRoomTime: 2
-  GameDuration: 300
---- !u!21 &2022440470
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: Sprites/Default
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}

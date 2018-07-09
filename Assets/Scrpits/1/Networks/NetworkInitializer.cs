@@ -30,6 +30,26 @@ namespace Networks
         [SerializeField]
         public CameraType cameraType;
 
+        [SerializeField]
+        GameObject vrPlayer;
+        [SerializeField]
+        GameObject mrPlayer;
+
+        void Awake ()
+        {
+            if ( cameraType == CameraType.VR )
+            {
+                vrPlayer.SetActive (true);
+            }
+            else if ( cameraType == CameraType.MR )
+            {
+                mrPlayer.SetActive (true);
+            }
+            else
+            {
+                Debug.Log ("No cameraType");
+            }
+        }
         // Use this for initialization
         void Start ()
         {

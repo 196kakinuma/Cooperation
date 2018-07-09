@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4982811584808750}
   - component: {fileID: 114047645980289294}
   - component: {fileID: 114528716854638314}
-  - component: {fileID: 114436891022711774}
+  - component: {fileID: 114860943522261698}
   m_Layer: 0
   m_Name: RightHandController
   m_TagString: Untagged
@@ -159,18 +159,6 @@ MonoBehaviour:
     i15: 27
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
---- !u!114 &114436891022711774
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1056631468386282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9e0d26936680184a98a08564a4ae422, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hand: 5
 --- !u!114 &114528716854638314
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -192,3 +180,14 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!114 &114860943522261698
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1056631468386282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3771c63af7ba13f4d96cd3f6ca63ac7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

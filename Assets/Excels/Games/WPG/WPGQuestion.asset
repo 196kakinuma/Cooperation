@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!114 &11400000
 MonoBehaviour:
-  m_ObjectHideFlags: 8
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -11,46 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20cc3fb9f4ae11f44b0ba54a1fb1655f, type: 3}
   m_Name: WPGQuestion
   m_EditorClassIdentifier: 
-  sheets:
-  - name: Sheet1
-    list:
-    - one: "\u067B"
-      two: "\u0B07"
-    - one: "\u0681"
-      two: "\u0B1B"
-    - one: "\u0684"
-      two: "\u0B22\u0B3C"
-    - one: "\u0688"
-      two: "\u0B05"
-    - one: "\u068F"
-      two: "\u0B0B"
-    - one: "\u0633"
-      two: "\u0B0C"
-    - one: "\u069C"
-      two: "\u0A95\u0AC3"
-    - one: "\uFEB9"
-      two: "\u0B10"
-    - one: "\u0637"
-      two: "\u0B13"
-    - one: "\u069F"
-      two: "\u0B14"
-    - one: "\u0639"
-      two: "\u0B0F"
-    - one: "\u06FC"
-      two: "\u0998"
-    - one: "\u06A3"
-      two: "\u0915"
-    - one: "\u06A6"
-      two: "\u0999 "
-    - one: "\u063B"
-      two: "\u099A"
-    - one: "\u0697"
-      two: "\u09A0"
-    - one: "\u06AE"
-      two: "\u09A3"
-    - one: "\u0645"
-      two: "\u099B"
-    - one: "\u0624"
-      two: "\u0938"
-    - one: "\u0626"
-      two: "\u091E"
+  sheets: []

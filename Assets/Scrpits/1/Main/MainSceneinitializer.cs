@@ -26,8 +26,6 @@ namespace Main
                 //GameMaster生成
                 Instantiate (gameMasterPref);
 
-                //MR用のトラッカーマスターを生成
-                NetworkServer.Spawn (Instantiate (trackerMasterPref));
                 //NetworkServer.Spawn (Instantiate (room));
                 NetworkServer.Spawn (Instantiate (earthPref));
             }

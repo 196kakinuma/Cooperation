@@ -63,13 +63,13 @@ namespace C2.System
         {
             if ( downTrigger || other.gameObject.tag != "MObj" ) return;
             selected = other.gameObject.GetComponent<ManipObjectHandler> ();
-            selected.CmdEmit ();
+            // selected.CmdEmit ();
         }
 
         void OnTriggerExit ( Collider other )
         {
-            if ( selected != null )
-                selected.CmdDisEmit ();
+            // if ( selected != null )
+            //  selected.CmdDisEmit ();
             selected = null;
 
         }

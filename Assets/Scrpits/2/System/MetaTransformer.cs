@@ -11,7 +11,7 @@ namespace C2.System
         void Start ()
         {
 
-            tracker = GameObject.Find (" TrackerSyncObj (Clone)");
+            tracker = tracker = GameObject.FindGameObjectWithTag ("tracker");
 
         }
 
@@ -20,7 +20,7 @@ namespace C2.System
         {
             if ( tracker == null )
             {
-                tracker = GameObject.Find ("TrackerSyncObj (Clone)");
+                tracker = GameObject.FindGameObjectWithTag ("tracker");
             }
             else
             {

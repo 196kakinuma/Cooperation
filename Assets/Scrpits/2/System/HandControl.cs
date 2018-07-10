@@ -68,7 +68,8 @@ namespace C2.System
 
         void OnTriggerExit ( Collider other )
         {
-            selected.CmdDisEmit ();
+            if ( selected != null )
+                selected.CmdDisEmit ();
             selected = null;
 
         }

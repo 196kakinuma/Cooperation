@@ -13,13 +13,18 @@ namespace C2.System
 
         [SerializeField]
         GameObject CtrlPref;
+        [SerializeField]
+        GameObject TrackerPref;
         HandController rightHandController;
         HandController leftHandController;
+        HandController tracker;
 
         [SerializeField]
         GameObject baseRCtrler;
         [SerializeField]
         GameObject baseLCtrler;
+        [SerializeField]
+        GameObject baseTracker;
 
 
         // Use this for initialization
@@ -27,11 +32,14 @@ namespace C2.System
         {
             rightHandController = Instantiate (CtrlPref).GetComponent<HandController> ();
             leftHandController = Instantiate (CtrlPref).GetComponent<HandController> ();
+            tracker = Instantiate (TrackerPref).GetComponent<HandController> ();
             rightHandController.targetObject = baseRCtrler;
             leftHandController.targetObject = baseLCtrler;
+            tracker.targetObject = baseTracker;
 
             NetworkServer.Spawn (rightHandController.gameObject);
             NetworkServer.Spawn (leftHandController.gameObject);
+            NetworkServer.Spawn (tracker.gameObject);
         }
 
         // Update is called once per frame

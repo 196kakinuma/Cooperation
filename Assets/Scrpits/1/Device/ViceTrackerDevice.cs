@@ -37,7 +37,7 @@ namespace Device
             }
             else
             {
-
+                this.
                 CmdSendTransformData (tracker.transform.position, tracker.transform.rotation);
             }
         }

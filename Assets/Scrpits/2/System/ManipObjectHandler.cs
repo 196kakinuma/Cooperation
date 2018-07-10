@@ -7,6 +7,7 @@ namespace C2.System
 {
     public class ManipObjectHandler : MonoBehaviour
     {
+        [SerializeField]
         NetManipObjectHandler net;
         Vector3 beforeCtrlerPos = Vector3.zero;
 
@@ -18,7 +19,6 @@ namespace C2.System
                 Destroy (this);
                 return;
             }
-            net = this.gameObject.AddComponent<NetManipObjectHandler> ();
             gameObject.tag = "MObj";
         }
 

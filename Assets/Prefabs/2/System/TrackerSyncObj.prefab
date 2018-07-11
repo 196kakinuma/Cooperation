@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114166890794528456}
   - component: {fileID: 114649831501844288}
   - component: {fileID: 114407738275554052}
+  - component: {fileID: 114952319936588438}
   m_Layer: 0
   m_Name: TrackerSyncObj
   m_TagString: tracker
@@ -107,3 +108,15 @@ MonoBehaviour:
     i15: 146
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &114952319936588438
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1821014237778018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27ad4dae377f2d34cb1f179031b21c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cube: {fileID: 1517455658198600, guid: 233748cb793b6ab499ec8ae2afe7f1cd, type: 2}

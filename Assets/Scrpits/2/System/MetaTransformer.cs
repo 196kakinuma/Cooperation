@@ -42,7 +42,7 @@ namespace C2.System
             var MVec = hmd.GetComponent<C2.Test.forwardCheck> ().forward.transform.position - hmd.transform.position;
 
 
-            transform.LookAt (TVec - MVec);
+            transform.rotation = Quaternion.Euler (MVec - TVec);
         }
     }
 }

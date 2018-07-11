@@ -2074,6 +2074,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1481242765}
   - component: {fileID: 1481242764}
+  - component: {fileID: 1481242766}
   m_Layer: 0
   m_Name: Tracker
   m_TagString: Untagged
@@ -2110,6 +2111,18 @@ Transform:
   m_Father: {fileID: 1198182755}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1481242766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1481242763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27ad4dae377f2d34cb1f179031b21c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cube: {fileID: 1517455658198600, guid: 233748cb793b6ab499ec8ae2afe7f1cd, type: 2}
 --- !u!1 &1496617889
 GameObject:
   m_ObjectHideFlags: 0

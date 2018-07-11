@@ -7,6 +7,8 @@ namespace C2.System
     public class MetaTransformer : MonoBehaviour
     {
         GameObject tracker = null;
+        [SerializeField]
+        GameObject hmd;
         // Use this for initialization
         void Start ()
         {
@@ -26,6 +28,25 @@ namespace C2.System
             {
                 transform.position = tracker.transform.position;
             }
+
+            if ( Input.GetKeyUp (KeyCode.Space) )
+            {
+                SetOffset ();
+            }
+        }
+
+        void SetOffset ()
+        {
+            var Trot = tracker.transform.rotation.eulerAngles;
+            var Mrot = hmd.transform.rotation.eulerAngles;
+            //T.y=M.z
+            //T.z=M.y
+            //T.x=M.-x
+
+            var z = Trot.y - Mrot.z;
+            var y = Trot.z - Mrot.y;
+            var x = -( Trot.x + Mrot.x );
+            transform.rotation.SetEulerAngles (x, y, z);
         }
     }
 }

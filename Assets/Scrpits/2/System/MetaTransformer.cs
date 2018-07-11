@@ -38,19 +38,11 @@ namespace C2.System
         void SetOffset ()
         {
             transform.rotation = Quaternion.Euler (0, 0, 0);
-            var Trot = tracker.transform.eulerAngles;
-            Debug.Log ("trot*" + Trot);
-            var Mrot = hmd.transform.rotation.eulerAngles;
-            Debug.Log ("mrot:" + Mrot);
-            //T.y=M.z
-            //T.z=M.y
-            //T.x=M.-x
+            var TVec = tracker.GetComponent<C2.Test.forwardCheck> ().forward.transform.position - tracker.transform.position;
+            var MVec = hmd.GetComponent<C2.Test.forwardCheck> ().forward.transform.position - hmd.transform.position;
 
-            var z = Trot.y - Mrot.z;
-            var y = Trot.z - Mrot.y;
-            var x = -( Trot.x + Mrot.x );
-            Debug.Log ("x" + x + "y" + y + "z" + z);
-            transform.rotation = Quaternion.Euler (x, y, z);
+
+            transform.LookAt (TVec - MVec);
         }
     }
 }

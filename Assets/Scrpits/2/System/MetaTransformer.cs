@@ -38,7 +38,9 @@ namespace C2.System
         void SetOffset ()
         {
             var Trot = tracker.transform.rotation.eulerAngles;
+            Debug.Log ("trot*" + Trot);
             var Mrot = hmd.transform.rotation.eulerAngles;
+            Debug.Log ("mrot:" + Mrot);
             //T.y=M.z
             //T.z=M.y
             //T.x=M.-x
@@ -46,6 +48,7 @@ namespace C2.System
             var z = Trot.y - Mrot.z;
             var y = Trot.z - Mrot.y;
             var x = -( Trot.x + Mrot.x );
+            Debug.Log ("x" + x + "y" + y + "z" + z);
             transform.rotation.SetEulerAngles (x, y, z);
         }
     }

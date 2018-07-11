@@ -8,12 +8,15 @@ namespace C2.Test
     {
         [SerializeField]
         GameObject Cube;
+        [SerializeField]
+        bool checkForward;
+        public GameObject forward;
         // Use this for initialization
         void Start ()
         {
-            Instantiate (Cube, this.transform.forward, Quaternion.identity, this.transform);
-        }
 
+            if ( checkForward ) Instantiate (Cube, this.transform.forward, Quaternion.identity, this.transform);
+        }
         // Update is called once per frame
         void Update ()
         {

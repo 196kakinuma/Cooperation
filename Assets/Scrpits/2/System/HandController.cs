@@ -6,6 +6,8 @@ namespace C2.System
 {
     public class HandController : MonoBehaviour
     {
+        [SerializeField]
+        public GameMaster forward;
         void Awake ()
         {
             if ( Networks.NetworkInitializer.Instance.playerType != PlayerType.HOST )

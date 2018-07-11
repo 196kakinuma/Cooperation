@@ -37,7 +37,8 @@ namespace C2.System
 
         void SetOffset ()
         {
-            var Trot = tracker.transform.rotation.eulerAngles;
+            transform.rotation = Quaternion.Euler (0, 0, 0);
+            var Trot = tracker.transform.eulerAngles;
             Debug.Log ("trot*" + Trot);
             var Mrot = hmd.transform.rotation.eulerAngles;
             Debug.Log ("mrot:" + Mrot);

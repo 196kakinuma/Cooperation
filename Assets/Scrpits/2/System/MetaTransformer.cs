@@ -49,7 +49,7 @@ namespace C2.System
             var y = Trot.z - Mrot.y;
             var x = -( Trot.x + Mrot.x );
             Debug.Log ("x" + x + "y" + y + "z" + z);
-            transform.rotation.SetEulerAngles (x, y, z);
+            transform.rotation.SetLookRotation (new Vector3 (x, y, z));
         }
     }
 }

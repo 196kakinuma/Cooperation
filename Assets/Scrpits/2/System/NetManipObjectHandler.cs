@@ -7,7 +7,8 @@ namespace C2.System
 {
     public class NetManipObjectHandler : NetworkBehaviour
     {
-
+        [SerializeField]
+        ManipObjectHandler handler;
         // Use this for initialization
         void Start ()
         {
@@ -28,8 +29,7 @@ namespace C2.System
         [ClientRpc]
         void RpcEmit ()
         {
-            gameObject.GetComponent<Renderer> ().material.EnableKeyword ("_EMISSION");
-            gameObject.GetComponent<Renderer> ().material.SetColor ("_EmissionColor", new Color (255, 204, 0));
+            handler.Emit ();
         }
 
         [Command]
@@ -41,7 +41,7 @@ namespace C2.System
         [ClientRpc]
         void RpcDisEmit ()
         {
-            gameObject.GetComponent<Renderer> ().material.DisableKeyword ("_EMISSION");
+            handler.DisEmit ();
         }
 
 

@@ -10,7 +10,11 @@ namespace C2.System
         [SerializeField]
         NetManipObjectHandler net;
         Vector3 beforeCtrlerPos = Vector3.zero;
+        [SerializeField]
+        Material material;
 
+        [SerializeField]
+        GameObject emitObj;
         // Use this for initialization
         void Start ()
         {
@@ -47,12 +51,35 @@ namespace C2.System
             net.CmdEmit ();
         }
 
-        /// <summary>
+        //public void Emit ()
+        //{
+        //    //gameObject.GetComponent<Renderer> ().material.EnableKeyword ("_EMISSION");
+        //    material.EnableKeyword ("_EMISSION");
+        //    material.SetColor ("_EmissionColor", new Color (255, 204, 0));
+        //    //gameObject.GetComponent<Renderer> ().material.SetColor ("_EmissionColor", new Color (255, 204, 0));
+        //}
+
+        public void Emit ()
+        {
+            emitObj.gameObject.SetActive (true);
+        }
+        /// <summary
+        /// >
         /// 選択が終わった時に消えるように
         /// </summary>
         public void CmdDisEmit ()
         {
             net.CmdDisEmit ();
+        }
+
+        //public void DisEmit ()
+        //{
+        //    //gameObject.GetComponent<Renderer> ().material.DisableKeyword ("_EMISSION");
+        //    material.DisableKeyword ("_EMISSION");
+        //}
+        public void DisEmit ()
+        {
+            emitObj.gameObject.SetActive (false);
         }
 
     }

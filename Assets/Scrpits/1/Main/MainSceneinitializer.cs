@@ -17,6 +17,9 @@ namespace Main
         [SerializeField]
         GameObject earthPref;
 
+        [SerializeField]
+        GameObject engel;
+
 
         // Use this for initialization
         void Start ()
@@ -28,6 +31,7 @@ namespace Main
 
                 //NetworkServer.Spawn (Instantiate (room));
                 NetworkServer.Spawn (Instantiate (earthPref));
+                NetworkServer.Spawn (Instantiate (engel));
             }
         }
 

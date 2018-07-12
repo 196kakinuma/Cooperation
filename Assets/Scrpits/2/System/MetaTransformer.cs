@@ -41,8 +41,7 @@ namespace C2.System
             var TVec = tracker.GetComponent<C2.Test.forwardCheck> ().forward.transform.position - tracker.transform.position;
             var MVec = hmd.GetComponent<C2.Test.forwardCheck> ().forward.transform.position - hmd.transform.position;
 
-
-            transform.rotation = Quaternion.Euler (MVec - TVec);
+            transform.rotation = Quaternion.Euler (TVec - MVec);
         }
     }
 }

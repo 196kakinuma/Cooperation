@@ -62,13 +62,14 @@ namespace C2.System
         void OnTriggerEnter ( Collider other )
         {
 
-            if ( downTrigger || other.gameObject.tag != "MObj" ) return;
+            if ( manipulating || downTrigger || other.gameObject.tag != "MObj" ) return;
             selected = other.gameObject.GetComponent<ManipObjectHandler> ();
             selected.CmdEmit ();
         }
 
         void OnTriggerExit ( Collider other )
         {
+            if ( manipulating ) return;
 
             if ( selected != null )
                 selected.CmdDisEmit ();

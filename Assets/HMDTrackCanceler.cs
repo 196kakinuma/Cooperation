@@ -14,7 +14,7 @@ public class HMDTrackCanceler : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        positionParent.transform.position = ( -1 * UnityEngine.XR.InputTracking.GetLocalPosition (UnityEngine.XR.XRNode.CenterEye) );
+        transform.position = ( -1 * UnityEngine.XR.InputTracking.GetLocalPosition (UnityEngine.XR.XRNode.CenterEye) );
 
     }
 }

@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!114 &11400000
 MonoBehaviour:
-  m_ObjectHideFlags: 8
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -11,66 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 189bcc691033a554fbc21ddd57e88f27, type: 3}
   m_Name: WPGAnswer
   m_EditorClassIdentifier: 
-  sheets:
-  - name: Sheet1
-    list:
-    - answer1: 0
-      answer2: 8
-      answer3: 16
-      answer4: 11
-      answer5: 0
-      answer6: 0
-    - answer1: 14
-      answer2: 1
-      answer3: 9
-      answer4: 5
-      answer5: 0
-      answer6: 0
-    - answer1: 4
-      answer2: 19
-      answer3: 2
-      answer4: 18
-      answer5: 0
-      answer6: 0
-    - answer1: 17
-      answer2: 7
-      answer3: 12
-      answer4: 3
-      answer5: 0
-      answer6: 0
-    - answer1: 6
-      answer2: 10
-      answer3: 13
-      answer4: 15
-      answer5: 0
-      answer6: 0
-    - answer1: 1
-      answer2: 3
-      answer3: 4
-      answer4: 5
-      answer5: 9
-      answer6: 10
-    - answer1: 2
-      answer2: 9
-      answer3: 10
-      answer4: 11
-      answer5: 14
-      answer6: 17
-    - answer1: 4
-      answer2: 11
-      answer3: 12
-      answer4: 18
-      answer5: 15
-      answer6: 5
-    - answer1: 2
-      answer2: 7
-      answer3: 12
-      answer4: 15
-      answer5: 17
-      answer6: 19
-    - answer1: 5
-      answer2: 6
-      answer3: 8
-      answer4: 12
-      answer5: 15
-      answer6: 19
+  sheets: []

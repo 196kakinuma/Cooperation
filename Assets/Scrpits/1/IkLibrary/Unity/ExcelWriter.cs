@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-namespace Games.GameSystem
+namespace IkLibrary.Unity
 {
     public class ExcelWriter
     {
@@ -31,14 +31,11 @@ namespace Games.GameSystem
             sw.WriteLine ("test output");
         }
 
-        public void InitWriteUserInfo ( string day, string name )
-        {
-            sw.WriteLine (day + ",");
-            sw.WriteLine (name + ",");
-
-        }
-
-        public void WriteWord ( string word )
+        /// <summary>
+        /// セルに一つ書き出す
+        /// </summary>
+        /// <param name="word"></param>
+        public void WriteWords ( string word )
         {
             sw.Write (word + ",");
         }

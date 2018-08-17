@@ -13,13 +13,14 @@ namespace C2.Test
         [SerializeField]
         GameObject tracker;
         ExcelWriter exw;
+        [SerializeField]
+        string exptag = "-1";
 
         Vector3[] keeper;
         int count = 0;
         // Use this for initialization
         void Start ()
         {
-
 
             keeper = new Vector3[12];
         }
@@ -30,13 +31,23 @@ namespace C2.Test
         {
             if ( Input.GetKeyUp (KeyCode.Space) )
             {
-                keeper[count] = tracker.transform.position - offsetObj[count % 4].transform.position;
+                Vector3 target;
+                //初期誤差を記憶
+                if ( count < 4 )
+                {
+                    target = offsetObj[count].transform.position;
+                }
+                else
+                {
+                    target = keeper[count % 4];
+                }
+                keeper[count] = tracker.transform.position - target;
                 count++;
 
                 if ( count == 12 )//終了
                 {
                     exw = new ExcelWriter ();
-                    exw.InitializeFile ("MetaOffset");
+                    exw.InitializeFile ("MetaOffset" + exptag);
                     foreach ( var a in keeper )
                     {
                         exw.WriteWords (a.x.ToString ());

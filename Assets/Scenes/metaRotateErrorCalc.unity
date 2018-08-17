@@ -261,52 +261,6 @@ Transform:
   m_Father: {fileID: 1291647111}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &99570495
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 99570497}
-  - component: {fileID: 99570496}
-  m_Layer: 0
-  m_Name: Recorder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &99570496
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 99570495}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50d30441d17376c4f912390980dd5cd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetObj:
-  - {fileID: 833731148}
-  - {fileID: 1357575456}
-  - {fileID: 134734786}
-  - {fileID: 974045462}
-  tracker: {fileID: 0}
---- !u!4 &99570497
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 99570495}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &111386502
 GameObject:
   m_ObjectHideFlags: 0
@@ -3710,7 +3664,7 @@ Transform:
   - {fileID: 1816286613}
   - {fileID: 301987911}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1772360320
 GameObject:
@@ -3986,6 +3940,7 @@ GameObject:
   - component: {fileID: 1886457486}
   - component: {fileID: 1886457483}
   - component: {fileID: 1886457482}
+  - component: {fileID: 1886457481}
   m_Layer: 0
   m_Name: Controller (left)
   m_TagString: Untagged
@@ -3993,6 +3948,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1886457481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1886457480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50d30441d17376c4f912390980dd5cd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetObj:
+  - {fileID: 833731148}
+  - {fileID: 1357575456}
+  - {fileID: 134734786}
+  - {fileID: 974045462}
+  testMode: 0
+  tracker: {fileID: 1886457480}
+  exptag: -1
+  keeper: []
 --- !u!114 &1886457482
 MonoBehaviour:
   m_ObjectHideFlags: 0

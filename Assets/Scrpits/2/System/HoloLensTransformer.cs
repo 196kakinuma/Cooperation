@@ -4,17 +4,15 @@ using UnityEngine;
 
 namespace C2.System
 {
-    public class MetaTransformer : MonoBehaviour
+    public class HoloLensTransformer : MonoBehaviour
     {
         GameObject tracker = null;
         [SerializeField]
-        GameObject hmd;
+        GameObject positionParent;
         // Use this for initialization
         void Start ()
         {
-
             tracker = tracker = GameObject.FindGameObjectWithTag ("tracker");
-
         }
 
         // Update is called once per frame
@@ -26,19 +24,9 @@ namespace C2.System
             }
             else
             {
-                transform.position = tracker.transform.position;
+                positionParent.transform.position = ( -1 * UnityEngine.XR.InputTracking.GetLocalPosition (UnityEngine.XR.XRNode.CenterEye) + tracker.transform.position );
             }
 
-
-        }
-
-        void SetOffset ()
-        {
-            transform.rotation = Quaternion.Euler (0, 0, 0);
-            var TVec = tracker.GetComponent<C2.Test.forwardCheck> ().forward.transform.position - tracker.transform.position;
-            var MVec = hmd.GetComponent<C2.Test.forwardCheck> ().forward.transform.position - hmd.transform.position;
-
-            transform.rotation = Quaternion.Euler (TVec - MVec);
         }
     }
 }

@@ -23,6 +23,8 @@ GameObject:
   - component: {fileID: 135238081545799574}
   - component: {fileID: 23366555001199268}
   - component: {fileID: 114464395679869220}
+  - component: {fileID: 114707034047338338}
+  - component: {fileID: 114309925750478022}
   m_Layer: 2
   m_Name: IndicatePointstart
   m_TagString: Untagged
@@ -84,6 +86,27 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1528978205665974}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114309925750478022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1528978205665974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.033333335
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!114 &114464395679869220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -95,6 +118,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f91246126ed4ec438af1414da3c7d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114707034047338338
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1528978205665974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 24
+    i1: 34
+    i2: 170
+    i3: 183
+    i4: 78
+    i5: 118
+    i6: 80
+    i7: 84
+    i8: 235
+    i9: 100
+    i10: 50
+    i11: 149
+    i12: 81
+    i13: 181
+    i14: 66
+    i15: 200
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!135 &135238081545799574
 SphereCollider:
   m_ObjectHideFlags: 1

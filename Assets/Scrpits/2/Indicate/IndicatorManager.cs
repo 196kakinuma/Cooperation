@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace C2.Indicate
 {
@@ -33,12 +34,16 @@ namespace C2.Indicate
         {
             //TODO:後でSpwanすること
             point = Instantiate(pointPref).GetComponent<IndicatePoint>();
-            point.SetActive(false);
-            ray = Instantiate(RayPref).GetComponent<IndicateRay>();
-            ray.SetActive(false);
-            start = Instantiate(StartPointPref).GetComponent<IndicatePoint>();
-            start.SetActive(false);
+            point.CmdSetActive(false);
+            NetworkServer.Spawn(point.gameObject);
 
+            ray = Instantiate(RayPref).GetComponent<IndicateRay>();
+            ray.CmdSetActive(false);
+            NetworkServer.Spawn(ray.gameObject);
+
+            start = Instantiate(StartPointPref).GetComponent<IndicatePoint>();
+            start.CmdSetActive(false);
+            NetworkServer.Spawn(start.gameObject);
         }
 
         // Update is called once per frame
@@ -51,9 +56,9 @@ namespace C2.Indicate
 
                 if (!beforeIsPress)
                 {
-                    if (DrawIndicatePoint) point.SetActive(true);
-                    if (Drawray) ray.SetActive(true);
-                    if (DrawstartPoint) start.SetActive(true);
+                    if (DrawIndicatePoint) point.CmdSetActive(true);
+                    if (Drawray) ray.CmdSetActive(true);
+                    if (DrawstartPoint) start.CmdSetActive(true);
 
                     beforeIsPress = true;
                 }
@@ -64,17 +69,17 @@ namespace C2.Indicate
 
                 if (DrawIndicatePoint)
                 {
-                    point.SetPosition(v);
+                    point.CmdSetPosition(v);
                 }
 
                 if(Drawray)
                 {
-                    ray.SetFromToPoint(indicator.GetPosition(),v);
+                    ray.CmdSetFromToPoint(indicator.GetPosition(),v);
                 }
 
                 if(DrawstartPoint)
                 {
-                    start.SetPosition(indicator.GetPosition());
+                    start.CmdSetPosition(indicator.GetPosition());
                 }
 
 
@@ -83,9 +88,9 @@ namespace C2.Indicate
             {
                 if (beforeIsPress)
                 {
-                    point.SetActive(false);
-                    ray.SetActive(false);
-                    start.SetActive(false);
+                    point.CmdSetActive(false);
+                    ray.CmdSetActive(false);
+                    start.CmdSetActive(false);
                     beforeIsPress = false;
                 }
             }

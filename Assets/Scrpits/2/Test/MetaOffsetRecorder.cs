@@ -31,6 +31,10 @@ namespace C2.Test
         // Use this for initialization
         void Start ()
         {
+            foreach(var a in offsetObj)
+            {
+                Debug.Log(a.transform.position);
+            }
             var trackedobj = GetComponent<SteamVR_TrackedObject> ();
             device = SteamVR_Controller.Input (( int ) trackedobj.index);
             switch ( testMode )

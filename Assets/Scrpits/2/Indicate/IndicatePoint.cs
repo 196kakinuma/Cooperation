@@ -1,17 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
-
 namespace C2.Indicate
 {
-    public class IndicatePoint : NetworkBehaviour
+    public class IndicatePoint : MonoBehaviour
     {
+        [SerializeField]
+        NetIndicatePoint net;
 
-        private void Awake()
-        {
-
-        }
         // Use this for initialization
         void Start()
         {
@@ -24,29 +20,24 @@ namespace C2.Indicate
 
         }
 
-        [Command]
-        public void CmdSetActive(bool b)
+        public void CallSetActive(bool b)
         {
-            RpcSetActive(b);
+            net.CmdSetActive(b);
         }
 
-        [ClientRpc]
-        private void RpcSetActive(bool b)
+        public void SetActive(bool b)
         {
             gameObject.SetActive(b);
         }
 
-        [Command]
-        public void CmdSetPosition(Vector3 position)
+        public void CallSetPosition(Vector3 position)
         {
-            RpcSetposition(position);
+            net.CmdSetPosition(position);
         }
-        [ClientRpc]
-        private void RpcSetposition(Vector3 position)
+        
+        public void Setposition(Vector3 position)
         {
             this.transform.position = position;
         }
     }
-
-
 }

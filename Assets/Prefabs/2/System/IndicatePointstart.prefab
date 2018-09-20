@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114464395679869220}
   - component: {fileID: 114707034047338338}
   - component: {fileID: 114309925750478022}
+  - component: {fileID: 114881965270940756}
   m_Layer: 2
   m_Name: IndicatePointstart
   m_TagString: Untagged
@@ -92,7 +93,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1528978205665974}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
@@ -118,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f91246126ed4ec438af1414da3c7d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  p: {fileID: 114881965270940756}
 --- !u!114 &114707034047338338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -149,7 +151,19 @@ MonoBehaviour:
     i14: 66
     i15: 200
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_LocalPlayerAuthority: 1
+--- !u!114 &114881965270940756
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1528978205665974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 777c5c701126d5c47a37377a08e8bb59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  net: {fileID: 114464395679869220}
 --- !u!135 &135238081545799574
 SphereCollider:
   m_ObjectHideFlags: 1

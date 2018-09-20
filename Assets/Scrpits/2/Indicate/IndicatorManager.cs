@@ -34,7 +34,7 @@ namespace C2.Indicate
         {
             //TODO:後でSpwanすること
             point = Instantiate(pointPref).GetComponent<IndicatePoint>();
-            point.CmdSetActive(false);
+            point.CallSetActive(false);
             NetworkServer.Spawn(point.gameObject);
 
             ray = Instantiate(RayPref).GetComponent<IndicateRay>();
@@ -42,7 +42,7 @@ namespace C2.Indicate
             NetworkServer.Spawn(ray.gameObject);
 
             start = Instantiate(StartPointPref).GetComponent<IndicatePoint>();
-            start.CmdSetActive(false);
+            start.CallSetActive(false);
             NetworkServer.Spawn(start.gameObject);
         }
 
@@ -56,9 +56,9 @@ namespace C2.Indicate
 
                 if (!beforeIsPress)
                 {
-                    if (DrawIndicatePoint) point.CmdSetActive(true);
+                    if (DrawIndicatePoint) point.CallSetActive(true);
                     if (Drawray) ray.CmdSetActive(true);
-                    if (DrawstartPoint) start.CmdSetActive(true);
+                    if (DrawstartPoint) start.CallSetActive(true);
 
                     beforeIsPress = true;
                 }
@@ -69,7 +69,7 @@ namespace C2.Indicate
 
                 if (DrawIndicatePoint)
                 {
-                    point.CmdSetPosition(v);
+                    point.CallSetPosition(v);
                 }
 
                 if(Drawray)
@@ -79,7 +79,7 @@ namespace C2.Indicate
 
                 if(DrawstartPoint)
                 {
-                    start.CmdSetPosition(indicator.GetPosition());
+                    start.CallSetPosition(indicator.GetPosition());
                 }
 
 
@@ -88,9 +88,9 @@ namespace C2.Indicate
             {
                 if (beforeIsPress)
                 {
-                    point.CmdSetActive(false);
+                    point.CallSetActive(false);
                     ray.CmdSetActive(false);
-                    start.CmdSetActive(false);
+                    start.CallSetActive(false);
                     beforeIsPress = false;
                 }
             }

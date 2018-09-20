@@ -6,5 +6,5 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/HololensRotateErrorCalc.unity
-    guid: 0a80a3fdaada2f44aa23c5684cc61666
+    path: Assets/Scenes/IndicateExpSample.unity
+    guid: 83065a757de59384d8a3252fd45f15cc

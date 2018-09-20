@@ -7,6 +7,8 @@ namespace C2.Indicate
 
     public class IndicateRay : MonoBehaviour
     {
+        [SerializeField]
+        LineRenderer line;
 
         // Use this for initialization
         void Start()
@@ -31,7 +33,8 @@ namespace C2.Indicate
         /// <param name="end"></param>
         public void SetFromToPoint(Vector3 start ,Vector3 end)
         {
-
+            line.SetPosition(0, start);
+            line.SetPosition(1, end);
         }
     }
 }

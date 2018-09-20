@@ -46,7 +46,10 @@ namespace C2.Indicate
         {
             if(indicator.GetIsPress())
             {
-                if(!beforeIsPress)
+                Vector3 v = GetRaycastPoint();
+                if (v == Vector3.zero) return;
+
+                if (!beforeIsPress)
                 {
                     if (DrawIndicatePoint) point.SetActive(true);
                     if (Drawray) ray.SetActive(true);
@@ -55,7 +58,7 @@ namespace C2.Indicate
                     beforeIsPress = true;
                 }
 
-                Vector3 v = GetRaycastPoint();
+                
 
                 //条件に合わせてactive表示
 

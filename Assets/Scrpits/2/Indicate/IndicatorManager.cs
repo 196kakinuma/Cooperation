@@ -98,8 +98,8 @@ namespace C2.Indicate
 
             if (Physics.Raycast(indicator.GetPosition(), indicator.GetForward(), out hit,maxDist))
             {
-                Debug.Log(hit.transform.tag);
-                reach= hit.transform.position;
+                Debug.Log(hit.point);
+                reach= hit.point;
             }
             Debug.DrawRay(indicator.GetPosition(), indicator.GetForward(),Color.red, maxDist);
             return reach;

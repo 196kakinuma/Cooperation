@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4156396694919002}
   - component: {fileID: 114332676678272464}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: IndicateRay
   m_TagString: Untagged
   m_Icon: {fileID: 0}

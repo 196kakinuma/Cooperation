@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 135238081545799574}
   - component: {fileID: 23366555001199268}
   - component: {fileID: 114464395679869220}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: IndicatePointstart
   m_TagString: Untagged
   m_Icon: {fileID: 0}

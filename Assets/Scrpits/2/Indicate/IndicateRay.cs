@@ -11,13 +11,7 @@ namespace C2.Indicate
         [SerializeField]
         LineRenderer line;
 
-        private void Awake()
-        {
-            if(NetworkInitializer.Instance.playerType==PlayerType.CLIENT)
-            {
-                Destroy(this);
-            }
-        }
+
         // Use this for initialization
         void Start()
         {

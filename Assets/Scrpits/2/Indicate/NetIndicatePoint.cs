@@ -7,8 +7,7 @@ namespace C2.Indicate
 {
     public class NetIndicatePoint : NetworkBehaviour
     {
-        [SerializeField]
-        IndicatePoint p;
+
 
         private void Awake()
         {
@@ -35,7 +34,7 @@ namespace C2.Indicate
         [ClientRpc]
         private void RpcSetActive(bool b)
         {
-            p.SetActive(b);
+            gameObject.SetActive(b);
         }
 
         [Command]
@@ -46,7 +45,7 @@ namespace C2.Indicate
         [ClientRpc]
         private void RpcSetPosition(Vector3 position)
         {
-            p.Setposition(position);
+            this.transform.position = position;
         }
     }
 

@@ -12,13 +12,13 @@ namespace C2.Indicate
 
         [SerializeField]
         GameObject pointPref;
-        IndicatePoint point;
+        NetIndicatePoint point;
         [SerializeField]
         GameObject RayPref;
         IndicateRay ray;
         [SerializeField]
         GameObject StartPointPref;
-        IndicatePoint start;
+        NetIndicatePoint start;
 
 
         public bool DrawstartPoint = false;
@@ -33,16 +33,16 @@ namespace C2.Indicate
         void Start()
         {
             //TODO:後でSpwanすること
-            point = Instantiate(pointPref).GetComponent<IndicatePoint>();
-            point.CallSetActive(false);
+            point = Instantiate(pointPref).GetComponent<NetIndicatePoint>();
+            point.CmdSetActive(false);
             NetworkServer.Spawn(point.gameObject);
 
             ray = Instantiate(RayPref).GetComponent<IndicateRay>();
             ray.CmdSetActive(false);
             NetworkServer.Spawn(ray.gameObject);
 
-            start = Instantiate(StartPointPref).GetComponent<IndicatePoint>();
-            start.CallSetActive(false);
+            start = Instantiate(StartPointPref).GetComponent<NetIndicatePoint>();
+            start.CmdSetActive(false);
             NetworkServer.Spawn(start.gameObject);
         }
 
@@ -56,9 +56,9 @@ namespace C2.Indicate
 
                 if (!beforeIsPress)
                 {
-                    if (DrawIndicatePoint) point.CallSetActive(true);
+                    if (DrawIndicatePoint) point.CmdSetActive(true);
                     if (Drawray) ray.CmdSetActive(true);
-                    if (DrawstartPoint) start.CallSetActive(true);
+                    if (DrawstartPoint) start.CmdSetActive(true);
 
                     beforeIsPress = true;
                 }
@@ -69,7 +69,7 @@ namespace C2.Indicate
 
                 if (DrawIndicatePoint)
                 {
-                    point.CallSetPosition(v);
+                    point.CmdSetPosition(v);
                 }
 
                 if(Drawray)
@@ -79,7 +79,7 @@ namespace C2.Indicate
 
                 if(DrawstartPoint)
                 {
-                    start.CallSetPosition(indicator.GetPosition());
+                    start.CmdSetPosition(indicator.GetPosition());
                 }
 
 
@@ -88,9 +88,9 @@ namespace C2.Indicate
             {
                 if (beforeIsPress)
                 {
-                    point.CallSetActive(false);
+                    point.CmdSetActive(false);
                     ray.CmdSetActive(false);
-                    start.CallSetActive(false);
+                    start.CmdSetActive(false);
                     beforeIsPress = false;
                 }
             }

@@ -25,7 +25,6 @@ GameObject:
   - component: {fileID: 114526911367331248}
   - component: {fileID: 114993052168389996}
   - component: {fileID: 114471334440378298}
-  - component: {fileID: 114761369339785926}
   m_Layer: 2
   m_Name: IndicatePoint
   m_TagString: Untagged
@@ -119,19 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f91246126ed4ec438af1414da3c7d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p: {fileID: 114761369339785926}
---- !u!114 &114761369339785926
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1847676061757252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 777c5c701126d5c47a37377a08e8bb59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  net: {fileID: 114526911367331248}
 --- !u!114 &114993052168389996
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -162,8 +148,8 @@ MonoBehaviour:
     i13: 124
     i14: 48
     i15: 14
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
+  m_ServerOnly: 1
+  m_LocalPlayerAuthority: 0
 --- !u!135 &135711122688148880
 SphereCollider:
   m_ObjectHideFlags: 1

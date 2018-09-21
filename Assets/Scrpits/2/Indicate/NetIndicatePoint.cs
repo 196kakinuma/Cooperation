@@ -29,14 +29,15 @@ namespace C2.Indicate
         public void CmdSetActive(bool b)
         {
             RpcSetActive(b);
+            
         }
 
         [ClientRpc]
         private void RpcSetActive(bool b)
         {
             gameObject.SetActive(b);
+            Debug.Log("AA");
         }
-
         [Command]
         public void CmdSetPosition(Vector3 position)
         {

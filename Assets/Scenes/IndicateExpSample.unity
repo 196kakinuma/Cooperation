@@ -956,7 +956,6 @@ GameObject:
   - component: {fileID: 531751342}
   - component: {fileID: 531751341}
   - component: {fileID: 531751340}
-  - component: {fileID: 531751344}
   m_Layer: 0
   m_Name: '[CameraRig]'
   m_TagString: Untagged
@@ -1051,25 +1050,6 @@ MonoBehaviour:
   objects:
   - {fileID: 1481242763}
   assignAllBeforeIdentified: 0
---- !u!114 &531751344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 531751339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1ea2a23c18b4b446b7691179d85b531, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  indicator: {fileID: 1886457481}
-  pointPref: {fileID: 1847676061757252, guid: 592df174670239c4aa0e64e1d17c300e, type: 2}
-  RayPref: {fileID: 1724046026572058, guid: d9005668534c2bc439260c44ee914552, type: 2}
-  StartPointPref: {fileID: 1528978205665974, guid: 1822aab74e765054eb64329551b542c8,
-    type: 2}
-  DrawstartPoint: 1
-  Drawray: 1
-  DrawIndicatePoint: 1
 --- !u!1 &555631957
 GameObject:
   m_ObjectHideFlags: 0
@@ -2515,6 +2495,7 @@ GameObject:
   - component: {fileID: 1886457483}
   - component: {fileID: 1886457482}
   - component: {fileID: 1886457481}
+  - component: {fileID: 1886457488}
   m_Layer: 0
   m_Name: Controller (left)MR
   m_TagString: Untagged
@@ -2619,6 +2600,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.09, y: 0.07, z: 0.1}
   m_Center: {x: 0, y: -0.03, z: 0}
+--- !u!114 &1886457488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1886457480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 515e7800253fc8e45ac13ba040b0073c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 1886457481}
+  IndiManagePref: {fileID: 1485094322760272, guid: c76f1fb203500fd41affa247cc76783c,
+    type: 2}
 --- !u!1 &1897459337
 GameObject:
   m_ObjectHideFlags: 0

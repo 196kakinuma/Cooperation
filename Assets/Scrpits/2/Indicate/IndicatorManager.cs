@@ -7,8 +7,8 @@ namespace C2.Indicate
 {
     public class IndicatorManager : MonoBehaviour
     {
-        [SerializeField]
-        Indicator indicator;
+        [HideInInspector]
+        public Indicator indicator;
 
         [SerializeField]
         GameObject pointPref;
@@ -34,16 +34,17 @@ namespace C2.Indicate
         {
             //TODO:後でSpwanすること
             point = Instantiate(pointPref).GetComponent<NetIndicatePoint>();
-            point.CmdSetActive(false);
             NetworkServer.Spawn(point.gameObject);
+            point.CmdSetActive(false);
 
             ray = Instantiate(RayPref).GetComponent<IndicateRay>();
-            ray.CmdSetActive(false);
             NetworkServer.Spawn(ray.gameObject);
+            ray.CmdSetActive(false);
 
             start = Instantiate(StartPointPref).GetComponent<NetIndicatePoint>();
-            start.CmdSetActive(false);
+            //
             NetworkServer.Spawn(start.gameObject);
+            start.CmdSetActive(false);
         }
 
         // Update is called once per frame
@@ -106,10 +107,9 @@ namespace C2.Indicate
 
             if (Physics.Raycast(indicator.GetPosition(), indicator.GetForward(), out hit,maxDist))
             {
-                Debug.Log(hit.point);
                 reach= hit.point;
             }
-            Debug.DrawRay(indicator.GetPosition(), indicator.GetForward(),Color.red, maxDist);
+            //Debug.DrawRay(indicator.GetPosition(), indicator.GetForward(),Color.red, maxDist);
             return reach;
         }
 

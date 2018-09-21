@@ -2769,7 +2769,6 @@ MonoBehaviour:
     type: 2}
   trackerMasterPref: {fileID: 1809804692222998, guid: 8bbb0073ab6f0264caa873571ba871ca,
     type: 2}
-  earthPref: {fileID: 1667466612674714, guid: f66eae069239b1241a1218a5a7e4850c, type: 2}
 --- !u!114 &1897459342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2920,7 +2919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9166c834102fe524d8a16f3eef013d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionParent: {fileID: 0}
+  positionParent: {fileID: 1036427395}
 --- !u!81 &1958070347
 AudioListener:
   m_ObjectHideFlags: 0

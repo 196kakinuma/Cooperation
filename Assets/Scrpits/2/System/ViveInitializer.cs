@@ -37,8 +37,11 @@ namespace C2.System
             leftHandController.targetObject = baseLCtrler;
             tracker.targetObject = baseTracker;
 
-            NetworkServer.Spawn (rightHandController.gameObject);
-            NetworkServer.Spawn (leftHandController.gameObject);
+            if (ExpSettings.Instance.Ctrler4MRDebug)
+            {
+                NetworkServer.Spawn(rightHandController.gameObject);
+                NetworkServer.Spawn(leftHandController.gameObject);
+            }
             NetworkServer.Spawn (tracker.gameObject);
         }
 

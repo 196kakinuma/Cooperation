@@ -35,16 +35,16 @@ namespace C2.Indicate
             //TODO:後でSpwanすること
             point = Instantiate(pointPref).GetComponent<NetIndicatePoint>();
             NetworkServer.Spawn(point.gameObject);
-            point.CmdSetActive(false);
+            //point.CmdSetActive(false);
 
             ray = Instantiate(RayPref).GetComponent<IndicateRay>();
             NetworkServer.Spawn(ray.gameObject);
-            ray.CmdSetActive(false);
+           // ray.CmdSetActive(false);
 
             start = Instantiate(StartPointPref).GetComponent<NetIndicatePoint>();
             //
             NetworkServer.Spawn(start.gameObject);
-            start.CmdSetActive(false);
+           // start.CmdSetActive(false);
         }
 
         // Update is called once per frame

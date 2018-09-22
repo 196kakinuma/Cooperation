@@ -21,9 +21,21 @@ namespace C2.Indicate
         NetIndicatePoint start;
 
 
-        public bool DrawstartPoint = false;
-        public bool Drawray = false;
-        public bool DrawIndicatePoint = false;
+        bool IndicateStart
+        {
+            get { return C2.System.ExpSettings.Instance.IndicateStart; }
+            set { }
+        }
+        bool IndicateLine
+        {
+            get{ return C2.System.ExpSettings.Instance.IndicateLine; }
+            set { }
+        }
+        bool IndicateEnd
+        {
+            get { return C2.System.ExpSettings.Instance.IndicateEnd; }
+            set { }
+        }
 
 
         private bool beforeIsPress = false;
@@ -56,9 +68,9 @@ namespace C2.Indicate
 
                 if (!beforeIsPress)
                 {
-                    if (DrawIndicatePoint) point.CmdSetActive(true);
-                    if (Drawray) ray.CmdSetActive(true);
-                    if (DrawstartPoint) start.CmdSetActive(true);
+                    if (IndicateEnd) point.CmdSetActive(true);
+                    if (IndicateLine) ray.CmdSetActive(true);
+                    if (IndicateStart) start.CmdSetActive(true);
 
                     beforeIsPress = true;
                 }
@@ -67,17 +79,17 @@ namespace C2.Indicate
 
                 //条件に合わせてactive表示
 
-                if (DrawIndicatePoint)
+                if (IndicateEnd)
                 {
                     point.CmdSetPosition(v);
                 }
 
-                if(Drawray)
+                if(IndicateLine)
                 {
                     ray.CmdSetFromToPoint(indicator.GetPosition(),v);
                 }
 
-                if(DrawstartPoint)
+                if(IndicateStart)
                 {
                     start.CmdSetPosition(indicator.GetPosition());
                 }

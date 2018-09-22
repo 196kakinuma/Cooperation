@@ -1,28 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace C2.Indicate
 {
     public class IndicatorManager : MonoBehaviour
     {
-        [SerializeField]
-        Indicator indicator;
+        [HideInInspector]
+        public Indicator indicator;
 
         [SerializeField]
         GameObject pointPref;
-        IndicatePoint point;
+        NetIndicatePoint point;
         [SerializeField]
         GameObject RayPref;
         IndicateRay ray;
         [SerializeField]
         GameObject StartPointPref;
-        IndicatePoint start;
+        NetIndicatePoint start;
 
 
-        public bool DrawstartPoint = false;
-        public bool Drawray = false;
-        public bool DrawIndicatePoint = false;
+        bool IndicateStart
+        {
+            get { return C2.System.ExpSettings.Instance.IndicateStart; }
+            set { }
+        }
+        bool IndicateLine
+        {
+            get{ return C2.System.ExpSettings.Instance.IndicateLine; }
+            set { }
+        }
+        bool IndicateEnd
+        {
+            get { return C2.System.ExpSettings.Instance.IndicateEnd; }
+            set { }
+        }
 
 
         private bool beforeIsPress = false;
@@ -32,13 +45,17 @@ namespace C2.Indicate
         void Start()
         {
             //TODO:後でSpwanすること
-            point = Instantiate(pointPref).GetComponent<IndicatePoint>();
-            point.SetActive(false);
-            ray = Instantiate(RayPref).GetComponent<IndicateRay>();
-            ray.SetActive(false);
-            start = Instantiate(StartPointPref).GetComponent<IndicatePoint>();
-            start.SetActive(false);
+            point = Instantiate(pointPref).GetComponent<NetIndicatePoint>();
+            NetworkServer.Spawn(point.gameObject);
+            point.CmdSetActive(false);
 
+            ray = Instantiate(RayPref).GetComponent<IndicateRay>();
+            NetworkServer.Spawn(ray.gameObject);
+            ray.CmdSetActive(false);
+
+            start = Instantiate(StartPointPref).GetComponent<NetIndicatePoint>();
+            NetworkServer.Spawn(start.gameObject);
+            start.CmdSetActive(false);
         }
 
         // Update is called once per frame
@@ -46,32 +63,35 @@ namespace C2.Indicate
         {
             if(indicator.GetIsPress())
             {
-                if(!beforeIsPress)
+                Vector3 v = GetRaycastPoint();
+                if (v == Vector3.zero) return;
+
+                if (!beforeIsPress)
                 {
-                    if (DrawIndicatePoint) point.SetActive(true);
-                    if (Drawray) ray.SetActive(true);
-                    if (DrawstartPoint) start.SetActive(true);
+                    if (IndicateEnd) point.CmdSetActive(true);
+                    if (IndicateLine) ray.CmdSetActive(true);
+                    if (IndicateStart) start.CmdSetActive(true);
 
                     beforeIsPress = true;
                 }
 
-                Vector3 v = GetRaycastPoint();
+                
 
                 //条件に合わせてactive表示
 
-                if (DrawIndicatePoint)
+                if (IndicateEnd)
                 {
-                    point.SetPosition(v);
+                    point.CmdSetPosition(v);
                 }
 
-                if(Drawray)
+                if(IndicateLine)
                 {
-                    ray.SetFromToPoint(indicator.GetPosition(),v);
+                    ray.CmdSetFromToPoint(indicator.GetPosition(),v);
                 }
 
-                if(DrawstartPoint)
+                if(IndicateStart)
                 {
-                    start.SetPosition(indicator.GetPosition());
+                    start.CmdSetPosition(indicator.GetPosition());
                 }
 
 
@@ -80,9 +100,9 @@ namespace C2.Indicate
             {
                 if (beforeIsPress)
                 {
-                    point.SetActive(false);
-                    ray.SetActive(false);
-                    start.SetActive(false);
+                    point.CmdSetActive(false);
+                    ray.CmdSetActive(false);
+                    start.CmdSetActive(false);
                     beforeIsPress = false;
                 }
             }
@@ -98,10 +118,9 @@ namespace C2.Indicate
 
             if (Physics.Raycast(indicator.GetPosition(), indicator.GetForward(), out hit,maxDist))
             {
-                Debug.Log(hit.transform.tag);
-                reach= hit.transform.position;
+                reach= hit.point;
             }
-            Debug.DrawRay(indicator.GetPosition(), indicator.GetForward(),Color.red, maxDist);
+            //Debug.DrawRay(indicator.GetPosition(), indicator.GetForward(),Color.red, maxDist);
             return reach;
         }
 

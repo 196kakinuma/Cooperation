@@ -14,9 +14,6 @@ namespace Main
         [SerializeField]
         GameObject trackerMasterPref;
 
-        [SerializeField]
-        GameObject earthPref;
-
 
         // Use this for initialization
         void Start ()
@@ -26,8 +23,6 @@ namespace Main
                 //GameMaster生成
                 Instantiate (gameMasterPref);
 
-                //NetworkServer.Spawn (Instantiate (room));
-                NetworkServer.Spawn (Instantiate (earthPref));
             }
         }
 

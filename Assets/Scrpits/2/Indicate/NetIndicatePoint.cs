@@ -8,11 +8,8 @@ namespace C2.Indicate
     public class NetIndicatePoint : NetworkBehaviour
     {
 
-
-        private void Awake()
-        {
-
-        }
+        [SerializeField]
+        GameObject obj;
         // Use this for initialization
         void Start()
         {
@@ -35,8 +32,7 @@ namespace C2.Indicate
         [ClientRpc]
         private void RpcSetActive(bool b)
         {
-            gameObject.SetActive(b);
-            Debug.Log("AA");
+            obj.SetActive(b);
         }
         [Command]
         public void CmdSetPosition(Vector3 position)

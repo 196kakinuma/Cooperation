@@ -11,7 +11,6 @@ namespace C2.Indicate
         [SerializeField]
         LineRenderer line;
 
-
         // Use this for initialization
         void Start()
         {
@@ -33,7 +32,7 @@ namespace C2.Indicate
         [ClientRpc]
         private void RpcSetActive(bool b)
         {
-            gameObject.SetActive(b);
+            line.gameObject.SetActive(b);
         }
 
         /// <summary>

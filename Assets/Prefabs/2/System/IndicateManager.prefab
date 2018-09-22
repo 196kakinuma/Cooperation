@@ -52,9 +52,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indicator: {fileID: 0}
-  pointPref: {fileID: 1847676061757252, guid: 592df174670239c4aa0e64e1d17c300e, type: 2}
-  RayPref: {fileID: 1724046026572058, guid: d9005668534c2bc439260c44ee914552, type: 2}
-  StartPointPref: {fileID: 1528978205665974, guid: 1822aab74e765054eb64329551b542c8,
+  pointPref: {fileID: 1140733419294100, guid: 592df174670239c4aa0e64e1d17c300e, type: 2}
+  RayPref: {fileID: 1978008896478882, guid: e92356a900ca68946be0f140a66a820c, type: 2}
+  StartPointPref: {fileID: 1915161927001266, guid: 1822aab74e765054eb64329551b542c8,
     type: 2}
   DrawstartPoint: 1
   Drawray: 1

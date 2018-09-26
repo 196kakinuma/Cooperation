@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected: {fileID: 0}
-  joint: {fileID: 0}
+  joint: {fileID: 127937378}
 --- !u!65 &127937383
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1755,7 +1755,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4856936388834024, guid: f66eae069239b1241a1218a5a7e4850c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -2.25
+      value: -0.315
       objectReference: {fileID: 0}
     - target: {fileID: 4856936388834024, guid: f66eae069239b1241a1218a5a7e4850c, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1763,7 +1763,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4856936388834024, guid: f66eae069239b1241a1218a5a7e4850c, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 1.24
+      value: 0.759
       objectReference: {fileID: 0}
     - target: {fileID: 4856936388834024, guid: f66eae069239b1241a1218a5a7e4850c, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1784,6 +1784,20 @@ Prefab:
     - target: {fileID: 4856936388834024, guid: f66eae069239b1241a1218a5a7e4850c, type: 2}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1667466612674714, guid: f66eae069239b1241a1218a5a7e4850c, type: 2}
+      propertyPath: m_TagString
+      value: MObj
+      objectReference: {fileID: 0}
+    - target: {fileID: 54920961834880018, guid: f66eae069239b1241a1218a5a7e4850c,
+        type: 2}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 54920961834880018, guid: f66eae069239b1241a1218a5a7e4850c,
+        type: 2}
+      propertyPath: m_UseGravity
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114582979821180966, guid: f66eae069239b1241a1218a5a7e4850c, type: 2}

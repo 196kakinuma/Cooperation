@@ -9,7 +9,9 @@ namespace C2.System
         [SerializeField]
         SteamVR_Controller.Device device;
         [SerializeField]
-        ManipObjectHandler selected = null;
+        GameObject selected = null;
+        [SerializeField]
+        FixedJoint joint;
 
         bool downTrigger = false;
         bool manipulating = false;
@@ -30,11 +32,6 @@ namespace C2.System
         void Update ()
         {
 
-            if ( manipulating )
-            {
-                selected.Manipulate (transform.position);
-            }
-
             if ( device.GetPressUp (SteamVR_Controller.ButtonMask.Trigger) )
             {
                 downTrigger = false;
@@ -51,18 +48,20 @@ namespace C2.System
         {
             if ( selected == null ) return;
             manipulating = true;
+            joint.connectedBody = selected.GetComponent<Rigidbody>();
 
         }
 
         void PressUpTrigger ()
         {
             manipulating = false;
+            joint.connectedBody = null;
         }
 
         void OnTriggerEnter ( Collider other )
         {
             if ( downTrigger || other.gameObject.tag != "MObj" ) return;
-            selected = other.gameObject.GetComponent<ManipObjectHandler> ();
+            selected = other.gameObject;
             // selected.CmdEmit ();
         }
 

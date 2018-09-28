@@ -20,6 +20,7 @@ namespace Main
         {
             if ( NetworkInitializer.Instance.cameraType == CameraType.VR )
             {
+
                 //GameMaster生成
                 Instantiate (gameMasterPref);
 

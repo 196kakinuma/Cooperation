@@ -16,11 +16,13 @@ namespace C2.System
             get { return isPlaying; }
             private set { isPlaying = value; }
         }
+        [SerializeField]
+        GameObject expPrefSpawner;
 
         // Use this for initialization
         void Start ()
         {
-
+            Instantiate(expPrefSpawner);
         }
 
         // Update is called once per frame
@@ -28,5 +30,7 @@ namespace C2.System
         {
 
         }
+
+       
     }
 }

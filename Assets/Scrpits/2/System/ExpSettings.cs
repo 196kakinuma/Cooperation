@@ -10,6 +10,8 @@ namespace C2.System
         public bool IndicateStart=false;
         public bool IndicateEnd = false;
         public bool IndicateLine = false;
+        //MRにこんとろーらを表示するか
+        public bool Ctrler4MRDebug = false;
         
     }
 }

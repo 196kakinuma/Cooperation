@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114623798331088412}
   - component: {fileID: 114057067811485490}
   m_Layer: 0
-  m_Name: IndicatePointStart
+  m_Name: IndicatePointstart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -14,6 +14,10 @@ namespace C2.System
         [SerializeField]
         GameObject exp1Pref;
 
+        //動かす用のプレハブ用
+        [SerializeField]
+        GameObject[] moveObject;
+
         // Use this for initialization
         void Start()
         {
@@ -28,19 +32,10 @@ namespace C2.System
 
         void SpawnExpPref(GameObject obj)
         {
+            NetworkServer.Spawn(Instantiate(exp1Pref));
             GameObject parent = new GameObject();
             parent.name = "Parent";
-            foreach (Transform wall in obj.transform)
-            {
-                foreach (Transform o in wall)
-                {
-                    //TODO:移動を記録するオブジェクトとして登録する
 
-                    GameObject a = Instantiate(o.gameObject);
-                    a.transform.parent = parent.transform;
-                    NetworkServer.Spawn(a);
-                }
-            }
         }
     }
 }

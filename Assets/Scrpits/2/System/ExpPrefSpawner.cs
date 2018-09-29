@@ -18,10 +18,12 @@ namespace C2.System
         [SerializeField]
         GameObject[] moveObject;
 
+        GameObject[] movableObjs;
         // Use this for initialization
         void Start()
         {
             SpawnExpPref(exp1Pref);
+            SpawnMovableObjs();
         }
 
         // Update is called once per frame
@@ -33,9 +35,23 @@ namespace C2.System
         void SpawnExpPref(GameObject obj)
         {
             NetworkServer.Spawn(Instantiate(exp1Pref));
-            GameObject parent = new GameObject();
-            parent.name = "Parent";
 
+        }
+
+        void SpawnMovableObjs()
+        {
+            movableObjs = new GameObject[moveObject.Length];
+            for(int i =0;i<moveObject.Length;i++)
+            {
+                movableObjs[i] = SpawnMovablePref(moveObject[i]);
+            }
+        }
+
+        GameObject SpawnMovablePref(GameObject obj)
+        {
+            GameObject a = Instantiate(obj);
+            NetworkServer.Spawn(a);
+            return a;
         }
     }
 }

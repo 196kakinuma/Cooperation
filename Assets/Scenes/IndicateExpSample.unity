@@ -2305,6 +2305,7 @@ MonoBehaviour:
   - {fileID: 1915161927001266, guid: 1822aab74e765054eb64329551b542c8, type: 2}
   - {fileID: 1978008896478882, guid: e92356a900ca68946be0f140a66a820c, type: 2}
   - {fileID: 1891789907621408, guid: 71222cec73a5b3d4da4f6ab24bd33e10, type: 2}
+  - {fileID: 1378339893957886, guid: 7c57268b0073e074fa04b43ac3e97b47, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -2434,6 +2435,7 @@ MonoBehaviour:
   IndicateEnd: 1
   IndicateLine: 1
   Ctrler4MRDebug: 1
+  AnswerDebug: 0
 --- !u!1 &1918957252
 GameObject:
   m_ObjectHideFlags: 0

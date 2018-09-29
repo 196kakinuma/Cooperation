@@ -12,6 +12,8 @@ namespace C2.System
         public bool IndicateLine = false;
         //MRにこんとろーらを表示するか
         public bool Ctrler4MRDebug = false;
+
+        public bool AnswerDebug = false;
         
     }
 }

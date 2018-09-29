@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4545346145862112}
   - component: {fileID: 114969590406127050}
   m_Layer: 0
-  m_Name: ExpPrefSpawner
+  m_Name: ExpPref1Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,4 +52,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exp1Pref: {fileID: 1891789907621408, guid: 71222cec73a5b3d4da4f6ab24bd33e10, type: 2}
-  a: {fileID: 1338334109667644, guid: c07efba0eaf624446a5f977073e3c0fa, type: 2}
+  moveObject:
+  - {fileID: 1378339893957886, guid: 7c57268b0073e074fa04b43ac3e97b47, type: 2}

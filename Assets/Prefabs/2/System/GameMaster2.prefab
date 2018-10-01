@@ -51,5 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e096ec869ec4864aa45c62edf358f0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expPrefSpawner: {fileID: 1765350403045566, guid: d15ae9cbba5cd9d44828ddba872f64f5,
-    type: 2}
+  expPref1Spawner:
+  - {fileID: 1765350403045566, guid: d15ae9cbba5cd9d44828ddba872f64f5, type: 2}
+  - {fileID: 1460105976963162, guid: 1afccb0e414f9d4439e3432ab6acd947, type: 2}

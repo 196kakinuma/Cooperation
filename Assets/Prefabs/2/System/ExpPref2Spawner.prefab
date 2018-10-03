@@ -55,9 +55,9 @@ MonoBehaviour:
   moveObject:
   - {fileID: 1866950423926512, guid: 57000dc54175f2e409a5355d3c04ceb9, type: 2}
   - {fileID: 1808799117150174, guid: ac82072a28a326b4b8d8c534855602de, type: 2}
-  - {fileID: 1866418086449790, guid: 9b1cd7dd59e2bbb4d9e327236d104ea9, type: 2}
+  - {fileID: 1416456499283524, guid: 9b1cd7dd59e2bbb4d9e327236d104ea9, type: 2}
   - {fileID: 1711758806200940, guid: c8a107c019ff1794a90caead81bb2475, type: 2}
   - {fileID: 1999892598659492, guid: 934954a63e0274e409bf8a70cc4c989d, type: 2}
-  - {fileID: 1585252122207050, guid: e6bb35f0d92ac0345984c20a208abd58, type: 2}
+  - {fileID: 1087313283741492, guid: bd6ab7e5a1d4cd141b4e940dbe4267c4, type: 2}
   - {fileID: 1194210519733554, guid: 24be6066af6566e459af2b84eb53d8e9, type: 2}
   - {fileID: 1234527656916532, guid: 8f7ef0d2a0ff0b04895c7e1abc54e861, type: 2}

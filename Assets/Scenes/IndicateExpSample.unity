@@ -2370,24 +2370,6 @@ MonoBehaviour:
   - {fileID: 1140733419294100, guid: 592df174670239c4aa0e64e1d17c300e, type: 2}
   - {fileID: 1915161927001266, guid: 1822aab74e765054eb64329551b542c8, type: 2}
   - {fileID: 1978008896478882, guid: e92356a900ca68946be0f140a66a820c, type: 2}
-  - {fileID: 1891789907621408, guid: 71222cec73a5b3d4da4f6ab24bd33e10, type: 2}
-  - {fileID: 1378339893957886, guid: 7c57268b0073e074fa04b43ac3e97b47, type: 2}
-  - {fileID: 1251554273434736, guid: 19d26e02806907e47b0d9a35e42b3787, type: 2}
-  - {fileID: 1967719321242612, guid: fb5399697b9f52d41a48f17d4ce1d2f4, type: 2}
-  - {fileID: 1069802476075816, guid: c2888f7afd49dad48aa950043a2a7adf, type: 2}
-  - {fileID: 1271549884666822, guid: 7dd287cbabcbf6a4996be879fce1730c, type: 2}
-  - {fileID: 1224403308771710, guid: 3c1f70ba0413b474cb71998cd22ac545, type: 2}
-  - {fileID: 1697559666037276, guid: e696609f5cb38bd408c5245eb72eb03d, type: 2}
-  - {fileID: 1861172421709698, guid: e3b17c4b10209a04aad74df485a16da3, type: 2}
-  - {fileID: 1536261503799658, guid: cb998f230222f2c4ca147150062a8192, type: 2}
-  - {fileID: 1866950423926512, guid: 57000dc54175f2e409a5355d3c04ceb9, type: 2}
-  - {fileID: 1808799117150174, guid: ac82072a28a326b4b8d8c534855602de, type: 2}
-  - {fileID: 1416456499283524, guid: 9b1cd7dd59e2bbb4d9e327236d104ea9, type: 2}
-  - {fileID: 1711758806200940, guid: c8a107c019ff1794a90caead81bb2475, type: 2}
-  - {fileID: 1999892598659492, guid: 934954a63e0274e409bf8a70cc4c989d, type: 2}
-  - {fileID: 1194210519733554, guid: 24be6066af6566e459af2b84eb53d8e9, type: 2}
-  - {fileID: 1234527656916532, guid: 8f7ef0d2a0ff0b04895c7e1abc54e861, type: 2}
-  - {fileID: 1087313283741492, guid: bd6ab7e5a1d4cd141b4e940dbe4267c4, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -2483,8 +2465,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffd99c06f034966439a67724e017d886, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameMasterPref: {fileID: 1830691910494406, guid: 4363e0d818ad05e42af1f7710c947c44,
-    type: 2}
   trackerMasterPref: {fileID: 1809804692222998, guid: 8bbb0073ab6f0264caa873571ba871ca,
     type: 2}
 --- !u!114 &1897459342
@@ -2513,12 +2493,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fb43d222822fa744a136db0e5d6531e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IndicateStart: 1
+  IndicateStart: 0
   IndicateEnd: 1
-  IndicateLine: 1
+  IndicateLine: 0
   Ctrler4MRDebug: 1
-  AnswerDebug: 0
-  expnum: 1
+  AnswerDebug: 1
+  expnum: 0
 --- !u!1 &1918957252
 GameObject:
   m_ObjectHideFlags: 0

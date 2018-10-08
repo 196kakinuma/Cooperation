@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using IkLibrary.Unity;
 
+public enum EXPNUM
+{
+    ONE,
+    TWO,
+    THREE
+}
 namespace C2.System
 {
     public class ExpSettings : SingletonMonoBehaviour<ExpSettings>
@@ -12,6 +18,10 @@ namespace C2.System
         public bool IndicateLine = false;
         //MRにこんとろーらを表示するか
         public bool Ctrler4MRDebug = false;
+
+        public bool AnswerDebug = false;
+
+        public EXPNUM expnum;
         
     }
 }

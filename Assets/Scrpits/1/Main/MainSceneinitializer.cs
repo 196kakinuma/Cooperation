@@ -8,11 +8,10 @@ namespace Main
 {
     public class MainSceneinitializer : MonoBehaviour
     {
-        [SerializeField]
-        GameObject gameMasterPref;
 
         [SerializeField]
         GameObject trackerMasterPref;
+
 
 
         // Use this for initialization
@@ -22,7 +21,8 @@ namespace Main
             {
 
                 //GameMaster生成
-                Instantiate (gameMasterPref);
+                //Instantiate (gameMasterPref);
+
 
             }
         }

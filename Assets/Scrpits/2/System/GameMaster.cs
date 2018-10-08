@@ -17,12 +17,12 @@ namespace C2.System
             private set { isPlaying = value; }
         }
         [SerializeField]
-        GameObject expPrefSpawner;
+        GameObject[] expPref1Spawner;
 
         // Use this for initialization
         void Start ()
         {
-            Instantiate(expPrefSpawner);
+            Instantiate(expPref1Spawner[(int)ExpSettings.Instance.expnum]);
         }
 
         // Update is called once per frame

@@ -11,8 +11,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
-  productName: Cooperation
+  companyName: DetCompany
+  productName: Cooperation2
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -607,7 +607,7 @@ PlayerSettings:
     Standalone: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: SDK2BaseProject
+  metroPackageName: cooperation
   metroPackageVersion: 1.0.0.0
   metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
@@ -616,7 +616,7 @@ PlayerSettings:
   metroCertificateNotAfter: 800648109168d501
   metroApplicationDescription: SDK2_BaseProject
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: Cooperation2
   metroCommandLineArgsFile: 
   metroTileShowName: 0
   metroMediumTileShowName: 0

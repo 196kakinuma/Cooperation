@@ -15,7 +15,7 @@ namespace C2.Block
         void Start()
         {
             GameObject a = Instantiate(block);
-            a.transform.position = new Vector3(0,1,-4f);
+            a.transform.position = new Vector3(0,1,-5f);
             NetworkServer.Spawn(a);
         }
 

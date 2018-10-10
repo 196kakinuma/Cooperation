@@ -10,6 +10,7 @@ TagManager:
   - TeleportIgnore
   - MObj
   - VRZone
+  - MRZone
   layers:
   - Default
   - TransparentFX

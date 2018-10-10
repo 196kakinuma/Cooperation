@@ -28,8 +28,8 @@ namespace C2.Test
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("aa");
-            if(other.gameObject.tag=="VRZone")
+
+            if(other.gameObject.tag=="VRZone"&& Networks.NetworkInitializer.Instance.cameraType == CameraType.VR)
             {
                 block.gameObject.SetActive(true);
             }
@@ -37,9 +37,14 @@ namespace C2.Test
 
         private void OnTriggerExit(Collider other)
         {
-            if(other.gameObject.tag=="VRZone")
+            Debug.Log("aa");
+            if (other.gameObject.tag == "VRZone" && Networks.NetworkInitializer.Instance.cameraType == CameraType.VR)
             {
                 block.gameObject.SetActive(false);
+            }
+            if(other.gameObject.tag=="MRZone")
+            {
+                Destroy(this.gameObject);
             }
         }
     }

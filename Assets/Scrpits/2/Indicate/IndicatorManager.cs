@@ -63,7 +63,6 @@ namespace C2.Indicate
         {
             if(indicator.GetIsPress())
             {
-                Debug.Log("Press");
                 Vector3 v = GetRaycastPoint();
                 if (v == Vector3.zero) return;
 

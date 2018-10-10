@@ -11,6 +11,8 @@ namespace C2.Indicate
         [SerializeField]
         SteamVR_Controller.Device device;
 
+        bool staticLen = false;
+
         private bool isPress;
 
         // Use this for initialization
@@ -23,16 +25,14 @@ namespace C2.Indicate
         // Update is called once per frame
         void Update()
         {
-            //if(device. GetPress(SteamVR_Controller.ButtonMask.Trigger))
-            //{
-            //    isPress = true;
-            //}
-            //else
-            //{
-            //    isPress = false;
-            //}
+            //isPress=(device.GetPress(SteamVR_Controller.ButtonMask.Trigger)) ? true : false;
+            isPress=(device.GetPress(SteamVR_Controller.ButtonMask.Touchpad)) ? true : false;
 
-            isPress=(device.GetPress(SteamVR_Controller.ButtonMask.Trigger)) ? true : false;
+            if(device.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
+            {
+                staticLen = GetLen();
+            }
+
         }
 
         public Vector3 GetPosition()
@@ -49,6 +49,16 @@ namespace C2.Indicate
         public bool GetIsPress()
         {
             return isPress;
+        }
+
+        public bool GetStaticLen()
+        {
+            return staticLen;
+        }
+
+        bool GetLen()
+        {
+            return !staticLen;
         }
     }
 }

@@ -9,6 +9,7 @@ TagManager:
   - tracker
   - TeleportIgnore
   - MObj
+  - VRZone
   layers:
   - Default
   - TransparentFX

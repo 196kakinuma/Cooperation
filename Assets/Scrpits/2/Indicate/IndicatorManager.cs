@@ -63,6 +63,9 @@ namespace C2.Indicate
         {
             if(indicator.GetIsPress())
             {
+
+                
+
                 Vector3 v = GetRaycastPoint();
                 if (v == Vector3.zero) return;
 
@@ -113,14 +116,16 @@ namespace C2.Indicate
         private Vector3 GetRaycastPoint()
         {
             RaycastHit hit;
-            float maxDist = 1000f;
+            float maxDist = (indicator.GetStaticLen()) ? 1f : 1000f;
             Vector3 reach = Vector3.zero;
 
             if (Physics.Raycast(indicator.GetPosition(), indicator.GetForward(), out hit,maxDist))
             {
                 reach= hit.point;
+            }else if (indicator.GetStaticLen())
+            {
+                reach = indicator.GetPosition() + indicator.GetForward().normalized;
             }
-            //Debug.DrawRay(indicator.GetPosition(), indicator.GetForward(),Color.red, maxDist);
             return reach;
         }
 

@@ -10,9 +10,10 @@ namespace C2.Indicate
         GameObject forward;
         [SerializeField]
         SteamVR_Controller.Device device;
-
+        [SerializeField]
         bool staticLen = false;
 
+        
         private bool isPress;
 
         // Use this for initialization
@@ -28,7 +29,7 @@ namespace C2.Indicate
             //isPress=(device.GetPress(SteamVR_Controller.ButtonMask.Trigger)) ? true : false;
             isPress=(device.GetPress(SteamVR_Controller.ButtonMask.Touchpad)) ? true : false;
 
-            if(device.GetPress(SteamVR_Controller.ButtonMask.Touchpad))
+            if(device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
             {
                 staticLen = GetLen();
             }

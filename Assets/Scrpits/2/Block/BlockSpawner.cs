@@ -40,7 +40,11 @@ namespace C2.Block
         void Create()
         {
             var a = Instantiate(block).GetComponent<BlockPrefab>();
-            a.transform.position = new Vector3(0, 1.125f, -5f);
+
+
+            int rand = Random.Range(0, 4);
+            float tmp = -0.5f+0.25f*rand;
+            a.transform.position = new Vector3(tmp, 1.125f, -5f);
             a.CreateBlocks(raw);
             NetworkServer.Spawn(a.gameObject);
         }

@@ -98,6 +98,7 @@ namespace C2.Block
             if (other.gameObject.tag == "VRZone" && Networks.NetworkInitializer.Instance.cameraType == CameraType.VR)
             {
                 blocks.gameObject.SetActive(false);
+                Destroy(this.gameObject);
             }
             if (other.gameObject.tag == "MRZone")
             {

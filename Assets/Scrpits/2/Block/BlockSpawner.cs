@@ -9,8 +9,10 @@ namespace C2.Block
     public class BlockSpawner : MonoBehaviour
     {
         [SerializeField]
-        GameObject block;
+        GameObject blockPref;
 
+        [SerializeField]
+        GameObject currentBlock=null;
 
         int[] raw = new int[24] {0,0,0,0,
                                 1,0,0,0,
@@ -19,7 +21,6 @@ namespace C2.Block
                                 1,0,0,3,
                                 0,0,0,1};
 
-        float time=0f;
         // Use this for initialization
         void Start()
         {
@@ -29,24 +30,33 @@ namespace C2.Block
         // Update is called once per frame
         void Update()
         {
-            time += Time.deltaTime;
-            if(time>5f)
+            if (currentBlock == null)
             {
-                Create();
-                time = 0f;
+                currentBlock = Create(Random.Range(0, 2), Random.Range(0, 5));
             }
+            
         }
 
-        void Create()
+        GameObject Create(int pos,int offset)
         {
-            var a = Instantiate(block).GetComponent<BlockPrefab>();
+            var a = Instantiate(blockPref).GetComponent<BlockPrefab>();
 
 
-            int rand = Random.Range(0, 4);
-            float tmp = -0.5f+0.25f*rand;
-            a.transform.position = new Vector3(tmp, 1.125f, -5f);
             a.CreateBlocks(raw);
+            if(pos==0)
+            {
+                float tmp = -0.5f + 0.25f * offset;
+                a.transform.position = new Vector3(tmp, 1.125f, -5f);
+            }
+            else if(pos==1){
+                float tmp = -0.5f + 0.25f * offset;
+                a.transform.position = new Vector3(-5f, 1.125f, tmp);
+                a.transform.Rotate(new Vector3(0, 90, 0));
+            }
+            
+            
             NetworkServer.Spawn(a.gameObject);
+            return a.gameObject;
         }
     }
 }

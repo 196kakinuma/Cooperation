@@ -27,14 +27,17 @@ namespace C2.Block
         [SerializeField]
         GameObject blocks;
 
+        [SerializeField]
+        List<GameObject> notspwanedObj=new List<GameObject>();
+
 
 
         void Start()
         {
-            if (Networks.NetworkInitializer.Instance.cameraType == CameraType.VR)
-            {
-                blocks.SetActive(false);
-            }
+            //if (Networks.NetworkInitializer.Instance.cameraType == CameraType.VR)
+            //{
+            //    blocks.SetActive(false);
+            //}
         }
 
         // Update is called once per frame
@@ -47,39 +50,47 @@ namespace C2.Block
         {
             for(int i = 0; i < ints.Length; i++)
             {
-
-                GameObject temp;
+                GameObject tmp;
                 switch (ints[i]) {
                     case 0:
                         break;
                     case 1:
-                        temp =Instantiate(white);
-                        temp.transform.SetParent(objs[i].transform);
-                        temp.GetComponent<BlockScript>().SetBlockInfo(this, i);
-                        temp.transform.localPosition=Vector3.zero;
-                        NetworkServer.Spawn(temp);
+                        tmp =Instantiate(white);
+                        tmp.transform.SetParent(objs[i].transform);
+                        tmp.transform.localPosition = Vector3.zero;
+                        tmp.GetComponent<BlockScript>().SetBlockInfo(this, i);
+                        notspwanedObj.Add( tmp);
+
                         break;
                     case 2:
-                        temp =Instantiate( red);
-                        temp.transform.SetParent(objs[i].transform);
-                        temp.transform.localPosition = Vector3.zero;
-                        temp.GetComponent<BlockScript>().SetBlockInfo(this, i);
-                        NetworkServer.Spawn(temp);
+                        tmp =Instantiate( red);
+                        tmp.transform.SetParent(objs[i].transform);
+                        tmp.transform.localPosition = Vector3.zero;
+                        tmp.GetComponent<BlockScript>().SetBlockInfo(this, i);
+                        notspwanedObj.Add( tmp);
                         break;
                     case 3:
-                        temp =Instantiate(blue);
-                        temp.transform.SetParent(objs[i].transform);
-                        temp.transform.localPosition = Vector3.zero;
-                        temp.GetComponent<BlockScript>().SetBlockInfo(this, i);
-                        NetworkServer.Spawn(temp);
+                        tmp =Instantiate(blue);
+                        tmp.transform.SetParent(objs[i].transform);
+                        tmp.transform.localPosition = Vector3.zero;
+                        tmp.GetComponent<BlockScript>().SetBlockInfo(this, i);
+                        notspwanedObj.Add(tmp);
                         break;
                     default:
-                        temp = new GameObject();
+                        tmp = new GameObject();
                         break;
                 }
 
 
-                
+
+            }
+        }
+
+        public void SpwanBlock()
+        {
+            foreach (var a in notspwanedObj)
+            {
+                NetworkServer.Spawn(a);
             }
         }
 
@@ -93,7 +104,8 @@ namespace C2.Block
 
             if (other.gameObject.tag == "VRZone" && Networks.NetworkInitializer.Instance.cameraType == CameraType.VR)
             {
-                blocks.gameObject.SetActive(true);
+                //blocks.gameObject.SetActive(true);
+                SetBlocksActive(true);
             }
         }
 
@@ -101,12 +113,21 @@ namespace C2.Block
         {
             if (other.gameObject.tag == "VRZone" /*&& Networks.NetworkInitializer.Instance.cameraType == CameraType.VR*/)
             {
-                blocks.gameObject.SetActive(false);
+                //blocks.gameObject.SetActive(false);
+                SetBlocksActive(false);
                 Destroy(this.gameObject);
             }
             if (other.gameObject.tag == "MRZone")
             {
                 Destroy(this.gameObject);
+            }
+        }
+
+        public void SetBlocksActive(bool b)
+        {
+            foreach(var a in notspwanedObj)
+            {
+                a.GetComponent<BlockScript>().SetBlockActive(b);
             }
         }
 

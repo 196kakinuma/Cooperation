@@ -12,6 +12,9 @@ namespace C2.Block
         BlockPrefab prefScript;
         int blockNum;
 
+        [SerializeField]
+        GameObject block;
+
         // Use this for initialization
         void Start()
         {
@@ -23,6 +26,11 @@ namespace C2.Block
         {
 
         }
+        public void SetBlockActive(bool b)
+        {
+            block.SetActive(b);
+        }
+
         public void SetBlockInfo(BlockPrefab scr,int num)
         {
             prefScript = scr;

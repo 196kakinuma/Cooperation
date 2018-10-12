@@ -34,13 +34,12 @@ namespace C2.Block
             {
                 currentBlock = Create(Random.Range(0, 2), Random.Range(0, 5));
             }
-            
         }
 
         GameObject Create(int pos,int offset)
         {
             var a = Instantiate(blockPref).GetComponent<BlockPrefab>();
-            NetworkServer.Spawn(a.gameObject);
+
 
             a.CreateBlocks(raw);
 
@@ -54,9 +53,10 @@ namespace C2.Block
                 a.transform.position = new Vector3(-5f, 1.125f, tmp);
                 a.transform.Rotate(new Vector3(0, 90, 0));
             }
+            NetworkServer.Spawn(a.gameObject);
+            a.SpwanBlock();
+            a.SetBlocksActive(false);
 
-
-            
             return a.gameObject;
         }
     }

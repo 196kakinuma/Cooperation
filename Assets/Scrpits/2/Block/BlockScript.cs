@@ -15,7 +15,7 @@ namespace C2.Block
         // Use this for initialization
         void Start()
         {
-            
+            if (Networks.NetworkInitializer.Instance.cameraType == CameraType.MR) Destroy(this);
         }
 
         // Update is called once per frame

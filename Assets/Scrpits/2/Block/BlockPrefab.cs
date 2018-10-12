@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace C2.Block
 {
@@ -56,24 +57,27 @@ namespace C2.Block
                         temp.transform.SetParent(objs[i].transform);
                         temp.GetComponent<BlockScript>().SetBlockInfo(this, i);
                         temp.transform.localPosition=Vector3.zero;
+                        NetworkServer.Spawn(temp);
                         break;
                     case 2:
                         temp =Instantiate( red);
                         temp.transform.SetParent(objs[i].transform);
                         temp.transform.localPosition = Vector3.zero;
                         temp.GetComponent<BlockScript>().SetBlockInfo(this, i);
+                        NetworkServer.Spawn(temp);
                         break;
                     case 3:
                         temp =Instantiate(blue);
                         temp.transform.SetParent(objs[i].transform);
                         temp.transform.localPosition = Vector3.zero;
                         temp.GetComponent<BlockScript>().SetBlockInfo(this, i);
+                        NetworkServer.Spawn(temp);
                         break;
                     default:
                         temp = new GameObject();
                         break;
                 }
-                
+
 
                 
             }
@@ -95,7 +99,7 @@ namespace C2.Block
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.gameObject.tag == "VRZone" && Networks.NetworkInitializer.Instance.cameraType == CameraType.VR)
+            if (other.gameObject.tag == "VRZone" /*&& Networks.NetworkInitializer.Instance.cameraType == CameraType.VR*/)
             {
                 blocks.gameObject.SetActive(false);
                 Destroy(this.gameObject);

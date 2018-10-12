@@ -1748,7 +1748,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &525903692
 Transform:
   m_ObjectHideFlags: 0
@@ -1885,6 +1885,7 @@ MonoBehaviour:
   right: {fileID: 127937376}
   objects:
   - {fileID: 1481242763}
+  - {fileID: 525903691}
   assignAllBeforeIdentified: 0
 --- !u!1 &549688936
 GameObject:
@@ -5517,6 +5518,9 @@ MonoBehaviour:
   - {fileID: 1978008896478882, guid: e92356a900ca68946be0f140a66a820c, type: 2}
   - {fileID: 1593149232923042, guid: d0883d228ed514c44b553536fb3e2ef7, type: 2}
   - {fileID: 1362294473236290, guid: 6983641f2c674da499a1e5d260c41080, type: 2}
+  - {fileID: 1269194675343984, guid: 1598709eff3283845916fccdd0beb33a, type: 2}
+  - {fileID: 1352506382637920, guid: 81b06c3f4affdba45ac57f9c8ce4f817, type: 2}
+  - {fileID: 1177366030548442, guid: 581783ee17cf5ab459b1962304b5958f, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:

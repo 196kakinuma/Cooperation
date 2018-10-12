@@ -11,6 +11,14 @@ namespace C2.Block
         [SerializeField]
         GameObject block;
 
+
+        int[] raw = new int[24] {0,0,0,0,
+                                1,0,0,0,
+                                1,0,0,2,
+                                1,1,0,0,
+                                1,0,0,3,
+                                0,0,0,1};
+
         float time=0f;
         // Use this for initialization
         void Start()
@@ -31,9 +39,10 @@ namespace C2.Block
 
         void Create()
         {
-            GameObject a = Instantiate(block);
-            a.transform.position = new Vector3(0, 1, -5f);
-            NetworkServer.Spawn(a);
+            var a = Instantiate(block).GetComponent<BlockPrefab>();
+            a.transform.position = new Vector3(0, 1.125f, -5f);
+            a.CreateBlocks(raw);
+            NetworkServer.Spawn(a.gameObject);
         }
     }
 }

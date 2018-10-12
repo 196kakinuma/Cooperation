@@ -11,6 +11,9 @@ TagManager:
   - MObj
   - VRZone
   - MRZone
+  - HAND
+  - FOOT
+  - BODY
   layers:
   - Default
   - TransparentFX

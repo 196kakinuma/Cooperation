@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace C2.Block
 {
+    public enum BLOCKCOLOR {WHITE,RED,BLUE }
+
 
     public class BlockPrefab : MonoBehaviour
     {
@@ -52,17 +54,20 @@ namespace C2.Block
                     case 1:
                         temp =Instantiate(white);
                         temp.transform.SetParent(objs[i].transform);
+                        temp.GetComponent<BlockScript>().SetBlockInfo(this, i);
                         temp.transform.localPosition=Vector3.zero;
                         break;
                     case 2:
                         temp =Instantiate( red);
                         temp.transform.SetParent(objs[i].transform);
                         temp.transform.localPosition = Vector3.zero;
+                        temp.GetComponent<BlockScript>().SetBlockInfo(this, i);
                         break;
                     case 3:
                         temp =Instantiate(blue);
                         temp.transform.SetParent(objs[i].transform);
                         temp.transform.localPosition = Vector3.zero;
+                        temp.GetComponent<BlockScript>().SetBlockInfo(this, i);
                         break;
                     default:
                         temp = new GameObject();
@@ -98,6 +103,16 @@ namespace C2.Block
             {
                 Destroy(this.gameObject);
             }
+        }
+
+        /// <summary>
+        /// 衝突してしまったブロックの情報を受け取る
+        /// </summary>
+        /// <param name="bcolor"></param>
+        /// <param name="blocknum"></param>
+        public void SetCollitionObject(BLOCKCOLOR bcolor,int blocknum)
+        {
+            Debug.Log("color;"+bcolor+"num:"+blocknum);
         }
     }
 }

@@ -1843,7 +1843,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &531751340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4143,6 +4143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawner: {fileID: 1356168081}
   gameStart: 0
+  gameFinish: 0
 --- !u!1 &1356523660
 GameObject:
   m_ObjectHideFlags: 0
@@ -5650,6 +5651,7 @@ GameObject:
   - component: {fileID: 1897459338}
   - component: {fileID: 1897459341}
   - component: {fileID: 1897459342}
+  - component: {fileID: 1897459344}
   m_Layer: 0
   m_Name: GlobalManagers
   m_TagString: Untagged
@@ -5823,6 +5825,17 @@ MonoBehaviour:
   Ctrler4MRDebug: 1
   AnswerDebug: 1
   expnum: 0
+--- !u!114 &1897459344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1897459337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ba54c3f2abcbb94085e73038e4cb93a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1897699672
 GameObject:
   m_ObjectHideFlags: 0

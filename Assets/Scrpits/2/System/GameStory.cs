@@ -14,6 +14,8 @@ namespace C2.System
         C2.Block.BlockSpawner spawner;
 
         public bool gameStart = false;
+        public bool gameFinish = false;
+        float time = 0f;
 
         // Use this for initialization
         void Start()
@@ -24,6 +26,11 @@ namespace C2.System
         // Update is called once per frame
         void Update()
         {
+            if(gameStart)
+            {
+                time += Time.deltaTime;
+            }
+
             if(spawner.currentBlock==null && gameStart)
             {
                 spawner.Create(Random.Range(0, 2), Random.Range(0, 5),0);
@@ -40,6 +47,14 @@ namespace C2.System
 
 
             gameStart = true;
+        }
+
+        public void FinishExp()
+        {
+            gameStart = false;
+            gameFinish = true;
+            Debug.Log("finish time:"+time);
+
         }
     }
 }

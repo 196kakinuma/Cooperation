@@ -26,14 +26,21 @@ namespace C2.System
         // Update is called once per frame
         void Update()
         {
-            if(gameStart)
-            {
-                time += Time.deltaTime;
-            }
+
 
             if(spawner.currentBlock==null && gameStart)
             {
-                spawner.Create(Random.Range(0, 2), Random.Range(0, 5),0);
+                int lr = Random.Range(0, 2);
+                int offset = Random.Range(0, 5);
+                int taskNum=0;
+                spawner.Create(lr, offset,taskNum);
+                C2.Exp.ExpRecorder.Instance.AddTaskInfo(lr, offset, taskNum);
+                C2.Exp.ExpRecorder.Instance.AddTaskTimeInfo(time);
+            }
+
+            if (gameStart)
+            {
+                time += Time.deltaTime;
             }
         }
 
@@ -51,6 +58,8 @@ namespace C2.System
 
         public void FinishExp()
         {
+            C2.Exp.ExpRecorder.Instance.AddTaskTimeInfo(time);
+            C2.Exp.ExpRecorder.Instance.FinishExp();
             gameStart = false;
             gameFinish = true;
             Debug.Log("finish time:"+time);

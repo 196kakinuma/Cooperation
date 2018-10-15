@@ -52,11 +52,19 @@ namespace C2.Block
                     {
                         prefScript.SetCollitionObject(blockColor, blockNum);
                     }
+                    else
+                    {
+                        prefScript.SetCollitionObject(BLOCKCOLOR.WHITE, blockNum);
+                    }
                     break;
                 case BLOCKCOLOR.BLUE:
                     if (other.tag == "FOOT" )
                     {
                         prefScript.SetCollitionObject(blockColor, blockNum);
+                    }
+                    else
+                    {
+                        prefScript.SetCollitionObject(BLOCKCOLOR.WHITE, blockNum);
                     }
                     break;
             }

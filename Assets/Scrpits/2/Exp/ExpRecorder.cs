@@ -18,10 +18,12 @@ namespace C2.Exp
             {
                 Destroy(this);
             }
+
+
             leftRightList = new List<int>();
             offsetList = new List<int>();
             taskNumList = new List<int>();
-            taskResultList = new List<bool>();
+            taskResultList = new List<string>();
             collisionList = new List<string>();
             timeList = new List<float>();
         }
@@ -39,12 +41,12 @@ namespace C2.Exp
             taskNumList.Add(taskNum);
         }
 
-        List<bool> taskResultList;
+        List<string> taskResultList;
         List<string> collisionList; // - でぶつかった番号をつなげる
         /// <summary>
         /// タスクが成功したか、もしくは体がぶつかったものの情報を保持する
         /// </summary>
-        public void AddTaskCollisionInfo(bool result,string collision)
+        public void AddTaskCollisionInfo(string result,string collision)
         {
             taskResultList.Add(result);
             collisionList.Add(collision);
@@ -53,7 +55,8 @@ namespace C2.Exp
 
         List<float> timeList;
         /// <summary>
-        /// タスクにかかる時間を保存する
+        /// タスクが生成された時間を記録する
+        /// 最後の記録はタスクが終了した時間
         /// excel保存時に計算してかかる時間を計測する
         /// </summary>
         /// <param name="time"></param>
@@ -113,6 +116,10 @@ namespace C2.Exp
             writer.InitializeFile(C2.System.ExpSettings.Instance.ExpName + "TimeInfo");
             foreach(var a in timeList)
                 writer.WriteWords(a.ToString());
+            for(int i=0;i<timeList.Count-1;i++)
+            {
+                writer.WriteWords((timeList[i + 1] - timeList[i]).ToString());
+            }
             writer.WriteNewLine();
 
             writer.CloseFile();

@@ -28,7 +28,8 @@ namespace IkLibrary.Unity
 
             FileInfo fi = new FileInfo (Application.dataPath + "/ExperimentData/" + filename);
             sw = fi.AppendText ();
-            sw.WriteLine ("test output");
+            sw.WriteLine (System.DateTime.Today);
+           
         }
 
         /// <summary>

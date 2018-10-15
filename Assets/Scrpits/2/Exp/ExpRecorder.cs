@@ -75,17 +75,47 @@ namespace C2.Exp
 
         void SaveTaskInfo()
         {
+            ExcelWriter writer = new ExcelWriter();
+            writer.InitializeFile(C2.System.ExpSettings.Instance.ExpName + "TaskInfo");
+            foreach(var a in leftRightList)
+            {
+                writer.WriteWords(a.ToString());
+            }
+            writer.WriteNewLine();
+            foreach (var a in offsetList)
+                writer.WriteWords(a.ToString());
+            writer.WriteNewLine();
+            foreach (var a in taskNumList)
+                writer.WriteWords(a.ToString());
+            writer.WriteNewLine();
 
+            writer.CloseFile();
         }
 
         void SaveCollisionInfo()
         {
+            ExcelWriter writer = new ExcelWriter();
+            writer.InitializeFile(C2.System.ExpSettings.Instance.ExpName + "CollisionInfo");
+            foreach(var a in taskResultList)
+                writer.WriteWords(a.ToString());
+            writer.WriteNewLine();
+            foreach(var a in collisionList)
+                writer.WriteWords(a.ToString());
+            writer.WriteNewLine();
+
+            writer.CloseFile();
 
         }
 
         void SaveTimeInfo()
         {
+            ExcelWriter writer = new ExcelWriter();
+            writer.InitializeFile(C2.System.ExpSettings.Instance.ExpName + "TimeInfo");
+            foreach(var a in timeList)
+                writer.WriteWords(a.ToString());
+            writer.WriteNewLine();
 
+            writer.CloseFile();
         }
            
     }

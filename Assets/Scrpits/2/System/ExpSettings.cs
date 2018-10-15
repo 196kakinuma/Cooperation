@@ -22,6 +22,8 @@ namespace C2.System
         public bool AnswerDebug = false;
 
         public EXPNUM expnum;
+
+        public string ExpName;
         
     }
 }

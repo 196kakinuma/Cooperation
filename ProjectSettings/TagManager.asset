@@ -9,6 +9,11 @@ TagManager:
   - tracker
   - TeleportIgnore
   - MObj
+  - VRZone
+  - MRZone
+  - HAND
+  - FOOT
+  - BODY
   layers:
   - Default
   - TransparentFX

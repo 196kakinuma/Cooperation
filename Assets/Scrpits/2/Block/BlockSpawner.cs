@@ -8,11 +8,11 @@ namespace C2.Block
 
     public class BlockSpawner : MonoBehaviour
     {
+
         [SerializeField]
         GameObject blockPref;
 
-        [SerializeField]
-        GameObject currentBlock=null;
+        public  GameObject currentBlock=null;
 
         int[] raw = new int[24] {0,0,0,0,
                                 1,0,0,0,
@@ -30,13 +30,10 @@ namespace C2.Block
         // Update is called once per frame
         void Update()
         {
-            if (currentBlock == null)
-            {
-                currentBlock = Create(Random.Range(0, 2), Random.Range(0, 5));
-            }
+
         }
 
-        GameObject Create(int pos,int offset)
+        public void Create(int pos,int offset,int rawNum)
         {
             var a = Instantiate(blockPref).GetComponent<BlockPrefab>();
 
@@ -57,7 +54,7 @@ namespace C2.Block
             a.SpwanBlock();
             a.SetBlocksActive(false);
 
-            return a.gameObject;
+            currentBlock= a.gameObject;
         }
     }
 }

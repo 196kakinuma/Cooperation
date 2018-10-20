@@ -4116,9 +4116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockPref: {fileID: 1362294473236290, guid: 6983641f2c674da499a1e5d260c41080, type: 2}
-  sheet:
-    name: 
-    list: []
+  sheet: {fileID: 11400000, guid: de7c4b5aa5a76b042b1d8beb0a2ba167, type: 2}
   currentBlock: {fileID: 0}
 --- !u!4 &1356168082
 Transform:

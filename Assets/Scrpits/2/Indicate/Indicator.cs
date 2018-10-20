@@ -13,6 +13,9 @@ namespace C2.Indicate
         [SerializeField]
         bool staticLen = false;
 
+        [SerializeField]
+        C2.Block.BlockSpawner bSpwaner;
+
         
         private bool isPress;
 
@@ -32,6 +35,11 @@ namespace C2.Indicate
             if(device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
             {
                 staticLen = GetLen();
+            }
+
+            if (device.GetPressUp(SteamVR_Controller.ButtonMask.Grip))
+            {
+                bSpwaner.ReverseStopBlock();
             }
 
         }

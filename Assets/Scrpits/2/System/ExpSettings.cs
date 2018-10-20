@@ -21,7 +21,15 @@ namespace C2.System
 
         public bool AnswerDebug = false;
 
+        //今回は使用しない
         public EXPNUM expnum;
+
+        /// <summary>
+        /// ファイル名に使用する
+        /// </summary>
+        public string ExpName;
+
+        public int totalTasknum = 10;
         
     }
 }

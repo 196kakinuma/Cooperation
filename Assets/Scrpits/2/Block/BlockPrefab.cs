@@ -30,20 +30,31 @@ namespace C2.Block
         [SerializeField]
         List<GameObject> notspwanedObj=new List<GameObject>();
 
+        [SerializeField]
+        bool stop = false;
+
+        bool isinVRZone=false;
+        public void ReverseStopFlag()
+        {
+            if (isinVRZone) return;
+            stop = !stop;
+            //if (stop) stop = false;
+            //else stop = true;
+        }
 
 
         void Start()
         {
-            //if (Networks.NetworkInitializer.Instance.cameraType == CameraType.VR)
-            //{
-            //    blocks.SetActive(false);
-            //}
+            colBlklist = new List<int>();
         }
 
         // Update is called once per frame
         void Update()
         {
-            Move();
+            if (!stop)
+            {
+                Move();
+            }
         }
 
         public void CreateBlocks(int[] ints)
@@ -104,7 +115,7 @@ namespace C2.Block
 
             if (other.gameObject.tag == "VRZone" && Networks.NetworkInitializer.Instance.cameraType == CameraType.VR)
             {
-                //blocks.gameObject.SetActive(true);
+                isinVRZone = true;
                 SetBlocksActive(true);
             }
         }
@@ -113,7 +124,8 @@ namespace C2.Block
         {
             if (other.gameObject.tag == "VRZone" /*&& Networks.NetworkInitializer.Instance.cameraType == CameraType.VR*/)
             {
-                //blocks.gameObject.SetActive(false);
+                BeforeDestory();
+                isinVRZone = false;
                 SetBlocksActive(false);
                 Destroy(this.gameObject);
             }
@@ -131,6 +143,10 @@ namespace C2.Block
             }
         }
 
+
+        bool collred = false;
+        bool collblue = false;
+        List<int> colBlklist;
         /// <summary>
         /// 衝突してしまったブロックの情報を受け取る
         /// </summary>
@@ -138,7 +154,42 @@ namespace C2.Block
         /// <param name="blocknum"></param>
         public void SetCollitionObject(BLOCKCOLOR bcolor,int blocknum)
         {
-            Debug.Log("color;"+bcolor+"num:"+blocknum);
+            //Debug.Log("color;"+bcolor+"num:"+blocknum);
+             switch (bcolor)
+            {
+                case BLOCKCOLOR.WHITE:
+                    colBlklist.Add(blocknum);
+                    break;
+                case BLOCKCOLOR.RED:
+                    collred = true;
+                    break;
+                case BLOCKCOLOR.BLUE:
+                    collblue = true;
+                    break;
+            }
+        }
+
+
+        /// <summary>
+        /// 削除される前にぶつかった情報を格納
+        /// </summary>
+        void BeforeDestory()
+        {
+            string str = "";
+            foreach(var a in colBlklist)
+            {
+                str += a.ToString();
+                str += "-";
+            }
+
+            if (collblue && collred)
+                C2.Exp.ExpRecorder.Instance.AddTaskCollisionInfo("TRUE", str);
+            else if(collred)
+                C2.Exp.ExpRecorder.Instance.AddTaskCollisionInfo("RED", str);
+            else if(collblue)
+                C2.Exp.ExpRecorder.Instance.AddTaskCollisionInfo("BLUE", str);
+            else
+                C2.Exp.ExpRecorder.Instance.AddTaskCollisionInfo("FALSE", str);
         }
     }
 }

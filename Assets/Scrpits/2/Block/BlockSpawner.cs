@@ -8,11 +8,13 @@ namespace C2.Block
 
     public class BlockSpawner : MonoBehaviour
     {
-        [SerializeField]
-        GameObject blockPref;
 
         [SerializeField]
-        GameObject currentBlock=null;
+        GameObject blockPref;
+        [SerializeField]
+        taskNumSheet sheet;
+
+        public  GameObject currentBlock=null;
 
         int[] raw = new int[24] {0,0,0,0,
                                 1,0,0,0,
@@ -30,18 +32,15 @@ namespace C2.Block
         // Update is called once per frame
         void Update()
         {
-            if (currentBlock == null)
-            {
-                currentBlock = Create(Random.Range(0, 2), Random.Range(0, 5));
-            }
+
         }
 
-        GameObject Create(int pos,int offset)
+        public void Create(int pos,int offset,int rawNum,int reverse)
         {
             var a = Instantiate(blockPref).GetComponent<BlockPrefab>();
 
 
-            a.CreateBlocks(raw);
+            a.CreateBlocks(GetTask(rawNum,reverse));
 
             if (pos==0)
             {
@@ -57,7 +56,41 @@ namespace C2.Block
             a.SpwanBlock();
             a.SetBlocksActive(false);
 
-            return a.gameObject;
+            currentBlock= a.gameObject;
+        }
+
+
+        int[] GetTask(int i,int reverse)
+        {
+            int[] task = new int[24];
+
+            if (reverse == 0)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    task[j * 4 + 0] = sheet.sheets[i].list[j].col1;
+                    task[j * 4 + 1] = sheet.sheets[i].list[j].col2;
+                    task[j * 4 + 2] = sheet.sheets[i].list[j].col3;
+                    task[j * 4 + 3] = sheet.sheets[i].list[j].col4;
+                }
+            }
+            else //リバースする            
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    task[j * 4 + 0] = sheet.sheets[i].list[j].col4;
+                    task[j * 4 + 1] = sheet.sheets[i].list[j].col3;
+                    task[j * 4 + 2] = sheet.sheets[i].list[j].col2;
+                    task[j * 4 + 3] = sheet.sheets[i].list[j].col1;
+                }
+            }
+            return task;
+        }
+
+        public void ReverseStopBlock()
+        {
+            if (currentBlock == null) return;
+            currentBlock.GetComponent<BlockPrefab>().ReverseStopFlag();
         }
     }
 }

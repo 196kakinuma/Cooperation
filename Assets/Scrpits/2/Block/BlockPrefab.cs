@@ -33,13 +33,15 @@ namespace C2.Block
         [SerializeField]
         bool stop = false;
 
+        bool isinVRZone=false;
         public void ReverseStopFlag()
         {
-            Debug.Log("stop!"+stop);
-            if (stop) stop = false;
-            else stop = true;
-            Debug.Log("called"+stop);
+            if (isinVRZone) return;
+            stop = !stop;
+            //if (stop) stop = false;
+            //else stop = true;
         }
+
 
         void Start()
         {
@@ -113,7 +115,7 @@ namespace C2.Block
 
             if (other.gameObject.tag == "VRZone" && Networks.NetworkInitializer.Instance.cameraType == CameraType.VR)
             {
-                //blocks.gameObject.SetActive(true);
+                isinVRZone = true;
                 SetBlocksActive(true);
             }
         }
@@ -123,6 +125,7 @@ namespace C2.Block
             if (other.gameObject.tag == "VRZone" /*&& Networks.NetworkInitializer.Instance.cameraType == CameraType.VR*/)
             {
                 BeforeDestory();
+                isinVRZone = false;
                 SetBlocksActive(false);
                 Destroy(this.gameObject);
             }

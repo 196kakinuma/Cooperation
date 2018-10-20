@@ -32,9 +32,10 @@ namespace C2.System
             {
                 int lr = Random.Range(0, 2);
                 int offset = Random.Range(0, 5);
-                int taskNum=0;
-                spawner.Create(lr, offset,taskNum);
-                C2.Exp.ExpRecorder.Instance.AddTaskInfo(lr, offset, taskNum);
+                int taskNum=Random.Range(0,20);
+                int reverse = Random.Range(0, 2);
+                spawner.Create(lr, offset,taskNum,reverse);
+                C2.Exp.ExpRecorder.Instance.AddTaskInfo(lr, offset, taskNum,reverse);
                 C2.Exp.ExpRecorder.Instance.AddTaskTimeInfo(time);
             }
 

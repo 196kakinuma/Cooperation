@@ -23,6 +23,7 @@ namespace C2.Exp
             leftRightList = new List<int>();
             offsetList = new List<int>();
             taskNumList = new List<int>();
+            reverseList = new List<int>();
             taskResultList = new List<string>();
             collisionList = new List<string>();
             timeList = new List<float>();
@@ -31,14 +32,16 @@ namespace C2.Exp
         List<int> leftRightList;
         List<int> offsetList;
         List<int> taskNumList;
+        List<int> reverseList;
         /// <summary>
         /// タスク情報を毎回保持する
         /// </summary>
-        public void AddTaskInfo(int LR,int offset ,int taskNum)
+        public void AddTaskInfo(int LR,int offset ,int taskNum,int reverse)
         {
             leftRightList.Add(LR);
             offsetList.Add(offset);
             taskNumList.Add(taskNum);
+            reverseList.Add(reverse);
         }
 
         List<string> taskResultList;

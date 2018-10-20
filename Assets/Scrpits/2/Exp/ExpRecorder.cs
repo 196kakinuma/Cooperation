@@ -119,7 +119,8 @@ namespace C2.Exp
             writer.InitializeFile(C2.System.ExpSettings.Instance.ExpName + "TimeInfo");
             foreach(var a in timeList)
                 writer.WriteWords(a.ToString());
-            for(int i=0;i<timeList.Count-1;i++)
+            writer.WriteNewLine();
+            for (int i=0;i<timeList.Count-1;i++)
             {
                 writer.WriteWords((timeList[i + 1] - timeList[i]).ToString());
             }

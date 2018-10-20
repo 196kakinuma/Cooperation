@@ -16,27 +16,30 @@ namespace C2.System
         public bool gameStart = false;
         public bool gameFinish = false;
         float time = 0f;
-
-        // Use this for initialization
-        void Start()
-        {
-
-        }
+        int spwnCount = 0;
 
         // Update is called once per frame
         void Update()
         {
+            if (gameFinish) return;
 
 
             if(spawner.currentBlock==null && gameStart)
             {
+                if (spwnCount == C2.System.ExpSettings.Instance.totalTasknum)
+                {
+                    FinishExp();
+                }
                 int lr = Random.Range(0, 2);
                 int offset = Random.Range(0, 5);
                 int taskNum=Random.Range(0,20);
                 int reverse = Random.Range(0, 2);
-                spawner.Create(lr, offset,taskNum,reverse);
+                //spawner.Create(lr, offset,taskNum,reverse);
+                Debug.Log(spwnCount);
+                spawner.Create(lr, offset, spwnCount, reverse);
                 C2.Exp.ExpRecorder.Instance.AddTaskInfo(lr, offset, taskNum,reverse);
                 C2.Exp.ExpRecorder.Instance.AddTaskTimeInfo(time);
+                spwnCount++;
             }
 
             if (gameStart)
@@ -66,5 +69,7 @@ namespace C2.System
             Debug.Log("finish time:"+time);
 
         }
+
+
     }
 }

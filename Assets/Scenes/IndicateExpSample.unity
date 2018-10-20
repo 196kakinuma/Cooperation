@@ -8309,6 +8309,7 @@ MonoBehaviour:
   AnswerDebug: 1
   expnum: 0
   ExpName: 
+  totalTasknum: 20
 --- !u!114 &1897459344
 MonoBehaviour:
   m_ObjectHideFlags: 0

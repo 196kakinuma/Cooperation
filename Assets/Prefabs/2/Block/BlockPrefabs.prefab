@@ -994,6 +994,8 @@ MonoBehaviour:
   blue: {fileID: 1269194675343984, guid: 1598709eff3283845916fccdd0beb33a, type: 2}
   red: {fileID: 1352506382637920, guid: 81b06c3f4affdba45ac57f9c8ce4f817, type: 2}
   blocks: {fileID: 1551638091582068}
+  notspwanedObj: []
+  stop: 0
 --- !u!114 &114021322601688164
 MonoBehaviour:
   m_ObjectHideFlags: 1

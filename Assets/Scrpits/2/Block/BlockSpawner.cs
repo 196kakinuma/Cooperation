@@ -86,5 +86,11 @@ namespace C2.Block
             }
             return task;
         }
+
+        public void ReverseStopBlock()
+        {
+            if (currentBlock == null) return;
+            currentBlock.GetComponent<BlockPrefab>().ReverseStopFlag();
+        }
     }
 }

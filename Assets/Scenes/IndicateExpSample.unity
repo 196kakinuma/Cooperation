@@ -5566,6 +5566,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forward: {fileID: 1272683032}
   staticLen: 0
+  bSpwaner: {fileID: 1356168081}
 --- !u!54 &1886457483
 Rigidbody:
   m_ObjectHideFlags: 0

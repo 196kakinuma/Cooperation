@@ -30,7 +30,16 @@ namespace C2.Block
         [SerializeField]
         List<GameObject> notspwanedObj=new List<GameObject>();
 
+        [SerializeField]
+        bool stop = false;
 
+        public void ReverseStopFlag()
+        {
+            Debug.Log("stop!"+stop);
+            if (stop) stop = false;
+            else stop = true;
+            Debug.Log("called"+stop);
+        }
 
         void Start()
         {
@@ -40,7 +49,10 @@ namespace C2.Block
         // Update is called once per frame
         void Update()
         {
-            Move();
+            if (!stop)
+            {
+                Move();
+            }
         }
 
         public void CreateBlocks(int[] ints)
